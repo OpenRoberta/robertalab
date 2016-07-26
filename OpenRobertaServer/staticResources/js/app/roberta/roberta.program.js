@@ -8,6 +8,8 @@ define(
 
             var blocklyWorkspace;
 
+	    var localStorageDraftKey = 'de.fhg.iais.roberta.programDraft';
+
             /**
              * Save program to server
              */
@@ -24,6 +26,7 @@ define(
                                     userState.programSaved = true;
                                     LOG.info('save program ' + userState.program + ' login: ' + userState.id);
                                     userState.programTimestamp = result.lastChanged;
+				    localStorage.removeItem(localStorageDraftKey);
                                 }
                                 MSG.displayInformation(result, "MESSAGE_EDIT_SAVE_PROGRAM", result.message, userState.program);
                             });
@@ -50,6 +53,7 @@ define(
                             userState.programSaved = true;
                             userState.programTimestamp = result.lastChanged;
                             MSG.displayInformation(result, "MESSAGE_EDIT_SAVE_PROGRAM_AS", result.message, userState.program);
+			    localStorage.removeItem(localStorageDraftKey);
                         }
                     });
                 }
@@ -100,6 +104,7 @@ define(
                         }
                         result.name = program[0];
                         result.programSaved = true;
+			localStorage.removeItem(localStorageDraftKey);
                         $('#tabProgram').one('shown.bs.tab', function() {
                             showProgram(result, alien);
                         });
@@ -268,6 +273,7 @@ define(
                     //$('#tabProgram').click();
                     $('#menuSaveProg').parent().addClass('disabled');
                     blocklyWorkspace.robControls.disable('saveProgram');
+                    localStorage.removeItem(localStorageDraftKey);
                 } else {
                     $('#confirmContinue').data('type', 'program');
                     if (userState.id === -1) {
@@ -538,10 +544,32 @@ define(
                                     blocklyWorkspace.robControls.enable('saveProgram');
                                 }
                             }
+                            // Store draft locally
+                            var xml = Blockly.Xml.workspaceToDom(blocklyWorkspace);
+                            var xmlText = Blockly.Xml.domToText(xml);
+                            try {
+				localStorage.setItem(localStorageDraftKey, xmlText);
+                            } catch (e) {
+				console.log("Failed to store draft", e);
+				// Inform user?
+                            }
                         });
                         bindControl();
                     }
                     initProgramEnvironment();
+		    var draft = localStorage.getItem(localStorageDraftKey);
+		    if (draft) {
+			try {
+			    var draftXml = Blockly.Xml.textToDom(draft);
+			    blocklyWorkspace.clear();
+			    Blockly.Xml.domToWorkspace(draftXml, blocklyWorkspace);
+			} catch (e) {
+			    console.log("Error: ", e);
+			    // Incompatible draft, discarded.
+			    initProgramEnvironment();
+			}
+		    }
+		    localStorage.removeItem(localStorageDraftKey);
                     ROBERTA_ROBOT.setState(toolbox);
                 }
             }
