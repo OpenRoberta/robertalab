@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: de.fhg.iais.roberta:dbusjava:0.9.0-beta">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/de/fhg/iais/roberta/dbusjava/0.9.0-beta/dbusjava-0.9.0-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/de/fhg/iais/roberta/dbusjava/0.9.0-beta/dbusjava-0.9.0-beta-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/de/fhg/iais/roberta/dbusjava/0.9.0-beta/dbusjava-0.9.0-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

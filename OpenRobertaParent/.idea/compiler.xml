@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="OpenRobertaRobot" />
+        <module name="OpenRobertaServer" />
+        <module name="RobotArdu" />
+        <module name="RobotEV3" />
+        <module name="RobotMbed" />
+        <module name="RobotNAO" />
+        <module name="RobotNXT" />
+        <module name="TestResources" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="OpenRobertaParent" target="1.7" />
+      <module name="OpenRobertaRobot" target="1.7" />
+      <module name="OpenRobertaServer" target="1.7" />
+      <module name="Resources" target="1.7" />
+      <module name="RobotArdu" target="1.7" />
+      <module name="RobotEV3" target="1.7" />
+      <module name="RobotMbed" target="1.7" />
+      <module name="RobotNAO" target="1.7" />
+      <module name="RobotNXT" target="1.7" />
+      <module name="TestResources" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
