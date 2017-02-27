@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OpenRobertaParent.iml" filepath="$PROJECT_DIR$/OpenRobertaParent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../OpenRobertaRobot/OpenRobertaRobot.iml" filepath="$PROJECT_DIR$/../OpenRobertaRobot/OpenRobertaRobot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../OpenRobertaServer/OpenRobertaServer.iml" filepath="$PROJECT_DIR$/../OpenRobertaServer/OpenRobertaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Resources/Resources.iml" filepath="$PROJECT_DIR$/../Resources/Resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RobotArdu/RobotArdu.iml" filepath="$PROJECT_DIR$/../RobotArdu/RobotArdu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RobotEV3/RobotEV3.iml" filepath="$PROJECT_DIR$/../RobotEV3/RobotEV3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RobotMbed/RobotMbed.iml" filepath="$PROJECT_DIR$/../RobotMbed/RobotMbed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RobotNAO/RobotNAO.iml" filepath="$PROJECT_DIR$/../RobotNAO/RobotNAO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RobotNXT/RobotNXT.iml" filepath="$PROJECT_DIR$/../RobotNXT/RobotNXT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TestResources/TestResources.iml" filepath="$PROJECT_DIR$/../TestResources/TestResources.iml" />
+    </modules>
+  </component>
+</project>
