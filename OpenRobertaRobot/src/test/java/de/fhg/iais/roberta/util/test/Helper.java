@@ -41,7 +41,7 @@ import de.fhg.iais.roberta.jaxb.JaxbHelper;
 import de.fhg.iais.roberta.robotCommunication.ICompilerWorkflow;
 import de.fhg.iais.roberta.syntax.Phrase;
 import de.fhg.iais.roberta.syntax.blocksequence.Location;
-import de.fhg.iais.roberta.syntax.hardwarecheck.generic.SimulationProgramCheckVisitor;
+import de.fhg.iais.roberta.syntax.check.hardware.SimulationProgramCheckVisitor;
 import de.fhg.iais.roberta.transformer.Jaxb2BlocklyProgramTransformer;
 import de.fhg.iais.roberta.util.RobertaProperties;
 import de.fhg.iais.roberta.util.Util1;
@@ -157,7 +157,7 @@ public class Helper {
         String t = Resources.toString(Helper.class.getResource(fileName), Charsets.UTF_8);
         XMLUnit.setIgnoreWhitespace(true);
         Diff diff = XMLUnit.compareXML(writer.toString(), t);
-        // System.out.println(diff.toString()); // only needed for EXTREME debugging
+        //        System.out.println(diff.toString()); // only needed for EXTREME debugging
         Assert.assertTrue(diff.identical());
     }
 

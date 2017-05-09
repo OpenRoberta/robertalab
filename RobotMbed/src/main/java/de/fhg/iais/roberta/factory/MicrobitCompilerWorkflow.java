@@ -8,9 +8,10 @@ import org.slf4j.LoggerFactory;
 
 import de.fhg.iais.roberta.blockly.generated.BlockSet;
 import de.fhg.iais.roberta.components.Configuration;
+import de.fhg.iais.roberta.components.MicrobitConfiguration;
 import de.fhg.iais.roberta.jaxb.JaxbHelper;
 import de.fhg.iais.roberta.robotCommunication.ICompilerWorkflow;
-import de.fhg.iais.roberta.syntax.codegen.PythonCodeGeneratorVisitor;
+import de.fhg.iais.roberta.syntax.codegen.Ast2PythonMicroBitVisitor;
 import de.fhg.iais.roberta.transformer.BlocklyProgramAndConfigTransformer;
 import de.fhg.iais.roberta.transformer.Jaxb2MicrobitConfigurationTransformer;
 import de.fhg.iais.roberta.util.Key;
@@ -58,7 +59,8 @@ public class MicrobitCompilerWorkflow implements ICompilerWorkflow {
      */
     @Override
     public Key execute(String token, String programName, BlocklyProgramAndConfigTransformer data) {
-        String sourceCode = PythonCodeGeneratorVisitor.generate(data.getBrickConfiguration(), data.getProgramTransformer().getTree(), true);
+        String sourceCode =
+            Ast2PythonMicroBitVisitor.generate((MicrobitConfiguration) data.getBrickConfiguration(), data.getProgramTransformer().getTree(), true);
 
         Key messageKey = runBuild(sourceCode);
         if ( messageKey == Key.COMPILERWORKFLOW_SUCCESS ) {
@@ -96,7 +98,7 @@ public class MicrobitCompilerWorkflow implements ICompilerWorkflow {
             return null;
         }
 
-        return PythonCodeGeneratorVisitor.generate(data.getBrickConfiguration(), data.getProgramTransformer().getTree(), true);
+        return Ast2PythonMicroBitVisitor.generate((MicrobitConfiguration) data.getBrickConfiguration(), data.getProgramTransformer().getTree(), true);
     }
 
     /**

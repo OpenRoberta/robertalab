@@ -22,6 +22,7 @@ import de.fhg.iais.roberta.typecheck.BlocklyType;
 import de.fhg.iais.roberta.typecheck.Sig;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
+import de.fhg.iais.roberta.visitor.AstLanguageVisitor;
 import de.fhg.iais.roberta.visitor.AstVisitor;
 
 /**
@@ -111,7 +112,7 @@ public final class Binary<V> extends Expr<V> {
 
     @Override
     protected V accept(AstVisitor<V> visitor) {
-        return visitor.visitBinary(this);
+        return ((AstLanguageVisitor<V>) visitor).visitBinary(this);
     }
 
     /**
@@ -129,11 +130,11 @@ public final class Binary<V> extends Expr<V> {
         LTE( 90, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.NUMBER, BlocklyType.NUMBER), "<=" ),
         GT( 90, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.NUMBER, BlocklyType.NUMBER), ">" ),
         GTE( 90, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.NUMBER, BlocklyType.NUMBER), ">=" ),
-        AND( 70, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.BOOLEAN, BlocklyType.BOOLEAN), "&&" ),
-        OR( 60, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.BOOLEAN, BlocklyType.BOOLEAN), "||" ),
+        AND( 70, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.BOOLEAN, BlocklyType.BOOLEAN), "&&", "and" ),
+        OR( 60, Assoc.LEFT, Sig.of(BlocklyType.BOOLEAN, BlocklyType.BOOLEAN, BlocklyType.BOOLEAN), "||", "or" ),
         MATH_CHANGE( 80, Assoc.NONE, Sig.of(BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE), "+=" ),
         TEXT_APPEND( 1, Assoc.LEFT, Sig.of(BlocklyType.STRING, BlocklyType.STRING, BlocklyType.STRING), "+=", "TEXTAPPEND" ),
-        IN( 1, Assoc.LEFT, Sig.of(BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE), ":" ),
+        IN( 1, Assoc.LEFT, Sig.of(BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE), ":", "in" ),
         ASSIGNMENT( 1, Assoc.RIGHT, Sig.of(BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE, BlocklyType.CAPTURED_TYPE), "=" ),
         ADD_ASSIGNMENT( 1, Assoc.RIGHT, Sig.of(BlocklyType.NUMBER, BlocklyType.NUMBER, BlocklyType.NUMBER), "+=" ),
         MINUS_ASSIGNMENT( 1, Assoc.RIGHT, Sig.of(BlocklyType.NUMBER, BlocklyType.NUMBER, BlocklyType.NUMBER), "-=" ),
@@ -151,17 +152,6 @@ public final class Binary<V> extends Expr<V> {
             this.assoc = assoc;
             this.values = values;
             this.sig = sig;
-        }
-
-        /**
-         * @return mathematical symbol of the operation.
-         */
-        public String getOpSymbol() {
-            if ( this.values.length == 0 ) {
-                return this.toString();
-            } else {
-                return this.values[0];
-            }
         }
 
         /**

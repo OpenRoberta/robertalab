@@ -3,19 +3,18 @@ package de.fhg.iais.roberta.syntax.codegen;
 import java.util.ArrayList;
 
 import de.fhg.iais.roberta.syntax.Phrase;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.CurveAction;
-import de.fhg.iais.roberta.syntax.action.generic.DriveAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightSensorAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorDriveStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorGetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorOnAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorSetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.TurnAction;
-import de.fhg.iais.roberta.syntax.action.nxt.addition.ShowHelloWorldAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
+import de.fhg.iais.roberta.syntax.action.motor.CurveAction;
+import de.fhg.iais.roberta.syntax.action.motor.DriveAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorDriveStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorGetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorSetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.TurnAction;
+import de.fhg.iais.roberta.syntax.action.nxt.LightSensorAction;
 import de.fhg.iais.roberta.syntax.expr.ConnectConst;
-import de.fhg.iais.roberta.syntax.hardwarecheck.CheckVisitor;
+import de.fhg.iais.roberta.syntax.sensor.generic.BrickSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.ColorSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.CompassSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.EncoderSensor;
@@ -26,9 +25,9 @@ import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
-import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.visitor.AstVisitor;
+import de.fhg.iais.roberta.visitor.CheckVisitor;
 import de.fhg.iais.roberta.visitor.NxtAstVisitor;
 
 /**
@@ -40,7 +39,7 @@ public class NxtUsedTimerVisitor extends CheckVisitor implements NxtAstVisitor<V
     private boolean isUsed = false;
 
     public static boolean check(ArrayList<ArrayList<Phrase<Void>>> phrasesSet) {
-        Assert.isTrue(phrasesSet.size() >= 1);
+        Assert.isTrue(!phrasesSet.isEmpty());
         NxtUsedTimerVisitor checkVisitor = new NxtUsedTimerVisitor();
         for ( ArrayList<Phrase<Void>> phrases : phrasesSet ) {
             for ( Phrase<Void> phrase : phrases ) {
@@ -194,12 +193,7 @@ public class NxtUsedTimerVisitor extends CheckVisitor implements NxtAstVisitor<V
     }
 
     @Override
-    public Void visitShowHelloWorldAction(ShowHelloWorldAction<Void> showHelloWorldAction) {
-        return null;
-    }
-
-    @Override
-    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
+    public Void visitBrickSensor(BrickSensor<Void> brickSensor) {
         // TODO Auto-generated method stub
         return null;
     }

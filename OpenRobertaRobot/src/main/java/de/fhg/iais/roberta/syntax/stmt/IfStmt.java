@@ -19,6 +19,7 @@ import de.fhg.iais.roberta.transformer.Jaxb2AstTransformer;
 import de.fhg.iais.roberta.transformer.JaxbTransformerHelper;
 import de.fhg.iais.roberta.typecheck.BlocklyType;
 import de.fhg.iais.roberta.util.dbc.Assert;
+import de.fhg.iais.roberta.visitor.AstLanguageVisitor;
 import de.fhg.iais.roberta.visitor.AstVisitor;
 
 /**
@@ -173,15 +174,16 @@ public class IfStmt<V> extends Stmt<V> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         appendNewLine(sb, 0, null);
-        for ( int i = 0; i < this.expr.size(); i++ ) {
+        int exprListSize = this.expr.size();
+        for ( int i = 0; i < exprListSize; i++ ) {
             sb.append("if ").append(this.expr.get(i));
             appendNewLine(sb, 0, ",then");
             sb.append(this.thenList.get(i).toString());
-            if ( i + 1 < this.expr.size() ) {
+            if ( i + 1 < exprListSize ) {
                 appendNewLine(sb, 0, ",else ");
             }
         }
-        if ( this.elseList.get().size() != 0 ) {
+        if ( !this.elseList.get().isEmpty() ) {
             appendNewLine(sb, 0, ",else");
             sb.append(this.elseList.toString());
         }
@@ -191,7 +193,7 @@ public class IfStmt<V> extends Stmt<V> {
 
     @Override
     protected V accept(AstVisitor<V> visitor) {
-        return visitor.visitIfStmt(this);
+        return ((AstLanguageVisitor<V>) visitor).visitIfStmt(this);
     }
 
     /**
@@ -257,7 +259,7 @@ public class IfStmt<V> extends Stmt<V> {
                 JaxbTransformerHelper.addValue(repetitions, BlocklyConstants.IF + i, getExpr().get(i));
                 JaxbTransformerHelper.addStatement(repetitions, BlocklyConstants.DO + i, getThenList().get(i));
             }
-            if ( elseList.get().size() != 0 ) {
+            if ( !elseList.get().isEmpty() ) {
                 JaxbTransformerHelper.addStatement(repetitions, BlocklyConstants.ELSE, getElseList());
             }
             jaxbDestination.setRepetitions(repetitions);
@@ -266,7 +268,7 @@ public class IfStmt<V> extends Stmt<V> {
 
         JaxbTransformerHelper.addValue(jaxbDestination, BlocklyConstants.IF + "0", getExpr().get(0));
         JaxbTransformerHelper.addStatement(jaxbDestination, BlocklyConstants.DO + "0", getThenList().get(0));
-        if ( elseList.get().size() != 0 ) {
+        if ( !elseList.get().isEmpty() ) {
             JaxbTransformerHelper.addStatement(jaxbDestination, BlocklyConstants.ELSE, getElseList());
         }
 

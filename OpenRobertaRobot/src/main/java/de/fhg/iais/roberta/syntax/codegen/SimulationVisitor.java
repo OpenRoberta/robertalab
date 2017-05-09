@@ -12,12 +12,12 @@ import de.fhg.iais.roberta.mode.general.IndexLocation;
 import de.fhg.iais.roberta.mode.sensor.TimerSensorMode;
 import de.fhg.iais.roberta.syntax.MotorDuration;
 import de.fhg.iais.roberta.syntax.Phrase;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothReceiveAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothSendAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothWaitForConnectionAction;
-import de.fhg.iais.roberta.syntax.action.generic.ToneAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothReceiveAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothSendAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothWaitForConnectionAction;
+import de.fhg.iais.roberta.syntax.action.sound.ToneAction;
 import de.fhg.iais.roberta.syntax.blocksequence.ActivityTask;
 import de.fhg.iais.roberta.syntax.blocksequence.Location;
 import de.fhg.iais.roberta.syntax.blocksequence.MainTask;
@@ -81,9 +81,16 @@ import de.fhg.iais.roberta.syntax.stmt.WaitStmt;
 import de.fhg.iais.roberta.syntax.stmt.WaitTimeStmt;
 import de.fhg.iais.roberta.typecheck.BlocklyType;
 import de.fhg.iais.roberta.util.dbc.DbcException;
-import de.fhg.iais.roberta.visitor.AstVisitor;
+import de.fhg.iais.roberta.visitor.AstLanguageVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorDisplayVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorLightVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorMotorVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorSoundVisitor;
+import de.fhg.iais.roberta.visitor.sensor.AstSensorsVisitor;
 
-public abstract class SimulationVisitor<V> implements AstVisitor<V> {
+public abstract class SimulationVisitor<V> implements AstLanguageVisitor<V>, AstSensorsVisitor<V>, AstActorCommunicationVisitor<V>, AstActorDisplayVisitor<V>,
+    AstActorMotorVisitor<V>, AstActorLightVisitor<V>, AstActorSoundVisitor<V> {
     protected int loopsCounter = 0;
     protected int currentLoop = 0;
     protected int stmtsNumber = 0;
@@ -790,22 +797,23 @@ public abstract class SimulationVisitor<V> implements AstVisitor<V> {
     }
 
     protected void removeInStmt() {
-        if ( this.inStmt.size() != 0 ) {
+        if ( !this.inStmt.isEmpty() ) {
             this.inStmt.remove(this.inStmt.size() - 1);
         }
     }
 
     protected void appendIfStmtConditions(IfStmt<V> ifStmt) {
-        for ( int i = 0; i < ifStmt.getExpr().size(); i++ ) {
+        int exprSize = ifStmt.getExpr().size();
+        for ( int i = 0; i < exprSize; i++ ) {
             ifStmt.getExpr().get(i).visit(this);
-            if ( i < ifStmt.getExpr().size() - 1 ) {
+            if ( i < exprSize - 1 ) {
                 this.sb.append(", ");
             }
         }
     }
 
     protected void appendElseStmt(IfStmt<V> ifStmt) {
-        if ( ifStmt.getElseList().get().size() != 0 ) {
+        if ( !ifStmt.getElseList().get().isEmpty() ) {
             addInStmt();
             ifStmt.getElseList().visit(this);
             removeInStmt();
@@ -813,11 +821,12 @@ public abstract class SimulationVisitor<V> implements AstVisitor<V> {
     }
 
     protected void appendThenStmts(IfStmt<V> ifStmt) {
-        for ( int i = 0; i < ifStmt.getThenList().size(); i++ ) {
+        int thenListSize = ifStmt.getThenList().size();
+        for ( int i = 0; i < thenListSize; i++ ) {
             addInStmt();
             this.sb.append("[");
             ifStmt.getThenList().get(i).visit(this);
-            boolean isLastStmt = i < ifStmt.getThenList().size() - 1;
+            boolean isLastStmt = i < thenListSize - 1;
             this.sb.append("]");
             if ( isLastStmt ) {
                 this.sb.append(", ");
@@ -828,7 +837,7 @@ public abstract class SimulationVisitor<V> implements AstVisitor<V> {
 
     protected void appendRepeatStmtStatements(RepeatStmt<V> repeatStmt) {
         if ( repeatStmt.getMode() == Mode.WAIT ) {
-            if ( repeatStmt.getList().get().size() != 0 ) {
+            if ( !repeatStmt.getList().get().isEmpty() ) {
                 this.sb.append("[");
                 repeatStmt.getList().visit(this);
                 this.sb.append("]");

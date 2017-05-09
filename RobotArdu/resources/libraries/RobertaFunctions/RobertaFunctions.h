@@ -13,29 +13,11 @@
 #include<stdio.h>
 #include<string.h>
 #include "Arduino.h"
-#include "BnrOneA.h" 
-#include "BnrRescue.h" 
-#include "Wire.h" 
 
 
 class RobertaFunctions
 {
   public:   
-		void moveTime(int speedL,int speedR, double time);
-		void moveTimePID(int speedL,int speedR, double time);
-		void move1mTime(int port, int speed, double time);
-		void lcdClear();
-		int ultrasonicDistance(int port);
-		int sonar();
-		bool buttonIsPressed(int button);
-		byte *colorSensorRGB(byte colors[],int port);
-		int colorSensorLight(byte colors[], int port);
-		String colorSensorColor(byte colors[], int port);
-		bool infraredSensorObstacle(int port);
-		bool infraredSensorPresence(int port);
-		float readBearing();
-		char readRoll();
-		char readPitch();
 		int randomIntegerInRange(int val1, int val2);
 		float randomFloat();
 		double clamp(double val, double min, double max);
@@ -56,16 +38,6 @@ class RobertaFunctions
 		double arrStandardDeviatioin(int len, double arr[]);
 		double arrRand(int len, double arr[]);
 		double arrMode(int len, double arr[]);
-		RobertaFunctions(BnrOneA one, BnrRescue brm);
-		BnrOneA one;
-		BnrRescue brm;
-		void setOne(BnrOneA oneInn);
-		void setBrm(BnrRescue brmInn);
-		void dtoa(double n, char *res, int afterpoint);
-		int intToStr(int x, char str[], int d);
-		void reverse(char *str, int len);
-		char *numToString(double num);
-		char *boolToString(bool boolean);
 };
 #endif
 

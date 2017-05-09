@@ -4,30 +4,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.fhg.iais.roberta.components.Configuration;
 import de.fhg.iais.roberta.syntax.Phrase;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothReceiveAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothSendAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothWaitForConnectionAction;
-import de.fhg.iais.roberta.syntax.action.generic.ClearDisplayAction;
-import de.fhg.iais.roberta.syntax.action.generic.CurveAction;
-import de.fhg.iais.roberta.syntax.action.generic.DriveAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightSensorAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightStatusAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorDriveStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorGetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorOnAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorSetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.PlayFileAction;
-import de.fhg.iais.roberta.syntax.action.generic.ShowPictureAction;
-import de.fhg.iais.roberta.syntax.action.generic.ShowTextAction;
-import de.fhg.iais.roberta.syntax.action.generic.ToneAction;
-import de.fhg.iais.roberta.syntax.action.generic.TurnAction;
-import de.fhg.iais.roberta.syntax.action.generic.VolumeAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothReceiveAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothSendAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothWaitForConnectionAction;
+import de.fhg.iais.roberta.syntax.action.display.ClearDisplayAction;
+import de.fhg.iais.roberta.syntax.action.display.ShowPictureAction;
+import de.fhg.iais.roberta.syntax.action.display.ShowTextAction;
+import de.fhg.iais.roberta.syntax.action.light.LightAction;
+import de.fhg.iais.roberta.syntax.action.light.LightStatusAction;
+import de.fhg.iais.roberta.syntax.action.motor.CurveAction;
+import de.fhg.iais.roberta.syntax.action.motor.DriveAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorDriveStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorGetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorSetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.TurnAction;
+import de.fhg.iais.roberta.syntax.action.sound.PlayFileAction;
+import de.fhg.iais.roberta.syntax.action.sound.ToneAction;
+import de.fhg.iais.roberta.syntax.action.sound.VolumeAction;
 import de.fhg.iais.roberta.syntax.blocksequence.ActivityTask;
 import de.fhg.iais.roberta.syntax.blocksequence.Location;
 import de.fhg.iais.roberta.syntax.blocksequence.MainTask;
@@ -85,7 +83,6 @@ import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
-import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.syntax.stmt.ActionStmt;
 import de.fhg.iais.roberta.syntax.stmt.AssignStmt;
 import de.fhg.iais.roberta.syntax.stmt.ExprStmt;
@@ -100,17 +97,23 @@ import de.fhg.iais.roberta.syntax.stmt.WaitStmt;
 import de.fhg.iais.roberta.syntax.stmt.WaitTimeStmt;
 import de.fhg.iais.roberta.typecheck.NepoInfo.Severity;
 import de.fhg.iais.roberta.util.dbc.Assert;
+import de.fhg.iais.roberta.visitor.AstLanguageVisitor;
 import de.fhg.iais.roberta.visitor.AstVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorDisplayVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorLightVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorMotorVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorSoundVisitor;
+import de.fhg.iais.roberta.visitor.sensor.AstSensorsVisitor;
 
 /**
  * This class is implementing {@link AstVisitor}. All methods are implemented and they append a human-readable JAVA code representation of a phrase to a
  * StringBuilder. <b>This representation is correct JAVA code.</b> <br>
  */
-public class TypecheckVisitor implements AstVisitor<BlocklyType> {
+public class TypecheckVisitor implements AstLanguageVisitor<BlocklyType>, AstSensorsVisitor<BlocklyType>, AstActorCommunicationVisitor<BlocklyType>,
+    AstActorDisplayVisitor<BlocklyType>, AstActorMotorVisitor<BlocklyType>, AstActorLightVisitor<BlocklyType>, AstActorSoundVisitor<BlocklyType> {
     private final int ERROR_LIMIT_FOR_TYPECHECK = 10;
 
-    private final Configuration brickConfiguration;
-    private final String programName;
     private final Phrase<BlocklyType> phrase;
 
     private List<NepoInfo> infos = null;
@@ -124,9 +127,7 @@ public class TypecheckVisitor implements AstVisitor<BlocklyType> {
      * @param brickConfiguration hardware configuration of the brick
      * @param phrase
      */
-    TypecheckVisitor(String programName, Configuration brickConfiguration, Phrase<BlocklyType> phrase) {
-        this.programName = programName;
-        this.brickConfiguration = brickConfiguration;
+    TypecheckVisitor(Phrase<BlocklyType> phrase) {
         this.phrase = phrase;
     }
 
@@ -138,13 +139,11 @@ public class TypecheckVisitor implements AstVisitor<BlocklyType> {
      * @param phrase to typecheck
      * @return the typecheck visitor (to get information about errors and the derived type)
      */
-    public static TypecheckVisitor makeVisitorAndTypecheck(String programName, Configuration brickConfiguration, Phrase<BlocklyType> phrase) //
+    public static TypecheckVisitor makeVisitorAndTypecheck(Phrase<BlocklyType> phrase) //
     {
-        Assert.notNull(programName);
-        Assert.notNull(brickConfiguration);
         Assert.notNull(phrase);
 
-        TypecheckVisitor astVisitor = new TypecheckVisitor(programName, brickConfiguration, phrase);
+        TypecheckVisitor astVisitor = new TypecheckVisitor(phrase);
         astVisitor.resultType = phrase.visit(astVisitor);
         return astVisitor;
     }
@@ -689,12 +688,6 @@ public class TypecheckVisitor implements AstVisitor<BlocklyType> {
     }
 
     @Override
-    public BlocklyType visitLightSensorAction(LightSensorAction<BlocklyType> lightSensorAction) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public BlocklyType visitCurveAction(CurveAction<BlocklyType> driveAction) {
         // TODO Auto-generated method stub
         return null;
@@ -718,9 +711,4 @@ public class TypecheckVisitor implements AstVisitor<BlocklyType> {
         return null;
     }
 
-    @Override
-    public BlocklyType visitVoltageSensor(VoltageSensor<BlocklyType> voltageSensor) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

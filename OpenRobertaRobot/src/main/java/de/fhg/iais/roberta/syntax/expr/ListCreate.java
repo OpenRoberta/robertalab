@@ -15,6 +15,7 @@ import de.fhg.iais.roberta.transformer.Jaxb2AstTransformer;
 import de.fhg.iais.roberta.transformer.JaxbTransformerHelper;
 import de.fhg.iais.roberta.typecheck.BlocklyType;
 import de.fhg.iais.roberta.util.dbc.Assert;
+import de.fhg.iais.roberta.visitor.AstLanguageVisitor;
 import de.fhg.iais.roberta.visitor.AstVisitor;
 
 /**
@@ -73,7 +74,7 @@ public class ListCreate<V> extends Expr<V> {
 
     @Override
     protected V accept(AstVisitor<V> visitor) {
-        return visitor.visitListCreate(this);
+        return ((AstLanguageVisitor<V>) visitor).visitListCreate(this);
     }
 
     @Override
@@ -110,7 +111,7 @@ public class ListCreate<V> extends Expr<V> {
         JaxbTransformerHelper.setBasicProperties(this, jaxbDestination);
 
         ExprList<?> exprList = getValue();
-        int numOfItems = (exprList.get().size());
+        int numOfItems = exprList.get().size();
         Mutation mutation = new Mutation();
         mutation.setItems(BigInteger.valueOf(numOfItems));
         mutation.setListType(getTypeVar().getBlocklyName());

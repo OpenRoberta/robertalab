@@ -1,9 +1,7 @@
 package de.fhg.iais.roberta.syntax.hardwarecheck.mbed;
 
 import de.fhg.iais.roberta.components.Configuration;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorOnAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorStopAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
 import de.fhg.iais.roberta.syntax.action.mbed.DisplayGetBrightnessAction;
 import de.fhg.iais.roberta.syntax.action.mbed.DisplayGetPixelAction;
 import de.fhg.iais.roberta.syntax.action.mbed.DisplayImageAction;
@@ -15,6 +13,9 @@ import de.fhg.iais.roberta.syntax.action.mbed.PinWriteValueSensor;
 import de.fhg.iais.roberta.syntax.action.mbed.PlayNoteAction;
 import de.fhg.iais.roberta.syntax.action.mbed.RadioReceiveAction;
 import de.fhg.iais.roberta.syntax.action.mbed.RadioSendAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorStopAction;
+import de.fhg.iais.roberta.syntax.check.hardware.SimulationProgramCheckVisitor;
 import de.fhg.iais.roberta.syntax.expr.ConnectConst;
 import de.fhg.iais.roberta.syntax.expr.Image;
 import de.fhg.iais.roberta.syntax.expr.PredefinedImage;
@@ -22,8 +23,6 @@ import de.fhg.iais.roberta.syntax.expr.RgbColor;
 import de.fhg.iais.roberta.syntax.expr.mbed.LedColor;
 import de.fhg.iais.roberta.syntax.functions.ImageInvertFunction;
 import de.fhg.iais.roberta.syntax.functions.ImageShiftFunction;
-import de.fhg.iais.roberta.syntax.hardwarecheck.generic.SimulationProgramCheckVisitor;
-import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.syntax.sensor.mbed.AccelerometerOrientationSensor;
 import de.fhg.iais.roberta.syntax.sensor.mbed.AccelerometerSensor;
 import de.fhg.iais.roberta.syntax.sensor.mbed.AmbientLightSensor;
@@ -61,11 +60,6 @@ public class CalliopeSimProgramCheckVisitor extends SimulationProgramCheckVisito
 
     @Override
     public Void visitBluetoothCheckConnectAction(BluetoothCheckConnectAction<Void> bluetoothCheckConnectAction) {
-        return null;
-    }
-
-    @Override
-    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
         return null;
     }
 

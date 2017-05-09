@@ -29,7 +29,6 @@ import de.fhg.iais.roberta.transformer.Jaxb2BlocklyProgramTransformer;
 import de.fhg.iais.roberta.transformer.Jaxb2NaoConfigurationTransformer;
 import de.fhg.iais.roberta.util.RobertaProperties;
 import de.fhg.iais.roberta.util.Util1;
-import de.fhg.iais.roberta.testutil.Helper;
 
 /**
  * This class is used to store helper methods for operation with JAXB objects and generation code from them.
@@ -51,9 +50,9 @@ public class Helper {
      * @throws Exception
      */
     public static String generateStringWithoutWrapping(String pathToProgramXml, String language) throws Exception {
-        final Jaxb2BlocklyProgramTransformer<Void> transformer = generateTransformer(pathToProgramXml);
+        Jaxb2BlocklyProgramTransformer<Void> transformer = generateTransformer(pathToProgramXml);
         Configuration brickConfiguration = new NAOConfiguration.Builder().build();
-        String code = Ast2NaoPythonVisitor.generate("Test", brickConfiguration, transformer.getTree(), false);
+        String code = Ast2NaoPythonVisitor.generate((NAOConfiguration) brickConfiguration, transformer.getTree(), false);
 
         return code;
     }
@@ -67,7 +66,7 @@ public class Helper {
      */
     public static String generateString(String pathToProgramXml, NAOConfiguration brickConfiguration) throws Exception {
         final Jaxb2BlocklyProgramTransformer<Void> transformer = generateTransformer(pathToProgramXml);
-        final String code = Ast2NaoPythonVisitor.generate("Test", brickConfiguration, transformer.getTree(), true);
+        final String code = Ast2NaoPythonVisitor.generate(brickConfiguration, transformer.getTree(), true);
         // System.out.println(code); // only needed for EXTREME debugging
         return code;
     }
@@ -214,7 +213,7 @@ public class Helper {
      */
     public static String generatePython(String pathToProgramXml, Configuration brickConfiguration) throws Exception {
         Jaxb2BlocklyProgramTransformer<Void> transformer = generateTransformer(pathToProgramXml);
-        String code = Ast2NaoPythonVisitor.generate("Test", brickConfiguration, transformer.getTree(), true);
+        String code = Ast2NaoPythonVisitor.generate((NAOConfiguration) brickConfiguration, transformer.getTree(), true);
         // System.out.println(code); // only needed for EXTREME debugging
         return code;
     }

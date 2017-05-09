@@ -1,0 +1,16 @@
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ardu" xmlversion="" description="">
+  <instance x="138" y="87">
+    <block id="xhsMR|X+h1nIPi2-2pH7" type="robControls_start" intask="true" deletable="false">
+      <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
+    </block>
+    <block id="}sHt)p`/jml7v0[ii-oF" type="mbedActions_motor_on" intask="true">
+      <field name="MOTORPORT">M1</field>
+      <value name="POWER">
+        <block id="BV.WqMq4V%b;c]pvj.zN" type="math_number" intask="true">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+  </instance>
+</block_set>

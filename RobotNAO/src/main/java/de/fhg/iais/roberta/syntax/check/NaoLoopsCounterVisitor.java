@@ -28,6 +28,7 @@ import de.fhg.iais.roberta.syntax.action.nao.TakePicture;
 import de.fhg.iais.roberta.syntax.action.nao.TurnDegrees;
 import de.fhg.iais.roberta.syntax.action.nao.WalkDistance;
 import de.fhg.iais.roberta.syntax.action.nao.WalkTo;
+import de.fhg.iais.roberta.syntax.check.program.LoopsCounterVisitor;
 import de.fhg.iais.roberta.syntax.sensor.nao.Accelerometer;
 import de.fhg.iais.roberta.syntax.sensor.nao.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.nao.Dialog;
@@ -52,230 +53,230 @@ public class NaoLoopsCounterVisitor extends LoopsCounterVisitor implements NaoAs
 
     @Override
     public Void visitSetMode(SetMode<Void> mode) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitApplyPosture(ApplyPosture<Void> applyPosture) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSetStiffness(SetStiffness<Void> setStiffness) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitHand(Hand<Void> hand) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitMoveJoint(MoveJoint<Void> moveJoint) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitWalkDistance(WalkDistance<Void> walkDistance) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitTurnDegrees(TurnDegrees<Void> turnDegrees) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitWalkTo(WalkTo<Void> walkTo) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitStop(Stop<Void> stop) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitAnimation(Animation<Void> animation) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitPointLookAt(PointLookAt<Void> pointLookAt) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSetVolume(SetVolume<Void> setVolume) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitGetVolume(GetVolume<Void> getVolume) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSetLanguage(SetLanguage<Void> setLanguage) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitGetLanguage(GetLanguage<Void> getLanguage) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitPlayFile(PlayFile<Void> playFile) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSetLeds(SetLeds<Void> setLeds) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitLedOff(LedOff<Void> ledOff) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitLedReset(LedReset<Void> ledReset) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitRandomEyesDuration(RandomEyesDuration<Void> randomEyesDuration) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitRastaDuration(RastaDuration<Void> rastaDuration) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitTouchsensors(Touchsensors<Void> touchsensors) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSonar(Sonar<Void> sonar) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitGyrometer(Gyrometer<Void> gyrometer) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitAccelerometer(Accelerometer<Void> accelerometer) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitForceSensor(ForceSensor<Void> forceSensor) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitNaoMark(NaoMark<Void> naoMark) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitTakePicture(TakePicture<Void> takePicture) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitRecordVideo(RecordVideo<Void> recordVideo) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitLearnFace(LearnFace<Void> learnFace) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitForgetFace(ForgetFace<Void> forgetFace) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitDetectFace(DetectFace<Void> detectFace) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitNaoGetSampleSensor(NaoGetSampleSensor<Void> naoGetSampleSensor) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitElectricCurrent(ElectricCurrent<Void> electricCurrent) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitSetIntensity(SetIntensity<Void> setIntensity) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public Void visitDialog(Dialog<Void> dialog) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
-	@Override
-	public Void visitRecognizedWord(RecognizedWord<Void> recognizedWord) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Void visitRecognizedWord(RecognizedWord<Void> recognizedWord) {
+
+        return null;
+    }
 
 }

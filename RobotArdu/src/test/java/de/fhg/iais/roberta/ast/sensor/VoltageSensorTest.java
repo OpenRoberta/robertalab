@@ -3,13 +3,13 @@ package de.fhg.iais.roberta.ast.sensor;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.fhg.iais.roberta.util.test.ardu.Helper;
+import de.fhg.iais.roberta.util.test.ardu.HelperBotNroll;
 
 public class VoltageSensorTest {
-    Helper h = new Helper();
+    HelperBotNroll h = new HelperBotNroll();
 
     @Test
-    public void sensorSetGyro() throws Exception {
+    public void voltageSensorJaxbToAstTransformation() throws Exception {
         String a = "BlockAST [project=[[Location [x=38, y=238], VoltageSensor []]]]";
 
         Assert.assertEquals(a, this.h.generateTransformerString("/ast/sensors/sensor_Voltage.xml"));

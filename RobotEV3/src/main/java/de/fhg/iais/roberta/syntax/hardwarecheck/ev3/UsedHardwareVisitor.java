@@ -11,18 +11,17 @@ import de.fhg.iais.roberta.components.SensorType;
 import de.fhg.iais.roberta.components.UsedActor;
 import de.fhg.iais.roberta.components.UsedSensor;
 import de.fhg.iais.roberta.syntax.Phrase;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.CurveAction;
-import de.fhg.iais.roberta.syntax.action.generic.DriveAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightSensorAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorDriveStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorGetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorOnAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorSetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.TurnAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
+import de.fhg.iais.roberta.syntax.action.motor.CurveAction;
+import de.fhg.iais.roberta.syntax.action.motor.DriveAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorDriveStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorGetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorSetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.TurnAction;
 import de.fhg.iais.roberta.syntax.expr.ConnectConst;
-import de.fhg.iais.roberta.syntax.hardwarecheck.CheckVisitor;
+import de.fhg.iais.roberta.syntax.sensor.generic.BrickSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.ColorSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.CompassSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.EncoderSensor;
@@ -30,10 +29,11 @@ import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.InfraredSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.LightSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
-import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.util.dbc.Assert;
+import de.fhg.iais.roberta.visitor.CheckVisitor;
 
 /**
  * This visitor collects information for used actors and sensors in blockly program.
@@ -75,7 +75,7 @@ public class UsedHardwareVisitor extends CheckVisitor {
     }
 
     private void check(ArrayList<ArrayList<Phrase<Void>>> phrasesSet) {
-        Assert.isTrue(phrasesSet.size() >= 1);
+        Assert.isTrue(!phrasesSet.isEmpty());
         for ( ArrayList<Phrase<Void>> phrases : phrasesSet ) {
             for ( Phrase<Void> phrase : phrases ) {
                 phrase.visit(this);
@@ -216,12 +216,6 @@ public class UsedHardwareVisitor extends CheckVisitor {
     }
 
     @Override
-    public Void visitLightSensorAction(LightSensorAction<Void> lightSensorAction) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public Void visitCompassSensor(CompassSensor<Void> compassSensor) {
         // TODO Auto-generated method stub
         return null;
@@ -240,7 +234,13 @@ public class UsedHardwareVisitor extends CheckVisitor {
     }
 
     @Override
-    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
+    public Void visitBrickSensor(BrickSensor<Void> brickSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitTimerSensor(TimerSensor<Void> timerSensor) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import de.fhg.iais.roberta.components.Actor;
 import de.fhg.iais.roberta.components.ActorType;
-import de.fhg.iais.roberta.components.Configuration;
+import de.fhg.iais.roberta.components.EV3Configuration;
 import de.fhg.iais.roberta.components.Sensor;
 import de.fhg.iais.roberta.components.SensorType;
 import de.fhg.iais.roberta.components.UsedSensor;
@@ -22,29 +22,29 @@ import de.fhg.iais.roberta.mode.sensor.ev3.MotorTachoMode;
 import de.fhg.iais.roberta.mode.sensor.ev3.UltrasonicSensorMode;
 import de.fhg.iais.roberta.syntax.MotorDuration;
 import de.fhg.iais.roberta.syntax.Phrase;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothReceiveAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothSendAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothWaitForConnectionAction;
-import de.fhg.iais.roberta.syntax.action.generic.ClearDisplayAction;
-import de.fhg.iais.roberta.syntax.action.generic.CurveAction;
-import de.fhg.iais.roberta.syntax.action.generic.DriveAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightSensorAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightStatusAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorDriveStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorGetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorOnAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorSetPowerAction;
-import de.fhg.iais.roberta.syntax.action.generic.MotorStopAction;
-import de.fhg.iais.roberta.syntax.action.generic.PlayFileAction;
-import de.fhg.iais.roberta.syntax.action.generic.ShowPictureAction;
-import de.fhg.iais.roberta.syntax.action.generic.ShowTextAction;
-import de.fhg.iais.roberta.syntax.action.generic.ToneAction;
-import de.fhg.iais.roberta.syntax.action.generic.TurnAction;
-import de.fhg.iais.roberta.syntax.action.generic.VolumeAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothReceiveAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothSendAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothWaitForConnectionAction;
+import de.fhg.iais.roberta.syntax.action.display.ClearDisplayAction;
+import de.fhg.iais.roberta.syntax.action.display.ShowPictureAction;
+import de.fhg.iais.roberta.syntax.action.display.ShowTextAction;
+import de.fhg.iais.roberta.syntax.action.light.LightAction;
+import de.fhg.iais.roberta.syntax.action.light.LightStatusAction;
+import de.fhg.iais.roberta.syntax.action.motor.CurveAction;
+import de.fhg.iais.roberta.syntax.action.motor.DriveAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorDriveStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorGetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorSetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.TurnAction;
+import de.fhg.iais.roberta.syntax.action.sound.PlayFileAction;
+import de.fhg.iais.roberta.syntax.action.sound.ToneAction;
+import de.fhg.iais.roberta.syntax.action.sound.VolumeAction;
 import de.fhg.iais.roberta.syntax.blocksequence.MainTask;
+import de.fhg.iais.roberta.syntax.check.program.LoopsCounterVisitor;
 import de.fhg.iais.roberta.syntax.expr.ConnectConst;
 import de.fhg.iais.roberta.syntax.expr.EmptyList;
 import de.fhg.iais.roberta.syntax.expr.ListCreate;
@@ -74,19 +74,29 @@ import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
-import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.syntax.stmt.WaitStmt;
 import de.fhg.iais.roberta.syntax.stmt.WaitTimeStmt;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
 import de.fhg.iais.roberta.visitor.AstVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorDisplayVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorLightVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorMotorVisitor;
+import de.fhg.iais.roberta.visitor.actor.AstActorSoundVisitor;
+import de.fhg.iais.roberta.visitor.sensor.AstSensorsVisitor;
 
 /**
  * This class is implementing {@link AstVisitor}. All methods are implemented and they append a human-readable JAVA code representation of a phrase to a
  * StringBuilder. <b>This representation is correct JAVA code.</b> <br>
  */
 
-public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
+public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor implements AstSensorsVisitor<Void>, AstActorCommunicationVisitor<Void>, AstActorDisplayVisitor<Void>,
+    AstActorMotorVisitor<Void>, AstActorLightVisitor<Void>, AstActorSoundVisitor<Void> {
+    protected final EV3Configuration brickConfiguration;
+
+    protected final Set<UsedSensor> usedSensors;
+
     /**
      * initialize the Java code generator visitor.
      *
@@ -95,8 +105,15 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
      * @param usedSensors in the current program
      * @param indentation to start with. Will be ince/decr depending on block structure
      */
-    public Ast2Ev3JavaVisitor(String programName, Configuration brickConfiguration, Set<UsedSensor> usedSensors, int indentation) {
-        super(programName, brickConfiguration, usedSensors, indentation);
+    private Ast2Ev3JavaVisitor(String programName, ArrayList<ArrayList<Phrase<Void>>> programPhrases, EV3Configuration brickConfiguration, int indentation) {
+        super(programPhrases, programName, indentation);
+
+        UsedHardwareVisitor checkVisitor = new UsedHardwareVisitor(programPhrases);
+
+        this.brickConfiguration = brickConfiguration;
+        this.usedSensors = checkVisitor.getUsedSensors();
+
+        this.loopsLabels = new LoopsCounterVisitor(programPhrases).getloopsLabelContainer();
     }
 
     /**
@@ -106,35 +123,55 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
      * @param brickConfiguration hardware configuration of the brick
      * @param phrases to generate the code from
      */
-    public static String generate(String programName, Configuration brickConfiguration, ArrayList<ArrayList<Phrase<Void>>> phrasesSet, boolean withWrapping) {
+    public static String generate(
+        String programName,
+        EV3Configuration brickConfiguration,
+        ArrayList<ArrayList<Phrase<Void>>> phrasesSet,
+        boolean withWrapping) {
         Assert.notNull(programName);
         Assert.notNull(brickConfiguration);
-        Assert.isTrue(phrasesSet.size() >= 1);
 
-        UsedHardwareVisitor checkVisitor = new UsedHardwareVisitor(phrasesSet);
-        Ast2Ev3JavaVisitor astVisitor = new Ast2Ev3JavaVisitor(programName, brickConfiguration, checkVisitor.getUsedSensors(), withWrapping ? 1 : 0);
-        astVisitor.genearateCode(phrasesSet, withWrapping);
-
+        Ast2Ev3JavaVisitor astVisitor = new Ast2Ev3JavaVisitor(programName, phrasesSet, brickConfiguration, withWrapping ? 1 : 0);
+        astVisitor.generateCode(withWrapping);
         return astVisitor.sb.toString();
     }
 
     @Override
-    protected void generateSuffix(boolean withWrapping) {
-        if ( withWrapping ) {
-            this.sb.append("\n}\n");
+    protected void generateProgramPrefix(boolean withWrapping) {
+        if ( !withWrapping ) {
+            return;
         }
+        generateImports();
+
+        this.sb.append("public class " + this.programName + " {\n");
+        this.sb.append(INDENT).append("private static Configuration brickConfiguration;").append("\n\n");
+        this.sb.append(INDENT).append(generateRegenerateUsedSensors()).append("\n\n");
+
+        this.sb.append(INDENT).append("private Hal hal = new Hal(brickConfiguration, usedSensors);\n");
+        generateUserDefinedMethods();
+        this.sb.append("\n");
+        this.sb.append(INDENT).append("public static void main(String[] args) {\n");
+        this.sb.append(INDENT).append(INDENT).append("try {\n");
+        this.sb.append(INDENT).append(INDENT).append(INDENT).append(generateRegenerateConfiguration()).append("\n");
+        this.sb.append(INDENT).append(INDENT).append(INDENT).append("new ").append(this.programName).append("().run();\n");
+        this.sb.append(INDENT).append(INDENT).append("} catch ( Exception e ) {\n");
+        this.sb.append(INDENT).append(INDENT).append(INDENT).append("Hal.displayExceptionWaitForKeyPress(e);\n");
+        this.sb.append(INDENT).append(INDENT).append("}\n");
+        this.sb.append(INDENT).append("}");
+
     }
 
     @Override
-    public Void visitSoundSensor(SoundSensor<Void> sensor) {
-        //TODO: is this sensors supported by the EV3
-        return null;
-    }
+    protected void generateProgramSuffix(boolean withWrapping) {
+        if ( withWrapping ) {
+            if ( this.isInDebugMode ) {
+                this.sb.append("\n");
+                this.sb.append(INDENT).append(INDENT).append("hal.closeResources();\n");
+            }
 
-    @Override
-    public Void visitLightSensor(LightSensor<Void> sensor) {
-        //TODO: is this sensors supported by the EV3
-        return null;
+            this.sb.append(INDENT).append("}");
+        }
+        this.sb.append("\n").append("}");
     }
 
     @Override
@@ -147,6 +184,11 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
         decrIndentation();
         nlIndent();
         this.sb.append("}");
+        return null;
+    }
+
+    @Override
+    public Void visitConnectConst(ConnectConst<Void> connectConst) {
         return null;
     }
 
@@ -465,6 +507,21 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
     }
 
     @Override
+    public Void visitCompassSensor(CompassSensor<Void> compassSensor) {
+        return null;
+    }
+
+    @Override
+    public Void visitSoundSensor(SoundSensor<Void> sensor) {
+        return null;
+    }
+
+    @Override
+    public Void visitLightSensor(LightSensor<Void> sensor) {
+        return null;
+    }
+
+    @Override
     public Void visitMainTask(MainTask<Void> mainTask) {
         mainTask.getVariables().visit(this);
         this.sb.append("\n\n").append(INDENT).append("public void run() throws Exception {\n");
@@ -473,6 +530,7 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
         if ( mainTask.getDebug().equals("TRUE") ) {
             this.sb.append(INDENT).append(INDENT).append("hal.startLogging();");
             //this.sb.append(INDENT).append(INDENT).append(INDENT).append("\nhal.startScreenLoggingThread();");
+            this.isInDebugMode = true;
         }
         return null;
     }
@@ -534,8 +592,8 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
     public Void visitEmptyList(EmptyList<Void> emptyList) {
         this.sb.append(
             "new ArrayList<"
-                + getBlocklyTypeCode(emptyList.getTypeVar()).substring(0, 1).toUpperCase()
-                + getBlocklyTypeCode(emptyList.getTypeVar()).substring(1).toLowerCase()
+                + getLanguageVarTypeFromBlocklyType(emptyList.getTypeVar()).substring(0, 1).toUpperCase()
+                + getLanguageVarTypeFromBlocklyType(emptyList.getTypeVar()).substring(1).toLowerCase()
                 + ">()");
         return null;
     }
@@ -714,10 +772,7 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
     @Override
     public Void visitMathPowerFunct(MathPowerFunct<Void> mathPowerFunct) {
         this.sb.append("BlocklyMethods.pow(");
-        mathPowerFunct.getParam().get(0).visit(this);
-        this.sb.append(", ");
-        mathPowerFunct.getParam().get(1).visit(this);
-        this.sb.append(")");
+        super.visitMathPowerFunct(mathPowerFunct);
         return null;
     }
 
@@ -774,27 +829,22 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
     }
 
     @Override
-    protected void generatePrefix(ArrayList<ArrayList<Phrase<Void>>> phrasesSet, boolean withWrapping) {
-        if ( !withWrapping ) {
-            return;
-        }
-        generateImports();
+    public Void visitBluetoothCheckConnectAction(BluetoothCheckConnectAction<Void> bluetoothCheckConnectAction) {
+        return null;
+    }
 
-        this.sb.append("public class " + this.programName + " {\n");
-        this.sb.append(INDENT).append("private static Configuration brickConfiguration;").append("\n\n");
-        this.sb.append(INDENT).append(generateRegenerateUsedSensors()).append("\n\n");
-
-        this.sb.append(INDENT).append("private Hal hal = new Hal(brickConfiguration, usedSensors);\n");
-        generateUserDefinedMethods(phrasesSet);
-        this.sb.append("\n");
-        this.sb.append(INDENT).append("public static void main(String[] args) {\n");
-        this.sb.append(INDENT).append(INDENT).append("try {\n");
-        this.sb.append(INDENT).append(INDENT).append(INDENT).append(generateRegenerateConfiguration()).append("\n");
-        this.sb.append(INDENT).append(INDENT).append(INDENT).append("new ").append(this.programName).append("().run();\n");
-        this.sb.append(INDENT).append(INDENT).append("} catch ( Exception e ) {\n");
-        this.sb.append(INDENT).append(INDENT).append(INDENT).append("Hal.displayExceptionWaitForKeyPress(e);\n");
-        this.sb.append(INDENT).append(INDENT).append("}\n");
-        this.sb.append(INDENT).append("}\n");
+    /**
+     * @return Java code used in the code generation to regenerates the same brick configuration
+     */
+    public String generateRegenerateConfiguration() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" brickConfiguration = new EV3Configuration.Builder()\n");
+        sb.append(INDENT).append(INDENT).append(INDENT).append("    .setWheelDiameter(" + this.brickConfiguration.getWheelDiameterCM() + ")\n");
+        sb.append(INDENT).append(INDENT).append(INDENT).append("    .setTrackWidth(" + this.brickConfiguration.getTrackWidthCM() + ")\n");
+        appendActors(sb);
+        appendSensors(sb);
+        sb.append(INDENT).append(INDENT).append(INDENT).append("    .build();");
+        return sb.toString();
     }
 
     private void generateImports() {
@@ -815,20 +865,6 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
         this.sb.append("import java.util.Arrays;\n\n");
 
         this.sb.append("import lejos.remote.nxt.NXTConnection;\n\n");
-    }
-
-    /**
-     * @return Java code used in the code generation to regenerates the same brick configuration
-     */
-    public String generateRegenerateConfiguration() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" brickConfiguration = new EV3Configuration.Builder()\n");
-        sb.append(INDENT).append(INDENT).append(INDENT).append("    .setWheelDiameter(" + this.brickConfiguration.getWheelDiameterCM() + ")\n");
-        sb.append(INDENT).append(INDENT).append(INDENT).append("    .setTrackWidth(" + this.brickConfiguration.getTrackWidthCM() + ")\n");
-        appendActors(sb);
-        appendSensors(sb);
-        sb.append(INDENT).append(INDENT).append(INDENT).append("    .build();");
-        return sb.toString();
     }
 
     private void appendSensors(StringBuilder sb) {
@@ -860,7 +896,7 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
         }
 
         sb.append("private Set<UsedSensor> usedSensors = " + "new LinkedHashSet<UsedSensor>(");
-        if ( this.usedSensors.size() > 0 ) {
+        if ( !this.usedSensors.isEmpty() ) {
             sb.append("Arrays.asList(" + arrayOfSensors.substring(0, arrayOfSensors.length() - 2) + ")");
         }
         sb.append(");");
@@ -902,35 +938,4 @@ public class Ast2Ev3JavaVisitor extends Ast2JavaVisitor {
     private String getSensorTypeCode(SensorType type) {
         return type.getClass().getSimpleName() + "." + type.name();
     }
-
-    @Override
-    public Void visitLightSensorAction(LightSensorAction<Void> lightSensorAction) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Void visitCompassSensor(CompassSensor<Void> compassSensor) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Void visitConnectConst(ConnectConst<Void> connectConst) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Void visitBluetoothCheckConnectAction(BluetoothCheckConnectAction<Void> bluetoothCheckConnectAction) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

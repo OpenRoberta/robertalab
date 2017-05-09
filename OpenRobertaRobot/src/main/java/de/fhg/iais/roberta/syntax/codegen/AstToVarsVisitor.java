@@ -5,13 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import de.fhg.iais.roberta.syntax.Phrase;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothCheckConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothConnectAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothReceiveAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothSendAction;
-import de.fhg.iais.roberta.syntax.action.generic.BluetoothWaitForConnectionAction;
-import de.fhg.iais.roberta.syntax.action.generic.CurveAction;
-import de.fhg.iais.roberta.syntax.action.generic.LightSensorAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothConnectAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothReceiveAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothSendAction;
+import de.fhg.iais.roberta.syntax.action.communication.BluetoothWaitForConnectionAction;
+import de.fhg.iais.roberta.syntax.action.motor.CurveAction;
 import de.fhg.iais.roberta.syntax.blocksequence.Location;
 import de.fhg.iais.roberta.syntax.expr.ConnectConst;
 import de.fhg.iais.roberta.syntax.expr.EmptyList;
@@ -45,7 +44,6 @@ import de.fhg.iais.roberta.syntax.sensor.generic.CompassSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.GetSampleSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.LightSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
-import de.fhg.iais.roberta.syntax.sensor.generic.VoltageSensor;
 import de.fhg.iais.roberta.syntax.stmt.FunctionStmt;
 import de.fhg.iais.roberta.syntax.stmt.MethodStmt;
 import de.fhg.iais.roberta.syntax.stmt.WaitStmt;
@@ -79,7 +77,7 @@ public class AstToVarsVisitor extends AstDefaultVisitorInspecting {
      *
      * @param programName name of the program
      * @param brickConfiguration hardware configuration of the brick
-     * @param phrases to generate the code from
+     * @param programPhrases to generate the code from
      */
     public static Set<String> generate(ArrayList<ArrayList<Phrase<Void>>> phrasesSet) //
     {
@@ -331,12 +329,6 @@ public class AstToVarsVisitor extends AstDefaultVisitorInspecting {
     }
 
     @Override
-    public Void visitLightSensorAction(LightSensorAction<Void> lightSensorAction) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public Void visitCurveAction(CurveAction<Void> driveAction) {
         // TODO Auto-generated method stub
         return null;
@@ -356,12 +348,6 @@ public class AstToVarsVisitor extends AstDefaultVisitorInspecting {
 
     @Override
     public Void visitBluetoothCheckConnectAction(BluetoothCheckConnectAction<Void> bluetoothCheckConnectAction) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
         // TODO Auto-generated method stub
         return null;
     }
