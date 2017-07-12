@@ -14,5 +14,6 @@ RUN mvn clean install
 WORKDIR /robertalab-master
 RUN /robertalab-master/ora.sh --createemptydb OpenRobertaServer/db-2.2.0/openroberta-db
 
+VOLUME /robertalab-master/OpenRobertaServer/db-2.2.0
 EXPOSE 1999
 CMD ["/robertalab-master/ora.sh", "--start-from-git"]
