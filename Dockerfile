@@ -1,6 +1,7 @@
 FROM ubuntu
 
-RUN apt update && apt upgrade -y && apt install -y git phantomjs maven default-jdk gcc-arm-none-eabi srecord libssl-dev wget unzip && apt-get clean
+RUN apt update && apt install -y avrdude avr-libc binutils-avr default-jdk gcc-arm-none-eabi gcc-avr gdb-avr git libssl-dev libusb-0.1-4 maven nbc phantomjs python-pip srecord unzip wget && apt-get clean
+RUN pip install uflash
 
 RUN wget -q https://github.com/OpenRoberta/robertalab/archive/master.zip && \
 	unzip master.zip && \
