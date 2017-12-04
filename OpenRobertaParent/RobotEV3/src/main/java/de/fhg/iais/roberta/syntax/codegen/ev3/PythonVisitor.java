@@ -69,6 +69,7 @@ import de.fhg.iais.roberta.syntax.sensor.generic.ColorSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.EncoderSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.InfraredSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
@@ -464,6 +465,12 @@ public class PythonVisitor extends RobotPythonVisitor implements AstSensorsVisit
         } else {
             this.sb.append("hal.getUltraSonicSensorPresence('" + ultrasonicSensorPort + "')");
         }
+        return null;
+    }
+
+    @Override
+    public Void visitSoundSensor(SoundSensor<Void> soundSensor) {
+        this.sb.append("hal.getSoundLevel('" + soundSensor.getPort().getPortNumber() + "')");
         return null;
     }
 
@@ -969,6 +976,9 @@ public class PythonVisitor extends RobotPythonVisitor implements AstSensorsVisit
                 break;
             case ULTRASONIC:
                 name = "UltrasonicSensor";
+                break;
+            case SOUND:
+                name = "SoundSensor";
                 break;
             default:
                 throw new IllegalArgumentException("no mapping for " + sensor.getType() + "to ev3dev-lang-python");
