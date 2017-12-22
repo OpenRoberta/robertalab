@@ -3,8 +3,8 @@ Open Roberta Lab
 
 Build status:
 
-* master [![master](https://travis-ci.org/OpenRoberta/robertalab.svg?branch=master)](https://travis-ci.org/OpenRoberta/robertalab/builds)
-* develop [![develop](https://travis-ci.org/OpenRoberta/robertalab.svg?branch=develop)](https://travis-ci.org/OpenRoberta/robertalab/builds)
+* master [![Build Status](https://travis-ci.org/FastBoyScouts/robertalab.svg?branch=master)](https://travis-ci.org/FastBoyScouts/robertalab)
+* develop **Unknown**
 
 ### Introduction
 
