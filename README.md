@@ -48,7 +48,7 @@ Please also check our wiki for detailed installation instructions, development p
 
 #### Step 1: Clone the repository and compile
 
-    git clone git://github.com/OpenRoberta/robertalab.git
+    git clone git://github.com/FastBoyScouts/robertalab.git
     cd robertalab/OpenRobertaParent
     mvn clean install
 
@@ -107,7 +107,7 @@ You can follow the test status on https://travis-ci.org/OpenRoberta/.
 
 Development happens in the `develop` branch. Please sent PRs against that branch.
 
-    git clone git://github.com/OpenRoberta/robertalab.git
+    git clone git://github.com/FastBoyScouts/robertalab.git
     cd robertalab
     git checkout -b develop origin/develop
 
