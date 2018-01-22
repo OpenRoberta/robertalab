@@ -1,0 +1,37 @@
+{
+	"name": "open-roberta-server",
+	"version": "2.3.4",
+	"homepage": "www.roberta-home.de",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/OpenRoberta/robertalab.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Openroberta/robertalab/issues",
+		"email": "roberta-zentrale@iais.fraunhofer.de"
+	},
+	"dependencies": {
+		"bootstrap": "^3.3.7",
+		"bootstrap-table": "^1.11.2",
+		"bootstrap-tagsinput": "^0.7.1",
+		"bootstrap-wysiwyg": "^2.0.1",
+		"datatables.net": "^1.10.16",
+		"datatables.net-dt": "^1.10.16",
+		"exports-loader": "^0.6.4",
+		"expose-loader": "^0.7.4",
+		"imports-loader": "^0.7.1",
+		"jquery": "^3.3.1",
+		"jquery-validation": "^1.17.0",
+		"jquery.scrollto": "^2.1.2",
+		"js-cookie": "^2.2.0",
+		"jsdom": "^11.6.0",
+		"slick-carousel": "^1.8.1",
+		"socket.io-client": "^2.0.4",
+		"volume-meter": "^2.0.1",
+		"webpack": "latest"
+	},
+	"scripts": {
+		"build": "webpack"
+	}
+}
