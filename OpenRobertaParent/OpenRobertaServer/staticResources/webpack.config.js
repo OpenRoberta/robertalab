@@ -1,3 +1,4 @@
+
 const path = require('path'),
     webpack = require('webpack'),
     basePath = path.resolve(__dirname, 'js') + '/';
@@ -5,11 +6,7 @@ const path = require('path'),
 module.exports = function(env) {
     return {
         target: 'web',
-        plugins: [
-            new webpack.ProvidePlugin({
-                jQuery: 'jquery'
-              })
-        ],
+        plugins: [],
         entry: basePath + 'main.js',
         output: {
             filename: 'roberta.min.js',
@@ -19,29 +16,7 @@ module.exports = function(env) {
         module: {
             rules:[
                 {
-                    test: '/bootstrap/',
-                    use: [
-                        {
-                            loader: 'imports-loader',
-                            options: 'jQuery=jquery'
-                        }
-                    ]
-                },
-                {
-                    test: '/\/blockly\/(?!blockly))/',
-                    use: [
-                        {
-                            loader: 'exports-loader',
-                            options: 'Blockly'
-                        },
-                        {
-                            loader: 'imports-loader',
-                            options: 'Blockly=blockly&goog=blockly'
-                        }
-                    ]
-                },
-                {
-                    test: '/\/volume-meter/',
+                    test: require.resolve('volume-meter'),
                     use: [
                         {
                             loader: 'exports-loader',
@@ -50,15 +25,33 @@ module.exports = function(env) {
                     ]
                 },
                 {
-                    test: '/\/jquery-\d\.\d{1,3}\.\d{1,3}\.min(?:\.js)?$/',
+                    test: /^(?:jquery.+|bootstrap)/,
+                    use: [
+                        {
+                            loader: 'imports-loader',
+                            options: 'jQuery=jquery'
+                        }
+                    ]
+                },
+                {
+                    test: /^block(s(?:-msg)?|ly)/,
+                    use: [
+                        {
+                            loader: 'imports-loader',
+                            options: 'Blockly=blockly&goog=blockly'
+                        }
+                    ]
+                },
+                {
+                    test: /^block.+$/,
                     use: [
                         {
                             loader: 'expose-loader',
-                            options: 'jQuery'
+                            options: 'Blockly'
                         },
                         {
                             loader: 'expose-loader',
-                            options: '$'
+                            options: 'goog'
                         }
                     ]
                 }
