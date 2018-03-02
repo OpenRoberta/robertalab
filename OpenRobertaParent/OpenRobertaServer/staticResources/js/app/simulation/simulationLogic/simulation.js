@@ -227,12 +227,7 @@ define(['exports', 'simulation.scene', 'simulation.program.eval', 'simulation.ma
             currentBackground = 2;
         }
         if (currentBackground > 1) {
-            // if (isIE() || isEdge()) { // TODO IE and Edge: Input event not firing for file type of input
-            //     $('.dropdown.sim, .simScene').show();
-            //     $('#simImport').hide();
-            // } else {
                 $('.dropdown.sim, .simScene, #simImport, #simResetPose').show();
-            // }
             if ($('#device-size').find('div:visible').first().attr('id')) {
                 $('#simButtonsHead').show();
             }
