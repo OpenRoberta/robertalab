@@ -156,10 +156,9 @@ public class Jaxb2Ev3ConfigurationTransformer {
                                     this.factory.getMotorSide(extractField(fields, "MOTOR_DRIVE", 2)))));
                         break;
                     case "robBrick_actor":
-                        actors.add(
-                            Pair.of(
-                                this.factory.getActorPort(value.getName()),
-                                new Actor(ActorType.get(value.getBlock().getType()), false, DriveDirection.FOREWARD, MotorSide.NONE)));
+                        actors.add(Pair.of(
+                            this.factory.getActorPort(value.getName()),
+                            new Actor(ActorType.get(value.getBlock().getType()), false, DriveDirection.FOREWARD, MotorSide.NONE)));
                         break;
                     default:
                         throw new DbcException("Invalide motor type!");

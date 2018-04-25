@@ -195,11 +195,10 @@ public class ClientUser {
                 if ( user != null ) {
                     LostPassword lostPassword = lostPasswordProcessor.createLostPassword(user.getId());
                     ClientUser.LOG.info("url postfix generated: " + lostPassword.getUrlPostfix());
-                    String[] body =
-                        {
-                            user.getAccount(),
-                            lostPassword.getUrlPostfix()
-                        };
+                    String[] body = {
+                        user.getAccount(),
+                        lostPassword.getUrlPostfix()
+                    };
                     try {
                         this.mailManagement.send(user.getEmail(), "reset", body, lang, false);
                         up.setSuccess(Key.USER_PASSWORD_RECOVERY_SENT_MAIL_SUCCESS);
@@ -274,11 +273,10 @@ public class ClientUser {
     }
 
     private void sendActivationMail(UserProcessor up, String urlPostfix, String account, String email, String lang, boolean isYoungerThen14) throws Exception {
-        String[] body =
-            {
-                account,
-                urlPostfix
-            };
+        String[] body = {
+            account,
+            urlPostfix
+        };
         try {
             this.mailManagement.send(email, "activate", body, lang, isYoungerThen14);
             up.setSuccess(Key.USER_ACTIVATION_SENT_MAIL_SUCCESS);

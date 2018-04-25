@@ -7,15 +7,14 @@ public class FlowControlStmtTest {
 
     //
     public void flowControlStmt() throws Exception {
-        String a =
-            "\nwhile ( 0 == 0 ) \n"
+        String a = "\nwhile ( 0 == 0 ) \n"
 
-                + "    \nwhile ( !(0 == 0) ) \n"
+            + "    \nwhile ( !(0 == 0) ) \n"
 
-                + "       break;\n"
-                + "    }\n"
-                + "    break;\n"
-                + "}";
+            + "       break;\n"
+            + "    }\n"
+            + "    break;\n"
+            + "}";
 
         this.h.assertCodeIsOk(a, "/syntax/stmt/flowControl_stmt.xml");
     }

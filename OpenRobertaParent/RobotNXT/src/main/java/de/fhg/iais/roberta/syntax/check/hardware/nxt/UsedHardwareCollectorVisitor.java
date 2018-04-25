@@ -75,7 +75,7 @@ public class UsedHardwareCollectorVisitor extends RobotUsedHardwareCollectorVisi
             type = "int";
             defVal = "0";
         }
-
+    
         if ( !expr.getVarType().toString().contains("ARRAY") ) {
             this.tmpArrVarCount += 1;
             String str = expr.toString().replaceAll("defVal=ARRAY", defVal);
@@ -94,12 +94,12 @@ public class UsedHardwareCollectorVisitor extends RobotUsedHardwareCollectorVisi
                     values += value;
                 }
             }
-
+    
             this.tmpArrVar += "\n" + type + " __tmpArr" + this.tmpArrVarCount + "[] = {" + values + "};";
         }
         return null;
     }
-
+    
     @Override
     public Void visitMathOnListFunct(MathOnListFunct<Void> mathOnListFunct) {
         List<Expr<Void>> param = mathOnListFunct.getParam();
@@ -108,15 +108,15 @@ public class UsedHardwareCollectorVisitor extends RobotUsedHardwareCollectorVisi
         }
         generateArrTmpVar(mathOnListFunct.getParam().get(0));
         return null;
-
+    
     }
-
+    
     @Override
     public Void visitLengthOfIsEmptyFunct(LengthOfIsEmptyFunct<Void> lengthOfIsEmptyFunct) {
         generateArrTmpVar(lengthOfIsEmptyFunct.getParam().get(0));
         return null;
     }
-
+    
     @Override
     public Void visitIndexOfFunct(IndexOfFunct<Void> indexOfFunct) {
         int listsInLine = StringUtils.countMatches(indexOfFunct.getParam().get(1).toString(), "ListCreate");
@@ -126,7 +126,7 @@ public class UsedHardwareCollectorVisitor extends RobotUsedHardwareCollectorVisi
         }
         return null;
     }
-
+    
     @Override
     public Void visitListGetIndex(ListGetIndex<Void> listGetIndex) {
         int listsInLine = StringUtils.countMatches(listGetIndex.getParam().get(1).toString(), "ListCreate");
@@ -136,7 +136,7 @@ public class UsedHardwareCollectorVisitor extends RobotUsedHardwareCollectorVisi
         }
         return null;
     }
-
+    
     @Override
     public Void visitListSetIndex(ListSetIndex<Void> listSetIndex) {
         int listsInLine = StringUtils.countMatches(listSetIndex.getParam().get(0).toString(), "ListCreate");

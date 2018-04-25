@@ -779,8 +779,7 @@ public class RestInterfaceTest {
         String confName,
         String confText,
         String result,
-        Key msgOpt)
-        throws Exception //
+        Key msgOpt) throws Exception //
     {
         String jsonAsString = "{'cmd':'saveAsP';'programName':'" + name + "';'programText':'" + program + "'";
         if ( confName != null ) {
@@ -817,8 +816,7 @@ public class RestInterfaceTest {
         String confName,
         String confText,
         String result,
-        Key msgOpt)
-        throws Exception //
+        Key msgOpt) throws Exception //
     {
         boolean shared = httpSession.getUserId() != owner;
         if ( timestamp == -1 ) {

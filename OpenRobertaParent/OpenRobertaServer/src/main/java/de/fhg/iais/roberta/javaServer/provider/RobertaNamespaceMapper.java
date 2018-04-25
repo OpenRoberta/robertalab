@@ -21,6 +21,7 @@ import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 public class RobertaNamespaceMapper extends NamespacePrefixMapper {
 
     private static final Map<String, String> allNs;
+
     static {
         Map<String, String> t = new HashMap<String, String>();
         t.put("http://de.fhg.iais.roberta.blockly", "b");

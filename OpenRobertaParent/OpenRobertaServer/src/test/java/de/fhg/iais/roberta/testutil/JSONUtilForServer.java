@@ -83,7 +83,10 @@ public class JSONUtilForServer {
      */
     public static JSONObject mkRegisterToken(String token) throws JSONException {
         String s = "" + //
-            "{'token':'" + token + "'," + //
+            "{'token':'"
+            + token
+            + "',"
+            + //
             "'cmd':'register','macaddr':'00-9A-90-00-2B-5B','brickname':'Garzi','battery':'7.2','version':'1.0.1','firmwarename':'ev3lejosv1'}";
         return JSONUtilForServer.mk(s);
     }
@@ -165,8 +168,7 @@ public class JSONUtilForServer {
         final ClientAdmin restBlocks,
         final HttpSessionState sessionState,
         final DbSession dbSession,
-        final String token)
-        throws Exception //
+        final String token) throws Exception //
     {
         ThreadedFunction theBrick = new ThreadedFunction() {
             @Override
@@ -190,8 +192,7 @@ public class JSONUtilForServer {
         final ClientProgram restProgram,
         final HttpSessionState sessionState,
         final String token,
-        final String programName)
-        throws Exception //
+        final String programName) throws Exception //
     {
         ThreadedFunction theBrick = new ThreadedFunction() {
             @Override

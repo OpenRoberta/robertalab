@@ -405,10 +405,9 @@ public class SimulationVisitorTest {
 
     @Test
     public void testLightSensor() throws Exception {
-        String a =
-            "var stmt0 = createVarDeclaration(CONST.NUMBER, \"Element\", createGetSample(CONST.LIGHT, CONST.RED));\n"
+        String a = "var stmt0 = createVarDeclaration(CONST.NUMBER, \"Element\", createGetSample(CONST.LIGHT, CONST.RED));\n"
 
-                + "var blocklyProgram = {'programStmts': [stmt0]};";
+            + "var blocklyProgram = {'programStmts': [stmt0]};";
 
         assertCodeIsOk(a, "/syntax/code_generator/java_script/java_script_code_generator29.xml");
 

@@ -153,7 +153,7 @@ public class CppVisitor extends ArduinoVisitor implements Bob3AstVisitor<Void>, 
         decrIndentation();
         mainTask.getVariables().visit(this);
         nlIndent();
-        if ( this.isTimerSensorUsed || this.usedTimer.toString().contains("TIMER") ) {           
+        if ( this.isTimerSensorUsed || this.usedTimer.toString().contains("TIMER") ) {
             this.sb.append("unsigned long __time = millis();");
             nlIndent();
         }
@@ -165,10 +165,10 @@ public class CppVisitor extends ArduinoVisitor implements Bob3AstVisitor<Void>, 
         this.sb.append("{");
         nlIndent();
         this.sb.append("Serial.begin(9600); ");
-        generateUsedVars();   
+        generateUsedVars();
         decrIndentation();
         nlIndent();
-        this.sb.append("}");     
+        this.sb.append("}");
         nlIndent();
         nlIndent();
         this.sb.append("void loop()");

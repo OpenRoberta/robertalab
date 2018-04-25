@@ -130,16 +130,14 @@ public class CompilerWorkflow extends AbstractCompilerWorkflow {
         Path base = Paths.get("");
 
         try {
-            ProcessBuilder procBuilder =
-                new ProcessBuilder(
-                    new String[] {
-                        scriptName,
-                        this.robotCompilerDir,
-                        mainFile,
-                        base.resolve(path).toAbsolutePath().normalize().toString() + "/",
-                        this.robotCompilerResourcesDir,
-                        bluetooth
-                    });
+            ProcessBuilder procBuilder = new ProcessBuilder(new String[] {
+                scriptName,
+                this.robotCompilerDir,
+                mainFile,
+                base.resolve(path).toAbsolutePath().normalize().toString() + "/",
+                this.robotCompilerResourcesDir,
+                bluetooth
+            });
 
             procBuilder.redirectInput(Redirect.INHERIT);
             procBuilder.redirectOutput(Redirect.INHERIT);

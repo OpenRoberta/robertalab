@@ -576,9 +576,7 @@ public class ClientProgram {
     private Key programConfigurationCompatibilityCheck(
         JSONObject response,
         BlocklyProgramAndConfigTransformer programAndConfigTransformer,
-        RobotCommonCheckVisitor programChecker)
-        throws JSONException,
-        JAXBException {
+        RobotCommonCheckVisitor programChecker) throws JSONException, JAXBException {
         Jaxb2AstTransformerData<Void> data = programAndConfigTransformer.getProgramTransformer().getData();
         if ( programChecker == null ) {
             response.put("data", ClientProgram.jaxbToXml(ClientProgram.astToJaxb(programAndConfigTransformer.getProgramTransformer().getTree(), data)));

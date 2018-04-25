@@ -74,13 +74,11 @@ public class CompilerWorkflow extends AbstractCompilerWorkflow {
         String scriptName = this.robotCompilerResourcesDir + "/compile.py";
 
         try {
-            ProcessBuilder procBuilder =
-                new ProcessBuilder(
-                    new String[] {
-                        this.robotCompilerDir + "python",
-                        scriptName,
-                        sourceCode
-                    });
+            ProcessBuilder procBuilder = new ProcessBuilder(new String[] {
+                this.robotCompilerDir + "python",
+                scriptName,
+                sourceCode
+            });
 
             procBuilder.redirectInput(Redirect.INHERIT);
             procBuilder.redirectError(Redirect.INHERIT);

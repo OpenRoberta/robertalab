@@ -8,31 +8,33 @@ import de.fhg.iais.roberta.util.test.ardu.HelperBotNrollForXmlTest;
 public class CppVisitorTest {
     private final HelperBotNrollForXmlTest h = new HelperBotNrollForXmlTest();
 
-    private static final String MAIN_METHOD1 = ""
-        + "#include<math.h>\n"
-        + "#include<BnrOneA.h>//Bot'nRollONEAlibrary"
-        + "#include<BnrRescue.h>//Bot'nRollCoSpaceRescueModulelibrary"
-        + "#include<RobertaFunctions.h>//OpenRobertalibrary"
-        + "#include<BnrRoberta.h>//OpenRobertalibrary"
-        + "#include<SPI.h>//SPIcommunicationlibraryrequiredbyBnrOne.cpp"
-        + "#include<Wire.h>//alibraryrequiredbyBnrRescue.cppfortheadditionalsonar"
-        + "BnrOneAone;"
-        + "BnrRescuebrm;"
-        + "RobertaFunctionsrob;"
-        + "BnrRoberta bnr(one, brm);";
+    private static final String MAIN_METHOD1 =
+        ""
+            + "#include<math.h>\n"
+            + "#include<BnrOneA.h>//Bot'nRollONEAlibrary"
+            + "#include<BnrRescue.h>//Bot'nRollCoSpaceRescueModulelibrary"
+            + "#include<RobertaFunctions.h>//OpenRobertalibrary"
+            + "#include<BnrRoberta.h>//OpenRobertalibrary"
+            + "#include<SPI.h>//SPIcommunicationlibraryrequiredbyBnrOne.cpp"
+            + "#include<Wire.h>//alibraryrequiredbyBnrRescue.cppfortheadditionalsonar"
+            + "BnrOneAone;"
+            + "BnrRescuebrm;"
+            + "RobertaFunctionsrob;"
+            + "BnrRoberta bnr(one, brm);";
 
     private static final String DEFINES = "" + "#defineSSPIN2" + "#defineMODULE_ADDRESS0x2C" + "bytecolorsLeft[3]={0,0,0};" + "bytecolorsRight[3]={0,0,0};";
 
-    private static final String MAIN_METHOD2 = ""
-        + "voidsetup(){"
-        + "Wire.begin();"
-        + "Serial.begin(9600);//setsbaudrateto9600bpsforprintingvaluesatserialmonitor."
-        + "one.spiConnect(SSPIN);//startstheSPIcommunicationmodule"
-        + "brm.i2cConnect(MODULE_ADDRESS);//startsI2Ccommunication"
-        + "brm.setModuleAddress(0x2C);"
-        + "one.stop();"
-        + "bnr.setOne(one);"
-        + "bnr.setBrm(brm);";
+    private static final String MAIN_METHOD2 =
+        ""
+            + "voidsetup(){"
+            + "Wire.begin();"
+            + "Serial.begin(9600);//setsbaudrateto9600bpsforprintingvaluesatserialmonitor."
+            + "one.spiConnect(SSPIN);//startstheSPIcommunicationmodule"
+            + "brm.i2cConnect(MODULE_ADDRESS);//startsI2Ccommunication"
+            + "brm.setModuleAddress(0x2C);"
+            + "one.stop();"
+            + "bnr.setOne(one);"
+            + "bnr.setBrm(brm);";
 
     @Test
     public void test() throws Exception {
@@ -52,16 +54,17 @@ public class CppVisitorTest {
     @Test
     public void test1() throws Exception {
 
-        final String a = ""
-            + MAIN_METHOD1
-            + DEFINES
-            + MAIN_METHOD2
-            + "}"
-            + "voidloop(){"
-            + "        for ( int k0 = 0; k0 < 10; k0+=1 ) {\n"
-            + "           one.lcd1(\"Hallo\");delay(1);"
-            + "        }\n"
-            + "}\n";
+        final String a =
+            ""
+                + MAIN_METHOD1
+                + DEFINES
+                + MAIN_METHOD2
+                + "}"
+                + "voidloop(){"
+                + "        for ( int k0 = 0; k0 < 10; k0+=1 ) {\n"
+                + "           one.lcd1(\"Hallo\");delay(1);"
+                + "        }\n"
+                + "}\n";
 
         this.h.assertCodeIsOk(a, "/syntax/code_generator/java/botnroll/java_code_generator1.xml", true);
     }
@@ -69,31 +72,32 @@ public class CppVisitorTest {
     @Test
     public void test2() throws Exception {
 
-        final String a = ""
-            + MAIN_METHOD1
-            + DEFINES
-            + "String item;"
-            + "int __item2Len;"
-            + "double *item2;"
-            + MAIN_METHOD2
-            + "one.obstacleEmitters(ON);"
-            + "item = \"yyy\";"
-            + "__item2Len=0;"
-            + "}"
-            + "voidloop(){"
-            + "item += \"zzz\";"
-            + "while (true) {"
-            + "    if (bnr.infraredSensorObstacle(1) == true) {"
-            + "        break;"
-            + "    }"
-            + "    delay(1);"
-            + "}"
-            + "while (true) {"
-            + "    if (( bnr.buttonIsPressed(2) ) ? bnr.buttonIsPressed(123) : bnr.buttonIsPressed(3)) {"
-            + "        break;"
-            + "    }"
-            + "    delay(1);}"
-            + "}\n";
+        final String a =
+            ""
+                + MAIN_METHOD1
+                + DEFINES
+                + "String item;"
+                + "int __item2Len;"
+                + "double *item2;"
+                + MAIN_METHOD2
+                + "one.obstacleEmitters(ON);"
+                + "item = \"yyy\";"
+                + "__item2Len=0;"
+                + "}"
+                + "voidloop(){"
+                + "item += \"zzz\";"
+                + "while (true) {"
+                + "    if (bnr.infraredSensorObstacle(1) == true) {"
+                + "        break;"
+                + "    }"
+                + "    delay(1);"
+                + "}"
+                + "while (true) {"
+                + "    if (( bnr.buttonIsPressed(2) ) ? bnr.buttonIsPressed(123) : bnr.buttonIsPressed(3)) {"
+                + "        break;"
+                + "    }"
+                + "    delay(1);}"
+                + "}\n";
 
         this.h.assertCodeIsOk(a, "/syntax/code_generator/java/botnroll/java_code_generator2.xml", true);
     }
@@ -102,37 +106,38 @@ public class CppVisitorTest {
             //  revise "java_code_generator3.xml", because the xml is not a good test case
     public void test3() throws Exception {
 
-        final String a = ""
-            + MAIN_METHOD1
-            + DEFINES
-            + "int __itemLen;"
-            + "bool*item;"
-            + "int __item2Len;"
-            + "String*item2;"
-            + "double item3;"
-            + "unsigned long __time = millis();"
-            + MAIN_METHOD2
-            + "one.obstacleEmitters(ON);"
-            + "__itemLen=3;"
-            + "bool__item[]={true,true,true};"
-            + "item=(bool*)malloc(sizeof(bool)*__itemLen);"
-            + "rob.createArray(item,__itemLen,__item);"
-            + "__item2Len=3;"
-            + "String__item2[]={\"\",\"\",\"\"};"
-            + "item2=(String*)malloc(sizeof(String)*__item2Len);"
-            + "rob.createArray(item2,__item2Len,__item2);"
-            + "item3 = (int)(millis() - __time);"
-            + "}"
-            + "voidloop(){"
-            + "for(double  item4 = 0; item4 < __itemLen;  item4++) {"
-            + "    __time = millis();"
-            + "    item3 = one.readAdc(1) / 10.23;"
-            + "}"
-            + "for(double  item5 = 0; item5 < __item2Len;  item5++) {"
-            + "    one.movePID(bnr.readBearing(), bnr.readBearing());"
-            + "if (bnr.infraredSensorPresence(3)) {"
-            + "    one.stop();}}"
-            + "}\n";
+        final String a =
+            ""
+                + MAIN_METHOD1
+                + DEFINES
+                + "int __itemLen;"
+                + "bool*item;"
+                + "int __item2Len;"
+                + "String*item2;"
+                + "double item3;"
+                + "unsigned long __time = millis();"
+                + MAIN_METHOD2
+                + "one.obstacleEmitters(ON);"
+                + "__itemLen=3;"
+                + "bool__item[]={true,true,true};"
+                + "item=(bool*)malloc(sizeof(bool)*__itemLen);"
+                + "rob.createArray(item,__itemLen,__item);"
+                + "__item2Len=3;"
+                + "String__item2[]={\"\",\"\",\"\"};"
+                + "item2=(String*)malloc(sizeof(String)*__item2Len);"
+                + "rob.createArray(item2,__item2Len,__item2);"
+                + "item3 = (int)(millis() - __time);"
+                + "}"
+                + "voidloop(){"
+                + "for(double  item4 = 0; item4 < __itemLen;  item4++) {"
+                + "    __time = millis();"
+                + "    item3 = one.readAdc(1) / 10.23;"
+                + "}"
+                + "for(double  item5 = 0; item5 < __item2Len;  item5++) {"
+                + "    one.movePID(bnr.readBearing(), bnr.readBearing());"
+                + "if (bnr.infraredSensorPresence(3)) {"
+                + "    one.stop();}}"
+                + "}\n";
 
         this.h.assertCodeIsOk(a, "/syntax/code_generator/java/botnroll/java_code_generator3.xml", true);
     }
@@ -315,7 +320,10 @@ public class CppVisitorTest {
             // if we use assignment statement
             + "String__variablenName[]={\"a\",\"b\",\"c\"};"
             + "variablenName = (String*)malloc(sizeof(String)*__variablenNameLen);"
-            + "rob.createArray(variablenName,__variablenNameLen,__variablenName);}" + "void loop(){" + "one.lcd1(test(0,variablenName));" + "}\n";
+            + "rob.createArray(variablenName,__variablenNameLen,__variablenName);}"
+            + "void loop(){"
+            + "one.lcd1(test(0,variablenName));"
+            + "}\n";
 
         this.h.assertCodeIsOk(a, "/syntax/methods/method_return_1.xml", true);
     }

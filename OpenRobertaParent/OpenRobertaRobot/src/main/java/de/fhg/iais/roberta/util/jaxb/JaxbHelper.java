@@ -27,6 +27,7 @@ public class JaxbHelper {
 
     private static final Schema blockSetSchema;
     private static final JAXBContext jaxbContext;
+
     static {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         InputStream xsdStream = JaxbHelper.class.getClassLoader().getResourceAsStream("blockly.xsd");

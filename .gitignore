@@ -10,9 +10,7 @@ OpenRobertaParent/RobotEV3/**/*.jar
 OpenRobertaParent/OpenRobertaServer/userProjects/*
 OpenRobertaParent/OpenRobertaServer/db-*
 OpenRobertaParent/RobotNAO/resources/updateResources/roberta.zip
-.settings/
 .DS_Store
-.*
 .idea
 *.iml
 **/*.log

@@ -61,7 +61,7 @@ import de.fhg.iais.roberta.syntax.sensor.mbed.RadioRssiSensor;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.visitor.mbed.MbedAstVisitor;
 
-public class SimulationVisitor extends RobotSimulationVisitor<Void> implements MbedAstVisitor<Void> {
+public class SimulationVisitor extends RobotSimulationVisitor<Void>implements MbedAstVisitor<Void> {
 
     private SimulationVisitor(Configuration brickConfiguration) {
         super(brickConfiguration);
@@ -208,7 +208,7 @@ public class SimulationVisitor extends RobotSimulationVisitor<Void> implements M
 
     @Override
     public Void visitGyroSensor(GyroSensor<Void> gyroSensor) {
-    	this.sb.append("0");
+        this.sb.append("0");
         return null;
     }
 

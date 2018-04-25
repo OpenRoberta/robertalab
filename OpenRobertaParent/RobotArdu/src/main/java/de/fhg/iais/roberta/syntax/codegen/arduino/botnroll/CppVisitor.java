@@ -544,10 +544,10 @@ public class CppVisitor extends ArduinoVisitor implements ArduinoAstVisitor<Void
         nlIndent();
         this.sb.append("bnr.setBrm(brm);");
         this.generateSensors();
-        generateUsedVars();   
+        generateUsedVars();
         decrIndentation();
         nlIndent();
-        this.sb.append("}");     
+        this.sb.append("}");
         nlIndent();
         nlIndent();
         this.sb.append("void loop()");
@@ -598,12 +598,12 @@ public class CppVisitor extends ArduinoVisitor implements ArduinoAstVisitor<Void
             switch ( (SensorType) usedSensor.getType() ) {
                 case COLOR:
                     nlIndent();
-                    this.sb.append("brm.setRgbStatus(ENABLE);");               
+                    this.sb.append("brm.setRgbStatus(ENABLE);");
                     break;
                 case INFRARED:
                     nlIndent();
                     this.sb.append("one.obstacleEmitters(ON);");
-                   break;
+                    break;
                 case ULTRASONIC:
                     nlIndent();
                     this.sb.append("brm.setSonarStatus(ENABLE);");

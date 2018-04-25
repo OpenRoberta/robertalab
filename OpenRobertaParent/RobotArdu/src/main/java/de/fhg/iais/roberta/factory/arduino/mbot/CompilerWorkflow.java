@@ -105,19 +105,17 @@ public class CompilerWorkflow extends AbstractCompilerWorkflow {
 
         try {
             System.out.println(this.robotCompilerResourcesDir);
-            ProcessBuilder procBuilder =
-                new ProcessBuilder(
-                    new String[] {
-                        scriptName,
-                        "-hardware=" + this.robotCompilerResourcesDir + "/hardware",
-                        "-tools=" + this.robotCompilerResourcesDir + "/" + os + "/tools-builder",
-                        "-libraries=" + this.robotCompilerResourcesDir + "/libraries",
-                        "-fqbn=arduino:avr:uno",
-                        "-prefs=compiler.path=" + this.robotCompilerDir,
-                        "-build-path=" + base.resolve(path).toAbsolutePath().normalize().toString() + "/target/",
-                        "-verbose",
-                        base.resolve(path).toAbsolutePath().normalize().toString() + "/src/" + mainFile + ".ino"
-                    });
+            ProcessBuilder procBuilder = new ProcessBuilder(new String[] {
+                scriptName,
+                "-hardware=" + this.robotCompilerResourcesDir + "/hardware",
+                "-tools=" + this.robotCompilerResourcesDir + "/" + os + "/tools-builder",
+                "-libraries=" + this.robotCompilerResourcesDir + "/libraries",
+                "-fqbn=arduino:avr:uno",
+                "-prefs=compiler.path=" + this.robotCompilerDir,
+                "-build-path=" + base.resolve(path).toAbsolutePath().normalize().toString() + "/target/",
+                "-verbose",
+                base.resolve(path).toAbsolutePath().normalize().toString() + "/src/" + mainFile + ".ino"
+            });
 
             procBuilder.redirectInput(Redirect.INHERIT);
             procBuilder.redirectOutput(Redirect.INHERIT);

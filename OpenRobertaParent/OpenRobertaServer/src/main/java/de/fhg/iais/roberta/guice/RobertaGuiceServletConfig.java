@@ -47,10 +47,9 @@ public class RobertaGuiceServletConfig extends GuiceServletContextListener {
                 Map<String, String> initParams = new HashMap<>();
                 // initParams.put("com.sun.jersey.config.feature.Trace", "true");
                 initParams.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
-                String packages =
-                    "" //
-                        + "de.fhg.iais.roberta.javaServer.restServices,"
-                        + "de.fhg.iais.roberta.javaServer.provider";
+                String packages = "" //
+                    + "de.fhg.iais.roberta.javaServer.restServices,"
+                    + "de.fhg.iais.roberta.javaServer.provider";
                 initParams.put("com.sun.jersey.config.property.packages", packages);
                 serve("/*").with(GuiceContainer.class, initParams);
             }

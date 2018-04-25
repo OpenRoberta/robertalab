@@ -155,12 +155,26 @@ public class PerformanceUserIT {
         // create user "pid-*" with success
         thinkTimeInMillisec += think(random, 1, 4);
         JSONObject request = JSONUtilForServer.mkD("" + //
-            "{'cmd':'createUser';" + //
-            "'accountName':'pid-acc-" + userNumber + "';" + //
-            "'userName':'pid-user-" + userNumber + "';" + //
-            "'password':'dip-" + userNumber + "';" + //
-            "'isYoungerThen14':0;" + //
-            "'userEmail':'cavy-" + userNumber + "@home';" + //
+            "{'cmd':'createUser';"
+            + //
+            "'accountName':'pid-acc-"
+            + userNumber
+            + "';"
+            + //
+            "'userName':'pid-user-"
+            + userNumber
+            + "';"
+            + //
+            "'password':'dip-"
+            + userNumber
+            + "';"
+            + //
+            "'isYoungerThen14':0;"
+            + //
+            "'userEmail':'cavy-"
+            + userNumber
+            + "@home';"
+            + //
             "'role':'STUDENT'}");
         Response response = this.restUser.command(s, this.sessionFactoryWrapper.getSession(), request);
         JSONUtilForServer.assertEntityRc(response, "ok", Key.USER_CREATE_SUCCESS);

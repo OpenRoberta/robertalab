@@ -18,5 +18,5 @@ public class SimulationCheckVisitor extends RobotSimulationCheckVisitor implemen
     public Void visitLightSensorAction(LightSensorAction<Void> lightSensorAction) {
         return null;
     }
-   
+
 }

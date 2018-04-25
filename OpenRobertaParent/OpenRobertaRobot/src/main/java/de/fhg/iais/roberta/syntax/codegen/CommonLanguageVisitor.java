@@ -92,8 +92,10 @@ public abstract class CommonLanguageVisitor implements AstLanguageVisitor<Void> 
     }
 
     private void generateProgramMainBody() {
-        this.programPhrases.stream().filter(phrase -> phrase.getKind().getCategory() != Category.METHOD || phrase.getKind().hasName("METHOD_CALL")).forEach(
-            p -> {
+        this.programPhrases
+            .stream()
+            .filter(phrase -> phrase.getKind().getCategory() != Category.METHOD || phrase.getKind().hasName("METHOD_CALL"))
+            .forEach(p -> {
                 nlIndent();
                 p.visit(this);
             });
@@ -101,8 +103,10 @@ public abstract class CommonLanguageVisitor implements AstLanguageVisitor<Void> 
 
     protected void generateUserDefinedMethods() {
         this.incrIndentation();
-        this.programPhrases.stream().filter(phrase -> phrase.getKind().getCategory() == Category.METHOD && !phrase.getKind().hasName("METHOD_CALL")).forEach(
-            e -> {
+        this.programPhrases
+            .stream()
+            .filter(phrase -> phrase.getKind().getCategory() == Category.METHOD && !phrase.getKind().hasName("METHOD_CALL"))
+            .forEach(e -> {
                 e.visit(this);
                 this.sb.append("\n");
             });

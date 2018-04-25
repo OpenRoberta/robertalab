@@ -799,7 +799,7 @@ public class PythonVisitor extends RobotPythonVisitor implements MbedAstVisitor<
             default:
                 throw new IllegalArgumentException("unhandled type");
         }
-        return null;        
+        return null;
     }
 
     @Override

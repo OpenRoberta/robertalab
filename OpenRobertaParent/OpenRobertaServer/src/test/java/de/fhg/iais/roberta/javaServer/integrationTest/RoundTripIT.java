@@ -51,23 +51,22 @@ import de.fhg.iais.roberta.util.testsetup.IntegrationTest;
 @Category(IntegrationTest.class)
 public class RoundTripIT {
     private static final String resourcePath = "/roundtrip/";
-    private static final String[] blocklyPrograms =
-        {
-            "move",
-            "drive",
-            "show",
-            "sound",
-            "status_light",
-            "sensors",
-            "logic",
-            "control_stmt",
-            "wait",
-            "math",
-            "text",
-            "list",
-            "methods",
-            "bluetooth"
-        };
+    private static final String[] blocklyPrograms = {
+        "move",
+        "drive",
+        "show",
+        "sound",
+        "status_light",
+        "sensors",
+        "logic",
+        "control_stmt",
+        "wait",
+        "math",
+        "text",
+        "list",
+        "methods",
+        "bluetooth"
+    };
 
     private static WebDriver driver;
     private static String baseUrl;
