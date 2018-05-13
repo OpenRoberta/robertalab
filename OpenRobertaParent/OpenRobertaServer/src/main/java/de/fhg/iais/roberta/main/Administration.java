@@ -332,7 +332,7 @@ public class Administration {
         return blockSet;
     }
 
-    private String jaxbToXml(BlockSet blockSet) throws JAXBException {
+    public static String jaxbToXml(BlockSet blockSet) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(BlockSet.class);
         Marshaller m = jaxbContext.createMarshaller();
         m.setProperty(Marshaller.JAXB_FRAGMENT, true);
