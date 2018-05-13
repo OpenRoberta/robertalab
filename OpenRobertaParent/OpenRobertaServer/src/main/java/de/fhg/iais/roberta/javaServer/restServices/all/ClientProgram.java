@@ -59,7 +59,7 @@ import de.fhg.iais.roberta.util.RobertaProperties;
 import de.fhg.iais.roberta.util.Util;
 import de.fhg.iais.roberta.util.Util1;
 import de.fhg.iais.roberta.util.jaxb.JaxbHelper;
-import  de.fhg.iais.roberta.main.Administration;
+import de.fhg.iais.roberta.main.Administration;
 
 @Path("/program")
 public class ClientProgram {
@@ -89,9 +89,9 @@ public class ClientProgram {
         new ClientLogger().log(ClientProgram.LOG, fullRequest);
         int userId = httpSessionState.getUserId();
         String robot =
-            !httpSessionState.getRobotFactory(httpSessionState.getRobotName()).getGroup().equals("")
-                ? httpSessionState.getRobotFactory(httpSessionState.getRobotName()).getGroup()
-                : httpSessionState.getRobotName();
+                !httpSessionState.getRobotFactory(httpSessionState.getRobotName()).getGroup().equals("")
+                        ? httpSessionState.getRobotFactory(httpSessionState.getRobotName()).getGroup()
+                        : httpSessionState.getRobotName();
         JSONObject response = new JSONObject();
         DbSession dbSession = this.sessionFactoryWrapper.getSession();
         try {
@@ -107,7 +107,7 @@ public class ClientProgram {
 
             IRobotFactory robotFactory = httpSessionState.getRobotFactory();
 
-            switch ( cmd ) {
+            switch (cmd) {
                 case "saveP":
                 case "saveAsP": {
                     String programName = request.getString("programName");
@@ -115,7 +115,7 @@ public class ClientProgram {
                     String configName = request.optString("configName", null);
                     String configText = request.optString("configText", null);
                     Program program;
-                    if ( cmd.equals("saveP") ) {
+                    if (cmd.equals("saveP")) {
                         // update an already existing program
                         Long timestamp = request.getLong("timestamp");
                         Timestamp programTimestamp = new Timestamp(timestamp);
@@ -124,8 +124,8 @@ public class ClientProgram {
                     } else {
                         program = pp.persistProgramText(programName, programText, configName, configText, userId, robot, userId, null, true);
                     }
-                    if ( pp.isOk() ) {
-                        if ( program != null ) {
+                    if (pp.isOk()) {
+                        if (program != null) {
                             response.put("lastChanged", program.getLastChanged().getTime());
                         } else {
                             ClientProgram.LOG.error("TODO: check potential error: the saved program should never be null");
@@ -142,23 +142,23 @@ public class ClientProgram {
                     String configName = request.optString("configuration", null);
                     String configurationText = request.optString("configurationText", null);
                     ILanguage language = Language.findByAbbr(request.optString("language"));
-                    if ( configName != null ) {
+                    if (configName != null) {
                         configurationText = configurationProcessor.getConfigurationText(configName, userId, robot);
-                    } else if ( configurationText == null ) {
+                    } else if (configurationText == null) {
                         configurationText = robotFactory.getConfigurationDefault();
                     }
 
                     AbstractProcessor forMessages = new DummyProcessor();
                     BlocklyProgramAndConfigTransformer transformer = BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configurationText);
                     transformer.getBrickConfiguration().setRobotName(httpSessionState.getRobotName());
-                    if ( transformer.getErrorMessage() != null ) {
+                    if (transformer.getErrorMessage() != null) {
                         forMessages.setError(transformer.getErrorMessage());
                     } else {
                         RobotCommonCheckVisitor programChecker = robotFactory.getRobotProgramCheckVisitor(transformer.getBrickConfiguration());
                         programConfigurationCompatibilityCheck(response, transformer, programChecker);
 
                         String sourceCode = robotFactory.getRobotCompilerWorkflow().generateSourceCode(token, programName, transformer, language);
-                        if ( sourceCode == null ) {
+                        if (sourceCode == null) {
                             forMessages.setError(Key.COMPILERWORKFLOW_ERROR_PROGRAM_GENERATION_FAILED);
                         } else {
                             response.put("sourceCode", sourceCode);
@@ -171,9 +171,9 @@ public class ClientProgram {
                     break;
                 }
                 case "loadP":
-                    if ( !httpSessionState.isUserLoggedIn()
-                        && !request.getString("owner").equals("Roberta")
-                        && !request.getString("owner").equals("Gallery") ) {
+                    if (!httpSessionState.isUserLoggedIn()
+                            && !request.getString("owner").equals("Roberta")
+                            && !request.getString("owner").equals("Gallery")) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -182,14 +182,14 @@ public class ClientProgram {
                         String authorName = request.getString("authorName");
 
                         Program program = pp.getProgram(programName, ownerName, robot, authorName);
-                        if ( program != null ) {
+                        if (program != null) {
                             response.put("programText", program.getProgramText());
                             String configText = pp.getProgramsConfig(program);
                             response.put("configName", program.getConfigName()); // may be null, if an anonymous configuration is used
                             response.put("configText", configText); // may be null, if the default configuration is used
                             response.put("lastChanged", program.getLastChanged().getTime());
                             // count the views if the program is from the gallery!
-                            if ( ownerName.equals("Gallery") ) {
+                            if (ownerName.equals("Gallery")) {
                                 pp.addOneView(program);
                             }
                         }
@@ -199,20 +199,20 @@ public class ClientProgram {
                 case "importXML": {
                     String xmlText = request.getString("program");
                     String programName = request.getString("name");
-                    if ( !Util1.isValidJavaIdentifier(programName) ) {
+                    if (!Util1.isValidJavaIdentifier(programName)) {
                         programName = "NEPOprog";
                     }
 
                     Export jaxbImportExport = null;
                     try {
                         jaxbImportExport = JaxbHelper.xml2Element(xmlText, Export.class);
-                    } catch ( final UnmarshalException | org.xml.sax.SAXException e ) {
+                    } catch (final UnmarshalException | org.xml.sax.SAXException e) {
                         jaxbImportExport = null;
                     }
-                    if ( jaxbImportExport != null ) {
+                    if (jaxbImportExport != null) {
                         String robotType1 = jaxbImportExport.getProgram().getBlockSet().getRobottype();
                         String robotType2 = jaxbImportExport.getConfig().getBlockSet().getRobottype();
-                        if ( robotType1.equals(robot) && robotType2.equals(robot) ) {
+                        if (robotType1.equals(robot) && robotType2.equals(robot)) {
                             response.put("programName", programName);
                             response.put("programText", JaxbHelper.blockSet2xml(jaxbImportExport.getProgram().getBlockSet()));
                             response.put("configText", JaxbHelper.blockSet2xml(jaxbImportExport.getConfig().getBlockSet()));
@@ -226,12 +226,12 @@ public class ClientProgram {
                     break;
                 }
                 case "shareP":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
                         User user = up.getUser(userId);
-                        if ( !this.isPublicServer || user != null && user.isActivated() ) {
+                        if (!this.isPublicServer || user != null && user.isActivated()) {
                             String programName = request.getString("programName");
                             String userToShareName = request.getString("userToShare");
                             String right = request.getString("right");
@@ -244,7 +244,7 @@ public class ClientProgram {
 
                     break;
                 case "shareWithGallery":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -253,14 +253,14 @@ public class ClientProgram {
                         // generating a unique name for the program owned by the gallery.
                         User user = up.getUser(userId);
                         String userAccount = user.getAccount();
-                        if ( !this.isPublicServer || user != null && user.isActivated() ) {
+                        if (!this.isPublicServer || user != null && user.isActivated()) {
                             // get the program from the origin user to share with the gallery
                             Program program = pp.getProgram(programName, userAccount, robot, userAccount);
 
                             String confText;
-                            if ( program != null ) {
-                                if ( program.getConfigName() == null ) {
-                                    if ( program.getConfigHash() == null ) {
+                            if (program != null) {
+                                if (program.getConfigName() == null) {
+                                    if (program.getConfigHash() == null) {
                                         confText = null;
                                     } else {
                                         ConfigurationDao confDao = new ConfigurationDao(dbSession);
@@ -271,9 +271,9 @@ public class ClientProgram {
                                 }
                                 // make a copy of the user program and store it as a gallery owned program
                                 Program programCopy =
-                                    pp.persistProgramText(programName, program.getProgramText(), null, confText, galleryId, robot, userId, null, true);
-                                if ( pp.isOk() ) {
-                                    if ( programCopy != null ) {
+                                        pp.persistProgramText(programName, program.getProgramText(), null, confText, galleryId, robot, userId, null, true);
+                                if (pp.isOk()) {
+                                    if (programCopy != null) {
                                         response.put("lastChanged", programCopy.getLastChanged().getTime());
                                         // share the copy of the program with the origin user
                                         upp.shareToUser(galleryId, robot, programName, userId, userAccount, "X_WRITE");
@@ -294,7 +294,7 @@ public class ClientProgram {
 
                     break;
                 case "likeP":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -303,9 +303,9 @@ public class ClientProgram {
                         final boolean like = request.getBoolean("like");
                         final String authorName = request.getString("authorName");
 
-                        if ( like ) {
+                        if (like) {
                             lp.createLike(programName, robotName, authorName);
-                            if ( !lp.isOk() ) {
+                            if (!lp.isOk()) {
                                 Util.addErrorInfo(response, Key.LIKE_SAVE_ERROR_EXISTS);
                             }
                         } else {
@@ -317,7 +317,7 @@ public class ClientProgram {
 
                     break;
                 case "shareDelete":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -327,7 +327,7 @@ public class ClientProgram {
                         upp.shareDelete(owner, robot, programName, author, userId);
                         Util.addResultInfo(response, upp);
                         // if this program was shared from the gallery we need to delete the copy of it as well
-                        if ( owner.equals("Gallery") ) {
+                        if (owner.equals("Gallery")) {
                             int ownerId = up.getUser(owner).getId();
                             pp.deleteByName(programName, ownerId, robot, userId);
                             Util.addResultInfo(response, pp);
@@ -336,7 +336,7 @@ public class ClientProgram {
 
                     break;
                 case "deleteP":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -347,7 +347,7 @@ public class ClientProgram {
                     }
                     break;
                 case "loadPN":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -365,7 +365,7 @@ public class ClientProgram {
                     break;
                 }
                 case "loadProgramEntity":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -376,7 +376,7 @@ public class ClientProgram {
                         final int ownerID = owner.getId();
                         final int authorId = up.getUser(authorName).getId();
                         final JSONArray program = pp.getProgramEntity(programName, ownerID, robot, authorId);
-                        if ( program != null ) {
+                        if (program != null) {
                             response.put("program", program);
                         }
                         Util.addResultInfo(response, pp);
@@ -391,7 +391,7 @@ public class ClientProgram {
                     break;
                 }
                 case "loadPR":
-                    if ( !httpSessionState.isUserLoggedIn() ) {
+                    if (!httpSessionState.isUserLoggedIn()) {
                         ClientProgram.LOG.error("Unauthorized");
                         Util.addErrorInfo(response, Key.USER_ERROR_NOT_LOGGED_IN);
                     } else {
@@ -411,27 +411,27 @@ public class ClientProgram {
                     String configName = request.optString("configuration", null);
                     String configurationText = request.optString("configurationText", null);
                     ILanguage language = Language.findByAbbr(request.optString("language"));
-                    if ( configName != null ) {
+                    if (configName != null) {
                         configurationText = configurationProcessor.getConfigurationText(configName, userId, robot);
-                    } else if ( configurationText == null ) {
+                    } else if (configurationText == null) {
                         configurationText = robotFactory.getConfigurationDefault();
                     }
 
                     BlocklyProgramAndConfigTransformer programAndConfigTransformer =
-                        BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configurationText);
+                            BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configurationText);
                     programAndConfigTransformer.getBrickConfiguration().setRobotName(httpSessionState.getRobotName());
                     Key messageKey = programAndConfigTransformer.getErrorMessage();
-                    if ( messageKey == null ) {
+                    if (messageKey == null) {
                         RobotCommonCheckVisitor programChecker = robotFactory.getRobotProgramCheckVisitor(programAndConfigTransformer.getBrickConfiguration());
                         messageKey = programConfigurationCompatibilityCheck(response, programAndConfigTransformer, programChecker);
-                        if ( messageKey == null ) {
+                        if (messageKey == null) {
                             ClientProgram.LOG.info("compiler workflow started for program {}", programName);
                             messageKey =
-                                robotFactory.getRobotCompilerWorkflow().generateSourceAndCompile(token, programName, programAndConfigTransformer, language);
-                            if ( messageKey == Key.COMPILERWORKFLOW_SUCCESS && token != null && !token.equals(ClientAdmin.NO_CONNECT) ) {
+                                    robotFactory.getRobotCompilerWorkflow().generateSourceAndCompile(token, programName, programAndConfigTransformer, language);
+                            if (messageKey == Key.COMPILERWORKFLOW_SUCCESS && token != null && !token.equals(ClientAdmin.NO_CONNECT)) {
                                 wasRobotWaiting = this.brickCommunicator.theRunButtonWasPressed(token, programName);
                             } else {
-                                if ( messageKey != null ) {
+                                if (messageKey != null) {
                                     LOG.info(messageKey.toString());
                                 }
                                 LOG.info("download command for the ev3 skipped, Keep going with push requests");
@@ -449,7 +449,7 @@ public class ClientProgram {
                     LOG.info("compilation of native source started for program {}", programName);
                     Key messageKey = robotFactory.getRobotCompilerWorkflow().compileSourceCode(token, programName, programText, language, null);
                     LOG.info("compile user supplied native program. Result: " + messageKey);
-                    if ( messageKey == Key.COMPILERWORKFLOW_SUCCESS ) {
+                    if (messageKey == Key.COMPILERWORKFLOW_SUCCESS) {
                         Util.addSuccessInfo(response, Key.COMPILERWORKFLOW_SUCCESS);
                     } else {
                         Util.addErrorInfo(response, messageKey);
@@ -462,37 +462,37 @@ public class ClientProgram {
                     String programName = request.getString("name");
                     String xmlText = request.getString("program");
                     ILanguage language = Language.findByAbbr(request.optString("language"));
-                    if ( !Util1.isValidJavaIdentifier(programName) ) {
+                    if (!Util1.isValidJavaIdentifier(programName)) {
                         programName = "NEPOprog";
                     }
 
                     Export jaxbImportExport = null;
                     try {
                         jaxbImportExport = JaxbHelper.xml2Element(xmlText, Export.class);
-                    } catch ( final UnmarshalException | org.xml.sax.SAXException e ) {
+                    } catch (final UnmarshalException | org.xml.sax.SAXException e) {
                         jaxbImportExport = null;
                     }
-                    if ( jaxbImportExport != null ) {
+                    if (jaxbImportExport != null) {
                         String robotType1 = jaxbImportExport.getProgram().getBlockSet().getRobottype();
                         String robotType2 = jaxbImportExport.getConfig().getBlockSet().getRobottype();
-                        if ( robotType1.equals(robot) && robotType2.equals(robot) ) {
+                        if (robotType1.equals(robot) && robotType2.equals(robot)) {
                             String programText = JaxbHelper.blockSet2xml(jaxbImportExport.getProgram().getBlockSet());
                             String configText = JaxbHelper.blockSet2xml(jaxbImportExport.getConfig().getBlockSet());
                             String token = "toknTokn";
                             BlocklyProgramAndConfigTransformer programAndConfigTransformer =
-                                BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configText);
+                                    BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configText);
                             programAndConfigTransformer.getBrickConfiguration().setRobotName(httpSessionState.getRobotName());
                             messageKey = programAndConfigTransformer.getErrorMessage();
-                            if ( messageKey == null ) {
+                            if (messageKey == null) {
                                 RobotCommonCheckVisitor programChecker =
-                                    robotFactory.getRobotProgramCheckVisitor(programAndConfigTransformer.getBrickConfiguration());
+                                        robotFactory.getRobotProgramCheckVisitor(programAndConfigTransformer.getBrickConfiguration());
                                 messageKey = programConfigurationCompatibilityCheck(response, programAndConfigTransformer, programChecker);
-                                if ( messageKey == null ) {
+                                if (messageKey == null) {
                                     ClientProgram.LOG.info("compiler workflow started for program {}", programName);
                                     messageKey =
-                                        robotFactory
-                                            .getRobotCompilerWorkflow()
-                                            .generateSourceAndCompile(token, programName, programAndConfigTransformer, language);
+                                            robotFactory
+                                                    .getRobotCompilerWorkflow()
+                                                    .generateSourceAndCompile(token, programName, programAndConfigTransformer, language);
                                 }
                             } else {
                                 messageKey = Key.PROGRAM_IMPORT_ERROR;
@@ -501,7 +501,7 @@ public class ClientProgram {
                             messageKey = Key.PROGRAM_IMPORT_ERROR_WRONG_ROBOT_TYPE;
                         }
                         LOG.info("compileN terminated with " + messageKey);
-                        if ( messageKey == Key.COMPILERWORKFLOW_SUCCESS ) {
+                        if (messageKey == Key.COMPILERWORKFLOW_SUCCESS) {
                             Util.addSuccessInfo(response, Key.COMPILERWORKFLOW_SUCCESS);
                         } else {
                             Util.addErrorInfo(response, messageKey);
@@ -519,29 +519,29 @@ public class ClientProgram {
                     String configName = request.optString("configuration", null);
                     String configurationText = request.optString("configurationText", null);
                     ILanguage language = Language.findByAbbr(request.optString("language"));
-                    if ( configName != null ) {
+                    if (configName != null) {
                         configurationText = configurationProcessor.getConfigurationText(configName, userId, robot);
-                    } else if ( configurationText == null ) {
+                    } else if (configurationText == null) {
                         configurationText = robotFactory.getConfigurationDefault();
                     }
 
                     BlocklyProgramAndConfigTransformer programAndConfigTransformer =
-                        BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configurationText);
+                            BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configurationText);
                     programAndConfigTransformer.getBrickConfiguration().setRobotName(httpSessionState.getRobotName());
                     messageKey = programAndConfigTransformer.getErrorMessage();
-                    if ( messageKey == null ) {
+                    if (messageKey == null) {
                         RobotCommonCheckVisitor programChecker = robotFactory.getRobotProgramCheckVisitor(programAndConfigTransformer.getBrickConfiguration());
                         messageKey = programConfigurationCompatibilityCheck(response, programAndConfigTransformer, programChecker);
-                        if ( messageKey == null ) {
+                        if (messageKey == null) {
                             ClientProgram.LOG.info("compiler workflow started for program {}", programName);
 
                             ICompilerWorkflow robotCompilerWorkflow = robotFactory.getRobotCompilerWorkflow();
                             messageKey = robotCompilerWorkflow.generateSourceAndCompile(token, programName, programAndConfigTransformer, language);
-                            if ( messageKey == Key.COMPILERWORKFLOW_SUCCESS ) {
+                            if (messageKey == Key.COMPILERWORKFLOW_SUCCESS) {
                                 response.put("compiledCode", robotCompilerWorkflow.getCompiledCode());
                                 response.put("rc", "ok");
                             } else {
-                                if ( messageKey != null ) {
+                                if (messageKey != null) {
                                     LOG.info(messageKey.toString());
                                     handleRunProgramError(response, messageKey, token, true);
                                 }
@@ -560,20 +560,20 @@ public class ClientProgram {
                     String configName = request.optString("configuration", null);
                     String configurationText = request.optString("configurationText", null);
                     ILanguage language = Language.findByAbbr(request.optString("language"));
-                    if ( configName != null ) {
+                    if (configName != null) {
                         configurationText = configurationProcessor.getConfigurationText(configName, userId, robot);
-                    } else if ( configurationText == null ) {
+                    } else if (configurationText == null) {
                         configurationText = robotFactory.getConfigurationDefault();
                     }
 
                     BlocklyProgramAndConfigTransformer transformer = BlocklyProgramAndConfigTransformer.transform(robotFactory, programText, configurationText);
                     transformer.getBrickConfiguration().setRobotName(httpSessionState.getRobotName());
                     Key messageKey = transformer.getErrorMessage();
-                    if ( messageKey == null ) {
+                    if (messageKey == null) {
                         RobotSimulationCheckVisitor programChecker = robotFactory.getSimProgramCheckVisitor(transformer.getBrickConfiguration());
                         messageKey = programConfigurationCompatibilityCheck(response, transformer, programChecker);
                         Jaxb2AstTransformerData<Void> data = transformer.getProgramTransformer().getData();
-                        if ( messageKey == null ) {
+                        if (messageKey == null) {
                             ClientProgram.LOG.info("JavaScript code generation started for program {}", programName);
                             String javaScriptCode = robotFactory.getSimCompilerWorkflow().generateSourceCode(token, programName, transformer, language);
                             ClientProgram.LOG.info("JavaScriptCode \n{}", javaScriptCode);
@@ -593,13 +593,13 @@ public class ClientProgram {
                     break;
             }
             dbSession.commit();
-        } catch ( final Exception e ) {
+        } catch (final Exception e) {
             dbSession.rollback();
             String errorTicketId = Util1.getErrorTicketId();
             ClientProgram.LOG.error("Exception. Error ticket: " + errorTicketId, e);
             Util.addErrorInfo(response, Key.SERVER_ERROR).append("parameters", errorTicketId);
         } finally {
-            if ( dbSession != null ) {
+            if (dbSession != null) {
                 dbSession.close();
             }
         }
@@ -609,13 +609,13 @@ public class ClientProgram {
     }
 
     private Key programConfigurationCompatibilityCheck(
-        JSONObject response,
-        BlocklyProgramAndConfigTransformer programAndConfigTransformer,
-        RobotCommonCheckVisitor programChecker)
-        throws JSONException,
-        JAXBException {
+            JSONObject response,
+            BlocklyProgramAndConfigTransformer programAndConfigTransformer,
+            RobotCommonCheckVisitor programChecker)
+            throws JSONException,
+            JAXBException {
         Jaxb2AstTransformerData<Void> data = programAndConfigTransformer.getProgramTransformer().getData();
-        if ( programChecker == null ) {
+        if (programChecker == null) {
             response.put("data", ClientProgram.jaxbToXml(ClientProgram.astToJaxb(programAndConfigTransformer.getProgramTransformer().getTree(), data)));
             return null;
         }
@@ -623,7 +623,7 @@ public class ClientProgram {
         final int errorCounter = programChecker.getErrorCount();
         response.put("data", ClientProgram.jaxbToXml(ClientProgram.astToJaxb(programChecker.getCheckedProgram(), data)));
         response.put("errorCounter", errorCounter);
-        if ( errorCounter > 0 ) {
+        if (errorCounter > 0) {
             return Key.PROGRAM_INVALID_STATEMETNS;
         }
         return null;
@@ -640,11 +640,11 @@ public class ClientProgram {
         blockSet.setTags(data.getTags());
         blockSet.setXmlversion(data.getXmlVersion());
 
-        for ( ArrayList<Phrase<Void>> tree : astProgram ) {
+        for (ArrayList<Phrase<Void>> tree : astProgram) {
             Instance instance = new Instance();
             blockSet.getInstance().add(instance);
-            for ( Phrase<Void> phrase : tree ) {
-                if ( phrase.getKind().hasName("LOCATION") ) {
+            for (Phrase<Void> phrase : tree) {
+                if (phrase.getKind().hasName("LOCATION")) {
                     instance.setX(((Location<Void>) phrase).getX());
                     instance.setY(((Location<Void>) phrase).getY());
                 }
@@ -655,11 +655,11 @@ public class ClientProgram {
     }
 
     private static void handleRunProgramError(JSONObject response, Key messageKey, String token, boolean wasRobotWaiting) throws JSONException {
-        if ( messageKey == Key.COMPILERWORKFLOW_SUCCESS ) {
-            if ( token == null ) {
+        if (messageKey == Key.COMPILERWORKFLOW_SUCCESS) {
+            if (token == null) {
                 Util.addErrorInfo(response, Key.ROBOT_NOT_CONNECTED);
             } else {
-                if ( wasRobotWaiting ) {
+                if (wasRobotWaiting) {
                     Util.addSuccessInfo(response, Key.ROBOT_PUSH_RUN);
                 } else {
                     Util.addErrorInfo(response, Key.ROBOT_NOT_WAITING);
