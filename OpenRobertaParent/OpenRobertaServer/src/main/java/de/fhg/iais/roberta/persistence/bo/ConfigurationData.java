@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,10 +35,9 @@ public class ConfigurationData {
     /**
      * create a new configuration
      *
-     * @param name the name of the configuration, not null
-     * @param owner the user who created and thus owns the program
+     * @param configurationText the name of the configuration, not null
      */
-    public ConfigurationData(String configurationText) {
+    public ConfigurationData(@NotNull String configurationText) {
         this.configurationHash = createHash(configurationText);
         this.configurationText = configurationText;
     }
@@ -95,8 +95,7 @@ public class ConfigurationData {
 
     public static String createHash(String inputString) {
         try (InputStream inputStream = new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8))) {
-            String hash = DigestUtils.sha256Hex(inputStream);
-            return hash;
+            return DigestUtils.sha256Hex(inputStream);
         } catch ( Exception e ) {
             String msg = "Severe Problem. Could not convert a string to a hash";
             LOG.error(msg, e);

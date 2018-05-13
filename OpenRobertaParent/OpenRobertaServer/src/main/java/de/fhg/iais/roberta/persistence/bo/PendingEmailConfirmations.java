@@ -37,9 +37,8 @@ public class PendingEmailConfirmations implements WithSurrogateId {
      * create link to be sent to user email address
      *
      * @param userId of the user that forgot his password
-     * @throws Exception
      */
-    public PendingEmailConfirmations(int userId) throws Exception {
+    public PendingEmailConfirmations(int userId) {
         this.userID = userId;
         this.urlPostfix = RandomUrlPostfix.generate(12, 12, 3, 3, 3);
         this.created = Util1.getNow();
@@ -70,11 +69,19 @@ public class PendingEmailConfirmations implements WithSurrogateId {
         return this.created;
     }
 
+    /**
+     *
+     * @return id of the User
+     */
     @Override
     public int getId() {
         return this.id;
     }
 
+    /**
+     *
+     * @return String containing Id, UserId, URLPostFix and Created data of User.
+     */
     @Override
     public String toString() {
         return "PendingEmailConfirmations [id=" + this.id + ", userID=" + this.userID + ", urlPostfix=" + this.urlPostfix + ", created=" + this.created + "]";
