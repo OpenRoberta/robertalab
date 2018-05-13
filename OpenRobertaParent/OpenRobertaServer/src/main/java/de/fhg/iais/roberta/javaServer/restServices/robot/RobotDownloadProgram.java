@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +42,7 @@ public class RobotDownloadProgram {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response handle(JSONObject requestEntity) throws JSONException {
+    public Response handle(JSONObject requestEntity) {
         AliveData.rememberRobotCall();
         try {
             String token = requestEntity.getString("token");
@@ -51,10 +50,10 @@ public class RobotDownloadProgram {
             RobotCommunicationData state = brickCommunicator.getState(token);
             String programName = state.getProgramName();
 
-            String fileName = null;
-            String filePath = null;
+            String fileName;
+            String filePath;
 
-            // FIXME as the number of supported robot system grows, we should think about a better solution here :-D
+            // TODO: as the number of supported robot system grows, we should think about a better solution here :-D
             switch ( state.getFirmwareName() ) {
                 case "ev3lejosv1":
                 case "lejos":

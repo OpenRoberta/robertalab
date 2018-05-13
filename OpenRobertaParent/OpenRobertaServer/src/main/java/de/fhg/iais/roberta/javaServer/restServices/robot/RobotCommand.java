@@ -46,8 +46,8 @@ public class RobotCommand {
     public Response handle(JSONObject requestEntity) throws JSONException, InterruptedException {
         AliveData.rememberRobotCall();
         String cmd = requestEntity.getString(CMD);
-        String token = null;
-        String firmwarename = null;
+        String token;
+        String firmwarename;
         try {
             token = requestEntity.getString("token");
             firmwarename = requestEntity.getString("firmwarename");
