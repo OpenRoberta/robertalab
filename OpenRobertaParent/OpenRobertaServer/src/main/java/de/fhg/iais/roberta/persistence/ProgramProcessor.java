@@ -365,7 +365,7 @@ public class ProgramProcessor extends AbstractProcessor {
                 tempProgram.put(program.getNumberOfViews());
                 tempProgram.put(likes.size());
                 tempProgram.put(program.getTags());
-                tempProgram.put(like == null ? false : true);
+                tempProgram.put(like != null);
                 programs.put(tempProgram);
             } else {
                 // this should not happen!
