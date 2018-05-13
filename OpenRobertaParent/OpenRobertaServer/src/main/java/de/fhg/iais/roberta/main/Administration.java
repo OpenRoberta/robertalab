@@ -54,9 +54,8 @@ public class Administration {
      * classpath. May be <code>null</code>, if the default resource from the classpath should be loaded.
      *
      * @param args first element may contain the URI of a property file.
-     * @throws Exception
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Administration adminWork = new Administration(args);
         adminWork.run();
     }
@@ -279,8 +278,7 @@ public class Administration {
         Jaxb2BlocklyProgramTransformer<Void> transformer = new Jaxb2BlocklyProgramTransformer<>(null);
         transformer.transform(program);
         BlockSet blockSet = astToJaxb(transformer.getTree());
-        String newXml = jaxbToXml(blockSet);
-        return newXml;
+        return jaxbToXml(blockSet);
     }
 
     private List<Object[]> selectEV3programByName(Session nativeSession, String sqlGetProgramByName, String name) {

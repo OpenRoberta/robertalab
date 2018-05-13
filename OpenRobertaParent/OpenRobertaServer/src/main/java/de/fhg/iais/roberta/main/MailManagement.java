@@ -65,7 +65,7 @@ public class MailManagement {
         });
     }
 
-    public void send(String to, String subject, String[] body, String lang, boolean isYoungerThen14) throws AddressException, MessagingException {
+    public void send(String to, String subject, String[] body, String lang, boolean isYoungerThen14) throws MessagingException {
         // TODO support for more languages
         String language = lang.toLowerCase().equals("de") ? "DE" : "en";
         String mailText = body[0];

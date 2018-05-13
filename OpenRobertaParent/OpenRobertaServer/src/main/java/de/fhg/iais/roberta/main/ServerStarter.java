@@ -108,7 +108,7 @@ public class ServerStarter {
      *
      * @return the server
      */
-    public Server start() throws IOException {
+    public Server start() {
         String host = robertaProperties.getStringProperty("server.ip");
         int httpPort = robertaProperties.getIntProperty("server.port", 0);
         int httpsPort = robertaProperties.getIntProperty("server.portHttps", 0);
@@ -220,7 +220,7 @@ public class ServerStarter {
         Ev3SensorLoggingWS.setGuiceInjector(this.injector);
 
         checkRobotPluginsDB();
-        Runtime.getRuntime().addShutdownHook(new ShutdownHook("embedded".equals(robertaProperties.getStringProperty("database.mode")), this.injector));
+        Runtime.getRuntime().addShutdownHook(new ShutdownHook("emb  edded".equals(robertaProperties.getStringProperty("database.mode")), this.injector));
         LOG.info("Shutdown hook added. If the server is gracefully stopped in the future, a shutdown message is logged");
         logTheNumberOfStoredPrograms();
 
@@ -252,7 +252,7 @@ public class ServerStarter {
     /**
      * returns the guice injector configured in this class. This not dangerous, but you should ask yourself, why you need that ...</b>
      *
-     * @return the injector
+     * @return returns the injector
      */
     public Injector getInjectorForTests() {
         return this.injector;
@@ -275,7 +275,7 @@ public class ServerStarter {
     /**
      * configure robot plugins, that may be used with this server. Uses the white list and the declarations from the openroberta.properties file.
      *
-     * @param robotCommunicator
+     * @param robotCommunicator a Robot Communicator
      * @return the mapping from robot names to the factory, that supplies all robot-specific data
      */
     public static Map<String, IRobotFactory> configureRobotPlugins(RobotCommunicator robotCommunicator, RobertaProperties robertaProperties) {
