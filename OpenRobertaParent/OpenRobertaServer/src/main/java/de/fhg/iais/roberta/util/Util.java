@@ -40,7 +40,7 @@ public class Util {
         response.put("rc", processor.getRC());
         response.put("message", realKey);
         response.put("cause", realKey);
-        response.put("parameter", processor.getParameter()); // if getParameters returns null, nothing bad happens :-)
+        response.put("parameter", processor.getParameter());
     }
 
     public static JSONObject addSuccessInfo(JSONObject response, Key key) throws JSONException {
@@ -137,13 +137,13 @@ public class Util {
      * Look up file names with specific file extensions in a specific directory.
      * 
      * @param path The path to the directory where to look for the files.
-     * @param extension The file extension(s).
+     * @param extensions array of the extension(s).
      * @return a list of files names or an empty list.
      */
     public static List<String> getListOfFileNames (String path, String... extensions) {
         File dir = new File(path);  
         List<File> listOfFiles = (List<File>)FileUtils.listFiles(dir, extensions, true);
-        List<String> listOfFileNames = new ArrayList<String>();
+        List<String> listOfFileNames = new ArrayList<>();
         for ( File file : listOfFiles) {
             listOfFileNames.add(file.getName());
         }
