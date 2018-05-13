@@ -12,8 +12,11 @@ import de.fhg.iais.roberta.factory.ICompilerWorkflow;
 import de.fhg.iais.roberta.factory.IRobotFactory;
 import de.fhg.iais.roberta.inter.mode.action.ILightSensorActionMode;
 import de.fhg.iais.roberta.inter.mode.action.IShowPicture;
+import de.fhg.iais.roberta.inter.mode.general.IMode;
 import de.fhg.iais.roberta.inter.mode.sensor.ISensorPort;
 import de.fhg.iais.roberta.mode.action.Language;
+import de.fhg.iais.roberta.mode.sensor.nao.DetectedFaceMode;
+import de.fhg.iais.roberta.mode.sensor.nao.DetectedMarkMode;
 import de.fhg.iais.roberta.mode.sensor.nao.SensorPorts;
 import de.fhg.iais.roberta.syntax.BlocklyBlockProperties;
 import de.fhg.iais.roberta.syntax.BlocklyComment;
@@ -25,6 +28,8 @@ import de.fhg.iais.roberta.syntax.codegen.nao.PythonVisitor;
 import de.fhg.iais.roberta.syntax.sensor.GetSampleType;
 import de.fhg.iais.roberta.syntax.sensor.Sensor;
 import de.fhg.iais.roberta.syntax.sensor.SensorMetaDataBean;
+import de.fhg.iais.roberta.syntax.sensor.nao.DetectFace;
+import de.fhg.iais.roberta.syntax.sensor.nao.DetectedMark;
 import de.fhg.iais.roberta.syntax.sensor.nao.ElectricCurrent;
 import de.fhg.iais.roberta.syntax.sensor.nao.FsrSensor;
 import de.fhg.iais.roberta.util.RobertaProperties;
@@ -51,6 +56,14 @@ public class Factory extends AbstractRobotFactory {
     @Override
     public ISensorPort getSensorPort(String port) {
         return IRobotFactory.getModeValue(port, SensorPorts.class);
+    }
+
+    public IMode getDetectMarkMode(String mode) {
+        return IRobotFactory.getModeValue(mode, DetectedMarkMode.class);
+    }
+
+    public IMode getDetectFaceMode(String mode) {
+        return IRobotFactory.getModeValue(mode, DetectedFaceMode.class);
     }
 
     @Override
@@ -161,17 +174,33 @@ public class Factory extends AbstractRobotFactory {
     }
 
     @Override
-    public Sensor<?> createSensor(GetSampleType sensorType, String port, String slot, BlocklyBlockProperties properties, BlocklyComment comment) {
+    public Sensor<?> createSensor(
+        GetSampleType sensorType,
+        String port,
+        String slot,
+        boolean isPortInMutation,
+        BlocklyBlockProperties properties,
+        BlocklyComment comment) {
         SensorMetaDataBean sensorMetaDataBean;
         switch ( sensorType.getSensorType() ) {
             case BlocklyConstants.ELECTRIC_CURRENT:
-                sensorMetaDataBean = new SensorMetaDataBean(getSensorPort(port), getPlaceholderSensorMode(sensorType.getSensorMode()), getSlot(slot));
+                sensorMetaDataBean =
+                    new SensorMetaDataBean(getSensorPort(port), getPlaceholderSensorMode(sensorType.getSensorMode()), getSlot(slot), isPortInMutation);
                 return ElectricCurrent.make(sensorMetaDataBean, properties, comment);
             case BlocklyConstants.FSR:
-                sensorMetaDataBean = new SensorMetaDataBean(getSensorPort(port), getPlaceholderSensorMode(sensorType.getSensorMode()), getSlot(slot));
+                sensorMetaDataBean =
+                    new SensorMetaDataBean(getSensorPort(port), getPlaceholderSensorMode(sensorType.getSensorMode()), getSlot(slot), isPortInMutation);
                 return FsrSensor.make(sensorMetaDataBean, properties, comment);
+            case BlocklyConstants.DETECT_MARK:
+                sensorMetaDataBean =
+                    new SensorMetaDataBean(getSensorPort(port), getDetectMarkMode(sensorType.getSensorMode()), getSlot(slot), isPortInMutation);
+                return DetectedMark.make(sensorMetaDataBean, properties, comment);
+            case BlocklyConstants.DETECT_FACE:
+                sensorMetaDataBean =
+                    new SensorMetaDataBean(getSensorPort(port), getDetectFaceMode(sensorType.getSensorMode()), getSlot(slot), isPortInMutation);
+                return DetectFace.make(sensorMetaDataBean, properties, comment);
             default:
-                return super.createSensor(sensorType, port, slot, properties, comment);
+                return super.createSensor(sensorType, port, slot, isPortInMutation, properties, comment);
         }
     }
 

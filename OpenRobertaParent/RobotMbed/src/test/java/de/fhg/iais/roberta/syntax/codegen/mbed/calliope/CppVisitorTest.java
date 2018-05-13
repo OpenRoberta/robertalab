@@ -628,11 +628,25 @@ public class CppVisitorTest {
             "" //
                 + IMPORTS
                 + MAIN
-                + "_uBit.io.P0.setAnalogValue(1);\n"
-                + "_uBit.io.P12.setDigitalValue(1);"
+                + "_uBit.io.P1.setAnalogValue(1);\n"
+                + "_uBit.io.P19.setDigitalValue(1);"
                 + END;
 
         assertCodeIsOk(expectedResult, "/action/write_value_to_pin.xml");
+    }
+
+    @Test
+    public void visitPinSetPull_SetPullToValues_ReturnsCorrectCPP_Program() throws Exception {
+        String expectedResult =
+            "" //
+                + IMPORTS
+                + MAIN
+                + "_uBit.io.P12.setPull(PullUp);\n"
+                + "_uBit.io.P0.setPull(PullDown);\n"
+                + "_uBit.io.P1.setPull(PullNone);"
+                + END;
+
+        assertCodeIsOk(expectedResult, "/action/pin_set_pull.xml");
     }
 
     @Test

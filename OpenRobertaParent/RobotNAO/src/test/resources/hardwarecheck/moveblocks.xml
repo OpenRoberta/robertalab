@@ -6,10 +6,6 @@
 			<mutation declare="false" />
 			<field name="DEBUG">TRUE</field>
 		</block>
-		<block type="naoActions_mode" id="e?a/7]nxP@lJ3A}e+c[F"
-			intask="true">
-			<field name="DIRECTION">ACTIVE</field>
-		</block>
 		<block type="naoActions_applyPosture" id="Big=0_!S72G6D;9Jl%zo"
 			intask="true">
 			<field name="DIRECTION">STAND</field>

@@ -1,28 +1,28 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly"
 	robottype="nao" xmlversion="" description="" tags="undefined">
 	<instance x="384" y="50">
-		<block type="robControls_start" id="WWTm+WR*Wz]s[_Gd]W)D"
+		<block type="robControls_start" id="7QHCFlvg8No?l1~hO^e5"
 			intask="true" deletable="false">
 			<mutation declare="false" />
-			<field name="DEBUG">TRUE</field>
+			<field name="DEBUG" />
 		</block>
-		<block type="naoControls_wait_for" id="g]Nl#6f|u5NN9D?V6_;_"
+		<block type="robControls_wait_for" id="=:fk#_9ysUtP@?QxqAMj"
 			intask="true">
 			<value name="WAIT0">
-				<block type="logic_compare" id="9dCt=n.V%MZMx9OzeF.*"
+				<block type="logic_compare" id="*sew5FtvGU{:vU{;^pM{"
 					intask="true">
 					<field name="OP">EQ</field>
 					<value name="A">
-						<block type="robSensors_getSample" id="=y^}u!poHj%)D}M|!}KC"
+						<block type="robSensors_getSample" id="akPNZGtMQYxKOKP:a0c#"
 							intask="true">
-							<mutation input="TOUCH_PRESSED" />
+							<mutation input="TOUCH_PRESSED" port="HEAD" />
 							<field name="SENSORTYPE">TOUCH_PRESSED</field>
 							<field name="SENSORPORT">HEAD</field>
 							<field name="SLOT">FRONT</field>
 						</block>
 					</value>
 					<value name="B">
-						<block type="logic_boolean" id=")@9xhyZQ4c-_KAD+s_*@"
+						<block type="logic_boolean" id="9v,xr8EQ+S{*m)(^1T%}"
 							intask="true">
 							<field name="BOOL">TRUE</field>
 						</block>
@@ -30,23 +30,23 @@
 				</block>
 			</value>
 		</block>
-		<block type="naoControls_wait_for" id="4L!)QZ*{cxKS?6?o+*TD"
+		<block type="robControls_wait_for" id="OD|G|-,=ioz+/mjcKR*G"
 			intask="true">
 			<value name="WAIT0">
-				<block type="logic_compare" id="KhrXeCiP*:N:}hEy(OpG"
+				<block type="logic_compare" id="yTOD2f7kVjbs+Bz8ckX3"
 					intask="true">
 					<field name="OP">EQ</field>
 					<value name="A">
-						<block type="robSensors_getSample" id="H;vQGlF39J^GONbiizZ%"
+						<block type="robSensors_getSample" id="L|%le}1{B#IO?hEllfV."
 							intask="true">
-							<mutation input="TOUCH_PRESSED" />
+							<mutation input="TOUCH_PRESSED" port="HEAD" />
 							<field name="SENSORTYPE">TOUCH_PRESSED</field>
 							<field name="SENSORPORT">HEAD</field>
 							<field name="SLOT">MIDDLE</field>
 						</block>
 					</value>
 					<value name="B">
-						<block type="logic_boolean" id="cftN*-f2C=:ROes}rd}x"
+						<block type="logic_boolean" id="7|8JFf%p5wivwJUt%?QT"
 							intask="true">
 							<field name="BOOL">TRUE</field>
 						</block>
@@ -54,23 +54,119 @@
 				</block>
 			</value>
 		</block>
-		<block type="naoControls_wait_for" id="L[7ORWw(~PEb)}hu/Mz^"
+		<block type="robControls_wait_for" id="Tl[|j0/v2Eb9gx/r@Vp_"
 			intask="true">
 			<value name="WAIT0">
-				<block type="logic_compare" id="ZeC4=V~CdQ;(416oYA[:"
+				<block type="logic_compare" id="%o/}e1vd--F(cUL;HKI["
 					intask="true">
 					<field name="OP">EQ</field>
 					<value name="A">
-						<block type="robSensors_getSample" id="6uP5dUeuei?B)BO7cT_S"
+						<block type="robSensors_getSample" id="sC,|zty_-}#vO68rs}hX"
 							intask="true">
-							<mutation input="TOUCH_PRESSED" />
+							<mutation input="TOUCH_PRESSED" port="HEAD" />
 							<field name="SENSORTYPE">TOUCH_PRESSED</field>
 							<field name="SENSORPORT">HEAD</field>
 							<field name="SLOT">REAR</field>
 						</block>
 					</value>
 					<value name="B">
-						<block type="logic_boolean" id="@4yN{=2JDmdZ[MAOk.Q/"
+						<block type="logic_boolean" id="|:B~uV5~uw*{][D(b8_["
+							intask="true">
+							<field name="BOOL">TRUE</field>
+						</block>
+					</value>
+				</block>
+			</value>
+		</block>
+		<block type="robControls_wait_for" id="X!7fdENa_5M[g?{x@]8*"
+			intask="true">
+			<value name="WAIT0">
+				<block type="logic_compare" id="XuQ?WDU:Dk6J4wp466C."
+					intask="true">
+					<field name="OP">EQ</field>
+					<value name="A">
+						<block type="robSensors_getSample" id="uHW]oM#o|Br15Vzm=r(C"
+							intask="true">
+							<mutation input="TOUCH_PRESSED" port="HAND" />
+							<field name="SENSORTYPE">TOUCH_PRESSED</field>
+							<field name="SENSORPORT">HAND</field>
+							<field name="SLOT">LEFT</field>
+						</block>
+					</value>
+					<value name="B">
+						<block type="logic_boolean" id="EB},pkjjHEbcJp?zKTD["
+							intask="true">
+							<field name="BOOL">TRUE</field>
+						</block>
+					</value>
+				</block>
+			</value>
+		</block>
+		<block type="robControls_wait_for" id="cq19ek9JL?;s(A+YS^M3"
+			intask="true">
+			<value name="WAIT0">
+				<block type="logic_compare" id="jC(YeKL,x?(E/OGEVWNr"
+					intask="true">
+					<field name="OP">EQ</field>
+					<value name="A">
+						<block type="robSensors_getSample" id="0B6o277GXL_}-/plzYE`"
+							intask="true">
+							<mutation input="TOUCH_PRESSED" port="HAND" />
+							<field name="SENSORTYPE">TOUCH_PRESSED</field>
+							<field name="SENSORPORT">HAND</field>
+							<field name="SLOT">RIGHT</field>
+						</block>
+					</value>
+					<value name="B">
+						<block type="logic_boolean" id="N=~noIM;)bI:BE`=Tntn"
+							intask="true">
+							<field name="BOOL">TRUE</field>
+						</block>
+					</value>
+				</block>
+			</value>
+		</block>
+		<block type="robControls_wait_for" id="kcjH`z6H-IeZQ@eExfJG"
+			intask="true">
+			<value name="WAIT0">
+				<block type="logic_compare" id="xEK;Ltz*QZBBb8kPgv7|"
+					intask="true">
+					<field name="OP">EQ</field>
+					<value name="A">
+						<block type="robSensors_getSample" id="jZXh}2S`,zD_H}*QlqkQ"
+							intask="true">
+							<mutation input="TOUCH_PRESSED" port="BUMPER" />
+							<field name="SENSORTYPE">TOUCH_PRESSED</field>
+							<field name="SENSORPORT">BUMPER</field>
+							<field name="SLOT">LEFT</field>
+						</block>
+					</value>
+					<value name="B">
+						<block type="logic_boolean" id="#8XDA!BIroA/2[L}9f(f"
+							intask="true">
+							<field name="BOOL">TRUE</field>
+						</block>
+					</value>
+				</block>
+			</value>
+		</block>
+		<block type="robControls_wait_for" id="m6Zk7jUXQAeiqwN=@w-@"
+			intask="true">
+			<value name="WAIT0">
+				<block type="logic_compare" id="ug-+?NE`nz3,Qw#oyBVt"
+					intask="true">
+					<field name="OP">EQ</field>
+					<value name="A">
+						<block type="robSensors_getSample" id="l66_Ayh83c75+E[Vd3DM"
+							intask="true">
+							<mutation input="TOUCH_PRESSED" port="BUMPER" />
+							<field name="SENSORTYPE">TOUCH_PRESSED</field>
+							<field name="SENSORPORT">BUMPER</field>
+							<field name="SLOT">RIGHT</field>
+						</block>
+					</value>
+					<value name="B">
+						<block type="logic_boolean" id="wq]p!!~G8Nk7[]4QS4F#"
 							intask="true">
 							<field name="BOOL">TRUE</field>
 						</block>

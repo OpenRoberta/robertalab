@@ -14,6 +14,8 @@ import de.fhg.iais.roberta.mode.action.Language;
 import de.fhg.iais.roberta.mode.action.TurnDirection;
 import de.fhg.iais.roberta.mode.action.nao.Camera;
 import de.fhg.iais.roberta.mode.general.IndexLocation;
+import de.fhg.iais.roberta.mode.sensor.nao.DetectedFaceMode;
+import de.fhg.iais.roberta.mode.sensor.nao.DetectedMarkMode;
 import de.fhg.iais.roberta.mode.sensor.nao.SensorPorts;
 import de.fhg.iais.roberta.syntax.BlockTypeContainer;
 import de.fhg.iais.roberta.syntax.BlockTypeContainer.BlockType;
@@ -85,9 +87,8 @@ import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
 import de.fhg.iais.roberta.syntax.sensor.nao.DetectFace;
-import de.fhg.iais.roberta.syntax.sensor.nao.DetectMark;
 import de.fhg.iais.roberta.syntax.sensor.nao.DetectedFaceInformation;
-import de.fhg.iais.roberta.syntax.sensor.nao.Dialog;
+import de.fhg.iais.roberta.syntax.sensor.nao.DetectedMark;
 import de.fhg.iais.roberta.syntax.sensor.nao.ElectricCurrent;
 import de.fhg.iais.roberta.syntax.sensor.nao.FsrSensor;
 import de.fhg.iais.roberta.syntax.sensor.nao.GetSampleSensor;
@@ -213,6 +214,13 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
         generateUserDefinedMethods();
         this.sb.append("\n\ndef run():");
         incrIndentation();
+        if ( mainTask.getDebug().equals("TRUE") ) {
+            nlIndent();
+            this.sb.append("h.setAutonomousLife('ON')");
+        } else {
+            nlIndent();
+            this.sb.append("h.setAutonomousLife('OFF')");
+        }
         List<Stmt<Void>> variableList = variables.get();
         if ( !variableList.isEmpty() ) {
             nlIndent();
@@ -235,9 +243,6 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
                 }
                 this.sb.append(vd.getName());
             }
-        } else if ( this.programPhrases.size() == 1 ) {
-            nlIndent();
-            this.sb.append("pass");
         }
         return null;
     }
@@ -547,6 +552,9 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
             case CROUCH:
                 this.sb.append("\"Crouch\")");
                 break;
+            case REST:
+                this.sb.append("\"Rest\")");
+                break;
         }
         return null;
     }
@@ -594,7 +602,7 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
 
     @Override
     public Void visitAutonomous(Autonomous<Void> autonomous) {
-        this.sb.append("h.setAutonomousLife(" + getEnumCode(autonomous.getOnOff()) + ")");
+        this.sb.append("h.setAutonomousLife(" + getEnumCode(autonomous.getOnOff()).toUpperCase() + ")");
         return null;
     }
 
@@ -1145,14 +1153,6 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
     }
 
     @Override
-    public Void visitDialog(Dialog<Void> dialog) {
-        this.sb.append("h.dialog(");
-        this.sb.append(dialog.getPhrase().getPythonCode());
-        this.sb.append(")");
-        return null;
-    }
-
-    @Override
     public Void visitAccelerometer(AccelerometerSensor<Void> accelerometer) {
         this.sb.append("h.accelerometer(");
         this.sb.append(getEnumCode(accelerometer.getPort()));
@@ -1169,8 +1169,12 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
     }
 
     @Override
-    public Void visitNaoMark(DetectMark<Void> naoMark) {
-        this.sb.append("h.getDetectedMarks()");
+    public Void visitNaoMark(DetectedMark<Void> detectedMark) {
+        this.sb.append("h.getDetectedMark");
+        if ( detectedMark.getMode() == DetectedMarkMode.IDALL ) {
+            this.sb.append("s");
+        }
+        this.sb.append("()");
         return null;
     }
 
@@ -1234,7 +1238,11 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
 
     @Override
     public Void visitDetectFace(DetectFace<Void> detectFace) {
-        this.sb.append("faceRecognitionModule.detectFace()");
+        this.sb.append("faceRecognitionModule.detectFace");
+        if ( detectFace.getMode() == DetectedFaceMode.NAMEALL ) {
+            this.sb.append("s");
+        }
+        this.sb.append("()");
         return null;
     }
 
@@ -1362,7 +1370,7 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
                 case BlocklyConstants.ULTRASONIC:
                     this.sb.append("h.sonar.subscribe(\"OpenRobertaApp\")\n");
                     break;
-                case BlocklyConstants.NAO_MARK:
+                case BlocklyConstants.DETECT_MARK:
                     this.sb.append("h.mark.subscribe(\"RobertaLab\", 500, 0.0)\n");
                     break;
                 case BlocklyConstants.NAO_FACE:
@@ -1398,7 +1406,7 @@ public class PythonVisitor extends RobotPythonVisitor implements NaoAstVisitor<V
                 case BlocklyConstants.ULTRASONIC:
                     this.sb.append(INDENT).append(INDENT).append("h.sonar.unsubscribe(\"OpenRobertaApp\")\n");
                     break;
-                case BlocklyConstants.NAO_MARK:
+                case BlocklyConstants.DETECT_MARK:
                     this.sb.append(INDENT).append(INDENT).append("h.mark.unsubscribe(\"RobertaLab\")\n");
                     break;
                 case BlocklyConstants.NAO_FACE:

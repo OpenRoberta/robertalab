@@ -24,6 +24,11 @@ class FaceRecognitionModule(ALModule):
         while(not self.isFaceRecognized):
             time.sleep(0.1)
         self.isFaceRecognized = False
+        return self.lastFaceRecognized[0]
+    def detectFaces(self):
+        while(not self.isFaceRecognized):
+            time.sleep(0.1)
+        self.isFaceRecognized = False
         return self.lastFaceRecognized
 
     def getFaceInformation(self, name):

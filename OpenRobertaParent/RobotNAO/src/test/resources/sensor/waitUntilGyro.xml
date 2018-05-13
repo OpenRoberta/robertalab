@@ -1,46 +1,58 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nao" xmlversion="" description="" tags="undefined">
-  <instance x="113" y="113">
-    <block type="robControls_start" id="SyZ4a6k)KhwtdNT|oMn," intask="true" deletable="false">
-      <mutation declare="false"></mutation>
-      <field name="DEBUG">FALSE</field>
-    </block>
-    <block type="naoControls_wait_for" id="oz;MM8~.!11=_2e]udOX" intask="true">
-      <value name="WAIT0">
-        <block type="logic_compare" id="B9qE%;eCPR420#Tmh!Nr" intask="true">
-          <field name="OP">GT</field>
-          <value name="A">
-            <block type="naoSensors_getSample" id="Z=IS,ML~Y2fA8xBf+3G0" intask="true" deletable="false" movable="false">
-              <mutation input="NAO_GYROMETER"></mutation>
-              <field name="SENSORTYPE">NAO_GYROMETER</field>
-              <field name="COORDINATE">X</field>
-            </block>
-          </value>
-          <value name="B">
-            <block type="math_number" id="1%a*L`(CNe_i~SIRa-iF" intask="true">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-        </block>
-      </value>
-    </block>
-    <block type="naoControls_wait_for" id="kJRSGu68lN]/;L?/7Oel" intask="true">
-      <value name="WAIT0">
-        <block type="logic_compare" id="v11.nJ{@q~0Y}YHV8E?X" intask="true">
-          <field name="OP">GT</field>
-          <value name="A">
-            <block type="naoSensors_getSample" id="J)jC6]eKs#G_48f@pEJK" intask="true" deletable="false" movable="false">
-              <mutation input="NAO_GYROMETER"></mutation>
-              <field name="SENSORTYPE">NAO_GYROMETER</field>
-              <field name="COORDINATE">Y</field>
-            </block>
-          </value>
-          <value name="B">
-            <block type="math_number" id=";Dt-brMf)e{X~r:K8+[S" intask="true">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-        </block>
-      </value>
-    </block>
-  </instance>
+<block_set xmlns="http://de.fhg.iais.roberta.blockly"
+	robottype="nao" xmlversion="" description="" tags="undefined">
+	<instance x="349" y="50">
+		<block type="robControls_start" id="F52uPG!/9Cv[M(E@)T9w"
+			intask="true" deletable="false">
+			<mutation declare="false" />
+			<field name="DEBUG" />
+		</block>
+		<block type="robControls_wait_for" id="zHyF8vWX2r`5`I4_~D0."
+			intask="true">
+			<value name="WAIT0">
+				<block type="logic_compare" id="Cx}-*8,j%%A|x?sE;9Z("
+					intask="true">
+					<field name="OP">GT</field>
+					<value name="A">
+						<block type="robSensors_getSample" id=":AFgdq*qq;+s`|(cgu}T"
+							intask="true">
+							<mutation input="GYRO_ANGLE" />
+							<field name="SENSORTYPE">GYRO_ANGLE</field>
+							<field name="SENSORPORT">X</field>
+							<field name="SLOT" />
+						</block>
+					</value>
+					<value name="B">
+						<block type="math_number" id="?1mx3Ne?ncql3;a#L6AY"
+							intask="true">
+							<field name="NUM">90</field>
+						</block>
+					</value>
+				</block>
+			</value>
+		</block>
+		<block type="robControls_wait_for" id="|b!t~}fDQLlMAX8){Ip="
+			intask="true">
+			<value name="WAIT0">
+				<block type="logic_compare" id="96FnIRhb~}eaeGds4bw4"
+					intask="true">
+					<field name="OP">GT</field>
+					<value name="A">
+						<block type="robSensors_getSample" id="Dui%#k)r^+d=FemKGhw;"
+							intask="true">
+							<mutation input="GYRO_ANGLE" />
+							<field name="SENSORTYPE">GYRO_ANGLE</field>
+							<field name="SENSORPORT">Y</field>
+							<field name="SLOT" />
+						</block>
+					</value>
+					<value name="B">
+						<block type="math_number" id="u1!Uv8HH@tcEx45.@;O1"
+							intask="true">
+							<field name="NUM">90</field>
+						</block>
+					</value>
+				</block>
+			</value>
+		</block>
+	</instance>
 </block_set>

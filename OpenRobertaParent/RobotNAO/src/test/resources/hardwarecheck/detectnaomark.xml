@@ -10,11 +10,11 @@
 			intask="true">
 			<value name="OUT">
 				<block type="robSensors_detectmark_getSample"
-					id="`y1.iYX)UGQIyQ(sQkox" intask="true">
-					<mutation mode="VALUE" />
-					<field name="MODE">VALUE</field>
-					<field name="SENSORPORT" />
-					<field name="SLOT" />
+					id="1kmc}2|7c|gFcx^D@QzZ" intask="true">
+					<mutation mode="IDONE"></mutation>
+					<field name="MODE">IDONE</field>
+					<field name="SENSORPORT"></field>
+					<field name="SLOT"></field>
 				</block>
 			</value>
 		</block>

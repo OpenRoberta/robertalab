@@ -41,8 +41,8 @@
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedActions_display_text" class="help beginner">
-<h3 id="Programmier-BlöckeCalliope-»ZeigeText/Zeichenkette«"><span style="color: rgb(0,0,0);">»Zeige Text/Zeichenkette«</span></h3>
-<p>Mit dem Block »Zeige Text/Zeichenkette« programmierst du einen Text, der auf dem Calliope dargestellt wird.</p>
+<h3 id="Programmier-BlöckeCalliope-»ZeigeText/Zeichen«"><span style="color: rgb(0,0,0);">»Zeige Text/Zeichen«</span></h3>
+<p>Mit dem Block »Zeige Text/Zeichen« programmierst du einen Text, der auf dem Calliope dargestellt wird.</p>
 <p>Einstellmöglichkeiten und Eingabewert:
 </p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Text (Laufschrift über den Bildschirm) oder Zeichen (Buchstaben werden nacheinander angezeigt).</li>
@@ -69,6 +69,47 @@
 </div>
 </div>
 </div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p/>
+<div id="mbedActions_display_setBrightness" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Setze Helligkeit«[Experten-Block]">»Setze Helligkeit«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block »<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">Setze Helligkeit</span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« wird der Helligkeitswert aller LED's des Displays gesetzt. Bei 0 sind alle LED's aus, 9 ist der höchste Helligkeitswert.</span></span>.</p>
+<p>Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl, gewünschte Helligkeit zwischen 0 und 9 eingeben.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p/>
+<div id="mbedActions_display_getBrightness" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»gib Helligkeit«[Experten-Block]">»gib Helligkeit«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block »<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">gib Helligkeit</span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« wird der Helligkeitswert aller LED's des Displays zurückgegeben. Bei 0 sind alle LED's aus, 9 ist der höchste Helligkeitswert.</span></span>.</p>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p/>
+<div id="mbedActions_display_setPixel" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Setze LED Helligkeit«[Experten-Block]">»Setze LED Helligkeit«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block »<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">Setze LED Helligkeit</span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« wird der Helligkeitswert einer LED gesetzt. Bei 0 ist die LED aus, 9 ist der höchste Helligkeitswert. Mit x und y kannst du die LED aus dem Display bestimmen, oben links z.B. ist x 0 und y 0.</span></span>.</p>
+<p>Eingabewerte:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl, gewünschte Helligkeit zwischen 0 und 9 eingeben.</li>
+<li class="typcn typcn-arrow-left">Zahl, x-Koordinate [0-4]</li>
+<li class="typcn typcn-arrow-left">Zahl, y-Koordinate [0-4]</li>
+</ul></div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p/>
+<div id="mbedActions_display_getPixel" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»gib LED Helligkeit«[Experten-Block]">»gib LED Helligkeit«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block »<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">gib LED Helligkeit</span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« wird der Helligkeitswert einer LED an Position x y zurückgegeben. Bei 0 ist die LED aus, 9 ist der höchste Helligkeitswert.</span></span>.</p>
+<p>Eingabewerte:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl, x-Koordinate [0-4]</li>
+<li class="typcn typcn-arrow-left">Zahl, y-Koordinate [0-4]</li>
+</ul></div>
+</div></div></div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedActions_leds_on" class="help beginner">
 <h3 id="Programmier-BlöckeCalliope-»SchalteLEDanFarbe...«">»Schalte LED an Farbe...«</h3>
@@ -99,7 +140,7 @@
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedActions_motor_on" class="help expert">
-<h3 id="Programmier-BlöckeCalliope-»Motorport...Tempo«[Experten-Block]">»Motorport ... Tempo«<span class="typcn typcn-star"></span></h3>
+<h3 id="Programmier-BlöckeCalliope-»MotorPort...Tempo«[Experten-Block]">»Motor Port ... Tempo«<span class="typcn typcn-star"></span></h3>
 <p>Der Block »<span style="color: rgb(0,0,255);"><span><span style="color: rgb(0,0,0);">Motor Port </span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">... Tempo</span></span></span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« setzt </span></span>das Tempo (Geschwindigkeit) eines Motors auf einen neuen Wert.</p>
 <p>Einstellmöglichkeiten und Eingabewert:
 </p>
@@ -119,6 +160,27 @@
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedActions_single_motor_on" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Motor an Tempo ...«[Experten-Block]">»Motor an Tempo ...«<span class="typcn typcn-star"></span></h3>
+<p>Der Block »Motor an <span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">... Tempo</span></span></span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« setzt </span></span>das Tempo (Geschwindigkeit) eines Motors auf einen neuen Wert.</p>
+<p>Einstellmöglichkeiten und Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px">
+<li class="typcn typcn-arrow-left">Zahl, Wert zwischen -100 und 100. Wenn die Zahl negativ ist, wird die Drehrichtung umgekehrt.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedActions_single_motor_stop" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Motor Stoppe ...«[Experten-Block]">»Motor Stoppe ...«<span class="typcn typcn-star"></span></h3>
+<p>BEATE Mit dem Block »<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">Motor Stoppe ...</span></span><span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">« schaltet man den </span></span>Motor aus. Du kannst eingestellen, ob der Motor langsam ausläuft, gebremst wird oder ...</p>
+<p>Einstellmöglichkeiten:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px">
+<li class="typcn typcn-arrow-down">Stoppmöglichkeiten; »auslaufen<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">«</span></span>sorgt dafür, dass der Motor langsam ausläuft; »bremsen<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">«</span></span>sorgt dafür, dass der Motor abrupt abgebremst wird; »sleep<span style="color: rgb(0,0,255);"><span style="color: rgb(0,0,0);">«</span></span>sorgt dafür, dass der Motor ...</li>
+</ul></div>
+</div></div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedActions_play_tone" class="help beginner">
 <h3 id="Programmier-BlöckeCalliope-»SpieleFrequenz...Dauer«[Experten-Block]">»Spiele Frequenz ... Dauer«<span class="typcn typcn-star"></span></h3>
@@ -147,88 +209,62 @@
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
+<div id="mbedActions_fourDigitDisplay_show" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Schreibe 4-Ziffern Display«[Experten-Block]">»Schreibe 4-Ziffern Display«<span class="typcn typcn-star"></span></h3>
+<p>BEATE Zeigt die Zahl [0-9999] auf dem Grove 4-Digit Display von Seeed an. Position [0-3] gibt dabei die Startposition der Zahl an. Das Display muss mit dem A1 (rechten) Grove Anschluss verbunden werden.</p>
+<p>Einstellmöglichkeiten und Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px">
+<li class="typcn typcn-arrow-left">Zahl [0-9999], wird auf dem Display von Seeed angezeigt</li>
+<li class="typcn typcn-arrow-left">Zahl [0-3], Startposition der Zahl</li>
+<li class="typcn typcn-arrow-left">logischer Wert</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedActions_fourDigitDisplay_clear" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Lösche Bildschirm 4-Ziffern Display«[Experten-Block]">»Lösche Bildschirm 4-Ziffern Display«<span class="typcn typcn-star"></span></h3>
+<p>BEATE Löscht die Anzeige des Grove 4-Digit Display von Seeed.</p>
+</div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedActions_ledBar_set" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»Setze LED Leiste ... Helligkeit ...«[Experten-Block]">»Setze LED Leiste ... Helligkeit ...«<span class="typcn typcn-star"></span></h3>
+<p>BEATE Setzt die angegebene LED [0-9] auf der Grove LED Bar v2.0 von Seeed auf die gewünschte Helligkeit [0-8]. Die LED Leiste muss mit dem A1 (rechten) Grove Anschluss verbunden werden.</p>
+<p>Einstellmöglichkeiten und Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px">
+<li class="typcn typcn-arrow-left">Zahl [0-9], LED</li>
+<li class="typcn typcn-arrow-left">Zahl [0-8], Helligkeit</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
 <h2 id="Programmier-BlöckeCalliope-Sensoren">Sensoren</h2>
 <p>Die Kategorie »Sensoren« beinhaltet Blöcke für alle Standardsensoren des Calliope-Systems:</p>
 <ul><li>Taste</li>
 <li>Lage</li>
 <li>Kompasssensor</li>
 <li>Zeitgeber</li>
+<li>Mikrofon</li>
+<li>Empfangsstärke</li>
 <li>Temperatursensor</li>
 <li>Umgebungslicht</li>
 <li>Ein- und Ausgabepins</li>
-</ul><p>Eine Besonderheit der Sensor-Blöcke im Unterschied zu den Aktion-Blöcke ist , dass viele Sensor-Blöcke einen »Wert« zurückgeben. Den Wert-Typ, den ein Sensor-Block zurückgibt, erkennst du an der Farbe des Konnektors. Der Konnektor ist das Verbindungsstück, mit denen NEPO-Blöcke in andere Blöcke eingefügt werden können. Eine genau Beschreibung findest du im Abschnitt zu NEPO.</p>
+<li>Kreiselsensor</li>
+<li>Beschleunigungssensor</li>
+</ul><p>Eine Besonderheit der Sensor-Blöcke im Unterschied zu den Aktion-Blöcke ist, dass viele Sensor-Blöcke einen »Wert« zurückgeben. Den Wert-Typ, den ein Sensor-Block zurückgibt, erkennst du an der Farbe des Konnektors. Der Konnektor ist das Verbindungsstück, mit denen NEPO-Blöcke in andere Blöcke eingefügt werden können.</p>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="robSensors_key_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»Taste...gedrückt?«">»Taste ... gedrückt?«</h3>
-<p>Mit dem Block »Taste ... gedrückt?« kannst du einem anderen Block »mitteilen«,  ob die ausgewählte Taste gedrückt wurde oder nicht. Dieser Block gibt die logischen Werte<em>wahr = gedrückt</em> oder<em>falsch = nicht gedrückt</em> zurück.</p>
+<p>Mit dem Block »Taste ... gedrückt?« kannst du einem anderen Block »mitteilen«,  ob die ausgewählte Taste gedrückt wurde oder nicht. Dieser Block gibt die logischen Werte <em>wahr = gedrückt</em> oder <em>falsch = nicht gedrückt</em> zurück.</p>
 <p>Einstellmöglichkeiten:
 </p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Port, wähle die Taste aus, die du abfragen möchtest.</li>
 </ul><p>Rückgabewert:</p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Logischer Wert: »wahr«, wenn die Taste gedrückt ist, sonst »falsch«.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robSensors_gesture_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»Lage...aktiv?«">»Lage ... aktiv?«</h3>
-<p>Mit dem Block »Lage ... aktiv?« kannst du einem anderen Block »mitteilen«, ob sich der Calliope in einer bestimmten Lage befindet.</p>
-<p>Befindet sich der Calliope in der abgefragten Lage liefert der »Lage ... aktiv?« Block  »wahr«, sonst »falsch«.</p>
-<p>Einstellmöglichkeiten:
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Lage, die abgefragt werden soll.</li>
-</ul><p>Rückgabewert:</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Logischer Wert: »wahr«, wenn er sich in der Lage befindet, sonst »falsch«.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robSensors_compass_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»gibWertKompasssensor«">»gib Wert Kompasssensor«</h3>
-<p>Mit dem Block »gib Wert Kompasssensor« kannst du in Grad die Abweichung von der Ausgangsrichtung des Calliope auslesen.</p>
-<p>Dazu musst du vorher den Calliope kalibrieren, indem du durch Bewegung und Rotation des Calliope einen Kreis zeichnest</p>
-<p><p>Rückgabewert:</p>
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Abweichung in Grad.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robSensors_timer_getSample" class="help beginner">
-<h3 id="Programmier-BlöckeCalliope-»gibWertZeitgeber«">»gib Wert Zeitgeber«</h3>
-<p>Mit dem Block »Gib Wert Zeitgeber« kannst du einem anderen Block den aktuellen Stand des internen Zeitgebers in Millisekunden "mitteilen". Der Zeitgeber wird automatisch mit dem Beginn eines Programms gestartet.</p>
-<p>Einstellöglichkeiten:
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Zeitgeber-Nummer, wähle den Zeitgeber aus, dessen Wert du ermitteln möchtest.</li>
-</ul><p>Rückgabewert:</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, aktueller Wert des Zeitgebers.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="mbedSensors_timer_reset" class="help beginner">
-<h3 id="Programmier-BlöckeCalliope-»SetzeZeitgeber«">»Setze Zeitgeber«</h3>
-<p>Mit dem Block »Setze Zeitgeber« kannst du den internen Zeitgeber auf den Wert 0 zurückgesetzen.</p>
-<p>Einstellmöglichkeiten:
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Zeitgeber-Nummer, wähle den Zeitgeber aus, den du zurücksetzen möchtest.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robSensors_temperature_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»gibWertTemperatursensor«">»gib Wert Temperatursensor«</h3>
-<p>Mit dem Block »gib Wert Temperatursensor« kannst du die aktuell gemessene Temperatur als Zahl auslesen.</p>
-<p><p>Rückgabewert:</p>
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl; Temperatur in Grad.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robSensors_light_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»gibWertUmgebungslicht«">»gib Wert Umgebungslicht«</h3>
-<p>Mit dem Block »gib Wert Umgebungslicht« kannst du Helligkeit messen.</p>
-<p><p>Rückgabewert:</p>
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl; Helligkeit von 0 bis 100.</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
@@ -252,6 +288,112 @@
 <li class="typcn typcn-arrow-down">Pin, wähle den Pin aus, den du abfragen willst.</li>
 </ul><p>Rückgabewert:</p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl; aktueller Wert des Eingangssignals.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_gesture_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»Lage...aktiv?«">»Lage ... aktiv?«</h3>
+<p>Mit dem Block »Lage ... aktiv?« kannst du einem anderen Block »mitteilen«, ob sich der Calliope in einer bestimmten Lage befindet.</p>
+<p>Befindet sich der Calliope in der abgefragten Lage liefert der »Lage ... aktiv?« Block  »wahr«, sonst »falsch«.</p>
+<p>Mögliche Abfragen:</p>
+<ul>
+<li>aufrecht: USB-Anschluss des Calliope zeigt nach oben</li>
+<li>kopfüber: USB-Anschluss des Calliope zeigt nach unten</li>
+<li>auf der Vorderseite: Calliope-Beschriftung zeigt nach unten</li>
+<li>auf der Rückseite: Calliope-Beschriftung zeigt nach oben</li>
+<li>geschüttelt: Calliope wird geschüttelt</li>
+<li>frei fallend: Calliope wird nach unten beschleunigt BEATE</li>
+</ul>
+<p></p>
+<p>Einstellmöglichkeiten:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Lage, die abgefragt werden soll.</li>
+</ul>
+<p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Logischer Wert: »wahr«, wenn er sich in der Lage befindet, sonst »falsch«.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_compass_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»gibWertKompasssensor«">»gib Wert Kompasssensor«</h3>
+<p>Mit dem Block »gib Wert Kompasssensor« kannst du in Grad die Abweichung von der Ausgangsrichtung des Calliope auslesen.</p>
+<p>Dazu musst du vorher den Calliope kalibrieren, indem du durch Bewegung und Rotation des Calliope einen Kreis zeichnest</p>
+<p><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Abweichung in Grad.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_sound_getSample" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»gibGeraeuschMikrofon«[Experten-Block]">»gib Geräusch Mikrofon«<span class="typcn typcn-star"></span></h3>
+<p>Der Block »gib Geräusch Mikrofon« gibt den aktuellen Wert des Geräuschsensors im Intervall 0 (leise) und 100 (laut) zurück. </p>
+<p><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, aktueller Wert des Geräuschsensors von 0 bis 100</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_timer_getSample" class="help beginner">
+<h3 id="Programmier-BlöckeCalliope-»gibWertZeitgeber«">»gib Wert Zeitgeber«</h3>
+<p>Mit dem Block »Gib Wert Zeitgeber« kannst du einem anderen Block den aktuellen Stand des internen Zeitgebers in Millisekunden "mitteilen". Der Zeitgeber wird automatisch mit dem Beginn eines Programms gestartet.</p>
+<p>Einstellmöglichkeiten:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Zeitgeber-Nummer, wähle den Zeitgeber aus, dessen Wert du ermitteln möchtest.</li>
+</ul><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, aktueller Wert des Zeitgebers.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedSensors_timer_reset" class="help beginner">
+<h3 id="Programmier-BlöckeCalliope-»SetzeZeitgeber«">»Setze Zeitgeber«</h3>
+<p>Mit dem Block »Setze Zeitgeber« kannst du den internen Zeitgeber auf den Wert 0 zurückgesetzen.</p>
+<p>Einstellmöglichkeiten:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Zeitgeber-Nummer, wähle den Zeitgeber aus, den du zurücksetzen möchtest.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_temperature_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»gibWertTemperatursensor«">»gib Wert Temperatursensor«</h3>
+<p>Mit dem Block »gib Wert Temperatursensor« kannst du die aktuell gemessene Temperatur als Zahl auslesen. </p>
+<p>Bitte beachte, dass sich der Temperatursensor am Prozessor befindet und durch dessen Wärme einen höheren Wert anzeigt als die Umgebungstemperatur.</p>
+<p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl; aktulle Temperatur in Grad Celsius.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_rssi_getSample" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»gibWertEmpfangsstaerke«[Experten-Block]">»gib Wert Empfangsstärke«<span class="typcn typcn-star"></span></h3>
+<p>Der Block »gib Wert Empfangsstärke« gibt die Signalstärke der letzten Nachricht zurück. </p>
+<p><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Signalstärke der letzten Nachricht.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_light_getSample" class="help beginner"><h3 id="Programmier-BlöckeCalliope-»gibWertUmgebungslicht«">»gib Wert Umgebungslicht«</h3>
+<p>Mit dem Block »gib Wert Umgebungslicht« kannst du Helligkeit messen.</p>
+<p><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl; Helligkeit von 0 bis 100.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_gyro_getSample" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»gibWinkelKreiselsensor«[Experten-Block]">»gib Winkel Kreiselsensor«<span class="typcn typcn-star"></span></h3>
+<p>Der Block »gib Winkel Kreiselsensor« gibt den aktuellen Wert des Kreiselsensors zurück. </p>
+<p><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Wert des Kreiselsensors.</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="robSensors_accelerometer_getSample" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»gibWertBeschleunigungssensor«[Experten-Block]">»gib Wert Beschleunigungssensor«<span class="typcn typcn-star"></span></h3>
+<p>Der Block »gib Wert Beschleunigungssensor« gibt den Wert für Neigung und Drehung zurück. </p>
+<p><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Wert des Beschleunigungssensors.</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
@@ -338,12 +480,12 @@
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="robControls_forEach" class="help expert">
-<h3 style="text-align: left;" id="Programmier-BlöckeCalliope-»FürWertausderListe«[Experten-Block]">»Für Wert aus der Liste«<span class="typcn typcn-star"></span></h3>
-<p style="text-align: left;">Mit dem Block »Für Wert aus der Liste« werden nacheinander alle Werte einer Liste an eine Variable übergeben und können dann in der so genannten Schleife verarbeitet werden. Mit jedem Schleifendurchlauf wird das nächste Element aus der Liste geholt, bis die Liste vollständig abgearbeitet ist. Der Wert des Listenelements wird an die Variable Element gebunden und kann in den enthaltenen Blöcken verwendet werden.</p>
+<h3 style="text-align: left;" id="Programmier-BlöckeCalliope-»FürWertausderListe«[Experten-Block]">»Für Wert ... aus der Liste«<span class="typcn typcn-star"></span></h3>
+<p style="text-align: left;">Mit dem Block »Für Wert ... aus der Liste« werden nacheinander alle Werte einer Liste an eine Variable übergeben und können dann in der so genannten Schleife verarbeitet werden. Mit jedem Schleifendurchlauf wird das nächste Element aus der Liste geholt, bis die Liste vollständig abgearbeitet ist. Der Wert des Listenelements wird an die Variable Element gebunden und kann in den enthaltenen Blöcken verwendet werden.</p>
 <p style="text-align: left;">Einstellmöglichkeiten und Eingabewerte:
 </p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Typ der Listenelemente, »Zahl«, »Zeichenkette«, »logischer Wert«, »Farbe«, »Verbindung«</li>
-<li class="typcn typcn-pen">Variable, frei wählbarer Name, an den nacheinander die Listenelemente übergeben werden.</li>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Typ der Listenelemente, »Zahl«, »Zeichenkette«, »logischer Wert«, »Farbe«, »Bild«</li>
+<li class="typcn typcn-pen">Lokale Variable (Name frei wählbar), an die nacheinander die Listenelemente übergeben werden.</li>
 <li class="typcn typcn-arrow-left">Liste, die Elemente des festgelegten Typs enthält. Wenn die Listenelemente nicht den richtigen Typ haben, kann die Liste nicht als Eingabewert verwendet werden.</li>
 <li class="typcn typcn-arrow-left">Blöcke, die wiederholt ausgeführt werden.</li>
 </ul></div>
@@ -402,7 +544,7 @@
 <ul style="text-align: left;"><li>Vergleiche</li>
 <li>und/oder</li>
 <li>nicht (Experten-Block)</li>
-<li><p>wahr/falsch</p></li>
+<li>wahr/falsch</li>
 <li>null (Experten-Block)</li>
 <li>teste (Experten-Block)</li>
 </ul></div>
@@ -487,8 +629,9 @@
 <h2 style="text-align: left;" id="Programmier-BlöckeCalliope-Mathematik">Mathematik</h2>
 <p style="text-align: left;">Mit den »Mathematik«-Blöcken kannst du rechnen und Werte einstellen.</p>
 <p style="text-align: left;">Folgende »Mathematik«-Blöcke stehen dir bei NEPO zur Verfügung:</p>
-<ul style="text-align: left;"><li>Wert</li>
-<li><p>Rechnen</p></li>
+<ul style="text-align: left;">
+<li>Wert</li>
+<li>Rechnen</li>
 <li>Mathematische Funktionen (Experten-Block)</li>
 <li>Trigonometrische Funktionen (Experten-Block)</li>
 <li>Konstanten (Experten-Block)</li>
@@ -517,7 +660,7 @@
 <div class="innerCell">
 <div id="math_arithmetic" class="help beginner">
 <h3 style="text-align: left;" id="Programmier-BlöckeCalliope-»Rechnen«">»Rechnen«</h3>
-<p style="text-align: left;">Mit dem Block »Rechnen« kannst du Zahlen addieren, subtrahieren, multiplizieren, dividieren oder potenzieren. Dieser Block ist nur in Verbindung mit einem anderen Block nutzbar, der ein Zahl als Eingabewert benötigt.</p>
+<p style="text-align: left;">Mit dem Block »Rechnen« kannst du Zahlen addieren, subtrahieren, multiplizieren, dividieren oder potenzieren. Dieser Block ist nur in Verbindung mit einem anderen Block nutzbar, der eine Zahl als Eingabewert benötigt.</p>
 <p style="text-align: left;"> Einstellmöglichkeiten und Eingabewerte:
 </p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left"> Zahl</li>
@@ -586,7 +729,7 @@
 <p style="text-align: left;">Mit dem Block »Erhöhe um x« wird der Wert einer numerischen Variable um einen Betrag erhöht.</p>
 <p style="text-align: left;">Eingabewerte:
 </p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Variable, deren Wert verändert werden soll.</li>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Variable, deren Wert verändert werden soll.</li>
 <li class="typcn typcn-arrow-left">Zahl.</li>
 </ul></div>
 </div>
@@ -633,8 +776,8 @@
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl, die geteilt wird (Dividend)</li>
 <li class="typcn typcn-arrow-left">Zahl, durch die geteilt wird (Divisor bzw. Teiler)</li>
 </ul><p>Rückgabewert:</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Rest der Division</li>
-</ul></div>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, Rest der Division</li></ul>
+</div></div>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
@@ -645,9 +788,10 @@
 <li>untere Grenze</li>
 <li>obere Grenze</li>
 </ol><p style="text-align: left;">Der Rückgabewert ist</p>
-<ul style="text-align: left;"><li>der zu prüfende Wert, wenn gilt: untere Grenze ≤ zu prüfender Wert ≤ obere Grenze</li>
-<li>untere Grenze, wenn zu prüfender Wert< untere Grenze</li>
-<li>obere Grenze, wenn zu prüfender Wert >obere Grenze</li>
+<ul style="text-align: left;">
+<li>der zu prüfende Wert, wenn gilt: untere Grenze ≤ zu prüfender Wert ≤ obere Grenze</li>
+<li>untere Grenze, wenn zu prüfender Wert < untere Grenze</li>
+<li>obere Grenze, wenn zu prüfender Wert > obere Grenze</li>
 </ul>
 <p style="text-align: left;">Eingabewerte:
 </p>
@@ -677,7 +821,6 @@
 <h3 style="text-align: left;" id="Programmier-BlöckeCalliope-»Zufallszahl«[Experten-Block]">»Zufallszahl«<span class="typcn typcn-star"></span></h3>
 <p style="text-align: left;">Mit dem Block »Zufallszahl« wird eine Zufallszahl zwischen 0,0 und 1,0 bestimmt.</p>
 <p style="text-align: left;"><p>Rückgabewert:</p>
-</p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Zahl, eine positive Zufallszahl kleiner oder gleich 1.</li>
 </ul></div>
 </div>
@@ -687,6 +830,7 @@
 <p style="text-align: left;">Mit den »Text«-Blöcken können einfache Operationen mit Texten durchgeführt werden.</p>
 <p style="text-align: left;">Folgende »Text«-Blöcke stehen dir bei NEPO zur Verfügung:</p>
 <ul style="text-align: left;"><li>Text</li>
+<li>Kommentar erstellen</li>
 <li>Erstelle Text (Experten-Block)</li>
 <li>Text anhängen (Experten-Block)</li>
 </ul></div>
@@ -700,6 +844,19 @@
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-pen">Zeichenkette, bestehend aus beliebigen Zeichen</li>
 </ul><p>Rückgabewert:</p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Text, bestehend aus beliebigen Zeichen</li>
+</ul></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="text_comment" class="help beginner">
+<h3 style="text-align: left;" id="Programmier-BlöckeCalliope-»Kommentar«">»Kommentar erstellen«</h3>
+<p style="text-align: left;">Mit diesem Block kannst du dein Programm dokumentieren.</p>
+<p> Dieser Kommentar wird auch im generierten Source-Code zu sehen sein.</p>
+<p style="text-align: left;">Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-pen">Zeichenkette, bestehend aus beliebigen Zeichen</li>
+</ul><p>Rückgabewert:</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Kommentar, bestehend aus beliebigen Zeichen</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
@@ -741,13 +898,13 @@
 <li class="typcn typcn-arrow-left">Anfangswert der Variablen.</li>
 </ul><p style="text-align: left;">Folgende »Variablen«-Blöcke stehen dir bei NEPO zur Verfügung:</p>
 <ul style="text-align: left;"><li>Schreibe Variable</li>
-<li><p>Lies Variable</p></li>
+<li>Lies Variable</li>
 </ul></div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="variables_set" class="help beginner">
 <h3 id="Programmier-BlöckeCalliope-»SchreibeVariable«">»Schreibe Variable«</h3>
-<p>Mit dem Block »Schreibe Variable« kannst du den Wert einer Variablen verändern. Je nach Typ der Variablen (Zahl, Zeichenkette, logischer Wert, Liste, Farbe, Verbindung) kann der Variablen ein passender Wert übergeben werden.</p>
+<p>Mit dem Block »Schreibe Variable« kannst du den Wert einer Variablen verändern. Je nach Typ der Variablen (Zahl, Zeichenkette, logischer Wert, Liste, Farbe) kann der Variablen ein passender Wert übergeben werden.</p>
 <p>Einstellmöglichkeit und Eingabewert:
 </p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Variable, deren Wert verändert werden soll.</li>
@@ -770,16 +927,14 @@
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <h2 id="Programmier-BlöckeCalliope-Listen[Experten-Blöcke]">Listen<span class="typcn typcn-star"></span></h2>
-<p>Eine Liste steht für eine Sequenz von Daten (mit den gleichen Wertetypen), bei der die Elemente eine feste Reihenfolge besitzen.  Um den Block »Liste« nutzen zu können muss eine Variable mit dem Typ »Liste« angelegt werden. NEPO bietet verschiedene Wertetypen für Listen an: Zahl; Zeichenkette, logische Werte, Farbe, Verbindung.</p>
+<p>Eine Liste steht für eine Sequenz von Daten (mit den gleichen Wertetypen), bei der die Elemente eine feste Reihenfolge besitzen.  Um den Block »Liste« nutzen zu können muss eine Variable mit dem Typ »Liste« angelegt werden. NEPO bietet verschiedene Wertetypen für Listen an: Zahl; Zeichenkette, logische Werte, Farbe, Bild.</p>
 <p>Folgende »Listen«-Blöcke stehen bei NEPO zur Verfügung:</p>
 <ul><li>Erzeuge Liste</li>
-<li>Wiederhole Element in Liste</li>
 <li>Länge einer Liste</li>
 <li>ist leer?</li>
 <li>Suche in der Liste</li>
 <li>Nimm Listenelement</li>
 <li>Setze Listenelement</li>
-<li>Erhalte Unterliste</li>
 </ul></div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
@@ -794,20 +949,6 @@
 <li class="typcn typcn-arrow-left">Werte, die dem Listentyp entsprechen. Hiermit können Anfangswerte gesetzt werden.</li>
 </ul><p>Rückgabewert:</p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Leere Liste oder eine Liste mit Elementen gleichen Typs.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robLists_repeat" class="help expert">
-<h3 id="Programmier-BlöckeCalliope-»WiederholeElementinListe«[Experten-Block]">»Wiederhole Element in Liste«<span class="typcn typcn-star"></span></h3>
-<p>Der Block »Wiederhole Element in Liste« erzeugt eine Liste mit gleichen Elementen.  </p>
-<p>Einstellmöglichkeiten:
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Typ, »Zahl«, »logischer Wert«, »Zeichenkette«, »Farbe« oder »Verbindung«.</li>
-<li class="typcn typcn-arrow-left">Listenelement, das mit dem eingestellten Listentyp übereinstimmt. Dieser Wert wird in der Liste wiederholt.</li>
-<li class="typcn typcn-arrow-left"> Zahl, die angibt, wie oft der eingestellte Wert wiederholt werden soll.</li>
-</ul><p>Rückgabewert:</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Eine Liste des spezifizierten Typs mit der eingestellten Anzahl von gleichen Elementen.</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
@@ -855,49 +996,26 @@
 <div class="innerCell">
 <div id="robLists_getIndex" class="help expert">
 <h3 id="Programmier-BlöckeCalliope-»NimmListenelement«[Experten-Block]">»Nimm Listenelement«<span class="typcn typcn-star"></span></h3>
-<p>Mit diesem Block wird auf ein Element einer Liste zugegriffen. Das Element wird gegebenenfalls verändert.</p>
-<p>Es wird eine Liste als Eingabe übergeben. Danach wird per Drop-Down-Liste spezifiziert, was mit dem Listenelement geschehen soll. Anschließend wird angegeben, in welcher Richtung die Liste durchsucht werden soll, ob von vorn (links), von hinten (rechts) oder zufällig.</p>
-<p>Einstellmöglichkeiten und Eingabewerte
+<p>Mit diesem Block wird auf ein Element einer Liste zugegriffen.</p>
+<p>Es wird eine Liste als Eingabe übergeben. Danach wird angegeben, auf welches Element der Liste zugegriffen werden soll. </p>
+<p>Eingabewerte:
 </p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Liste, die bearbeitet werden soll.</li>
-<li class="typcn typcn-arrow-down">Aktion für das gefundene Element: »nimm« liest das Element und lässt es unverändert, »nimm und entferne« liest das Element und entfernt es aus der Liste, »entferne« entfernt das Element aus der Liste.</li>
-<li class="typcn typcn-arrow-down">Positionsbestimmung für das gefundene Element: »#te«, »#te von hinten«, »erste«, »letzte« oder »zufälliges« .</li>
-<li class="typcn typcn-arrow-left">
-<p>Zahl, Listenposition. Dieser Eingabewert entfällt, wenn zuvor »erste«, »letzte« oder »zufälliges« als Position bestimmt wurde.</p>
-<p>Beachte: Die Zählung der Listenpositionen beginnt bei 0.</p>
-</li>
+<li class="typcn typcn-arrow-left">Zahl, Listenposition. Beachte: Die Zählung der Listenpositionen beginnt bei 0.</li>
 </ul><p>Rückgabewert:</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Das spezifizierte Listenelement, das an der angegebenen Listenposition gefunden wurde. »undefined« (undefiniert), wenn die Listenposition nicht existiert. Bei »entferne« wird kein Wert zurückgegeben; die bearbeitete Liste ist dann um dieses Listenelement reduziert.</li>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Das spezifizierte Listenelement, das an der angegebenen Listenposition gefunden wurde. »undefined« (undefiniert), wenn die Listenposition nicht existiert. </li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="robLists_setIndex" class="help expert">
 <h3 id="Programmier-BlöckeCalliope-»SetzeListenelement«[Experten-Block]">»Setze Listenelement«<span class="typcn typcn-star"></span></h3>
-<p>In einer als Eingabewert übergebenen Liste wird ein näher spezifiziertes Element durch einen neuen Wert ersetzt bzw. es wird ein Wert eingefügt.</p>
-<p>Einstellmöglichkeiten und Eingabewerte:
+<p>In einer als Eingabewert übergebenen Liste wird ein näher spezifiziertes Element durch einen neuen Wert ersetzt.</p>
+<p>Eingabewerte:
 </p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Liste, die bearbeitet werden soll.</li>
-<li class="typcn typcn-arrow-down">Aktion für das gefundene Element: »setze« verändert das Element, »füge« fügt ein neues Element in die Liste ein.</li>
-<li class="typcn typcn-arrow-down">Positionsbestimmung für das gefundene Element: »#te«, »#te von hinten«, »erste«, »letzte« oder »zufälliges« .</li>
-<li class="typcn typcn-arrow-left">Zahl, Listenposition. Dieser Eingabewert entfällt, wenn zuvor »erste«, »letzte« oder »zufälliges« als Position bestimmt wurde.Beachte: Die Zählung der Listenpositionen beginnt bei 0.</li>
+<li class="typcn typcn-arrow-left">Zahl, Listenposition. Beachte: Die Zählung der Listenpositionen beginnt bei 0.</li>
 <li class="typcn typcn-arrow-left">Listenelement, das an der zuvor bestimmten Listenposition gesetzt oder eingefügt wird.</li>
-</ul></div>
-</div>
-</div><div class="cell normal" data-type="normal">
-<div class="innerCell">
-<div id="robLists_getSublist" class="help expert">
-<h3 id="Programmier-BlöckeCalliope-»ErhalteUnterliste«[Experten-Block]">»Erhalte Unterliste«<span class="typcn typcn-star"></span></h3>
-<p>Aus einer als Eingabewert übergebenen Liste wird eine Unterliste erzeugt. In der Unterliste sind alle Elemente enthalten, die den weiteren Spezifikationen dieses Blocks entsprechen.</p>
-<p>Einstellmöglichkeiten und Eingabewerte:
-</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Liste, die bearbeitet werden soll.</li>
-<li class="typcn typcn-arrow-down">Position, Anfang der Unterliste: »von #«, »von # von hinten« oder »vom Anfang«.</li>
-<li class="typcn typcn-arrow-left">Zahl, Listenposition. Dieser Eingabewert entfällt, wenn zuvor »vom Anfang« als Position bestimmt wurde.Beachte: Die Zählung der Listenpositionen beginnt bei 0.</li>
-<li class="typcn typcn-arrow-down">Position, Ende der Unterliste: »zu #«, »zu # von hinten« oder »zum Ende«.</li>
-<li class="typcn typcn-arrow-left">Zahl, Listenposition. Dieser Eingabewert entfällt, wenn zuvor »zum Ende« als Position bestimmt wurde.Beachte: Die Zählung der Listenpositionen beginnt bei 0.</li>
-</ul><p>Rückgabewert:</p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Liste, Unterliste gleichen Typs wie die als Eingabewert übergebene Liste.</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
@@ -907,7 +1025,9 @@
 <ul><li>Funktionsblock ohne/mit Eingabe- und ohne Rückgabewert</li>
 <li>Funktionsblock ohne/mit Eingabe- und mit Rückgabewert</li>
 <li>Wenn-Abfrage innerhalb einer Funktion</li>
-</ul><p>Mit elementaren Funktionsblöcken lassen sich einfache und komplexe Funktionen programmieren, die über Funktionsaufrufe genutzt werden können. Jede programmierte Funktion steht sofort als zusätzlich nutzbarer Block in der Kategorie »Funktion« zur Verfügung. Dies sind</p>
+</ul>
+<p></p>
+<p>Mit elementaren Funktionsblöcken lassen sich einfache und komplexe Funktionen programmieren, die über Funktionsaufrufe genutzt werden können. Jede programmierte Funktion steht sofort als zusätzlich nutzbarer Block in der Kategorie »Funktion« zur Verfügung. Dies sind</p>
 <ul><li>Funktionsaufrufe ohne/mit Eingabe- und ohne Rückgabewert</li>
 <li>Funktionsaufrufe ohne/mit Eingabe- und mit Rückgabewert</li>
 </ul><p>Je nach Anzahl der Eingabe- und Rückgabewerte variiert die Auswahl an Funktionsblöcken.</p>
@@ -918,7 +1038,7 @@
 <div id="robProcedures_defnoreturn" class="help expert">
 <h3 id="Programmier-BlöckeCalliope-Funktionsblockohne/mitEingabe-undohneRückgabewert[Experten-Block]">Funktionsblock ohne/mit Eingabe- und ohne Rückgabewert<span class="typcn typcn-star"></span></h3>
 <p>In einem Funktionsblock ohne/mit Eingabe- und Rückgabewert wird eine Folge von Anweisungen zusammengefasst. Die Eingabewerte werden durch die lokalen Variablen im Funktionsblock festgelegt. Mit dem »+«-Zeichen können lokale Variablen als Eingabewerte für den Funktionsblock erzeugt werden. Lokale Variablen werden nicht initialisiert.</p>
-<p>Falls in einen Funktionsblock eine Wenn-Abfrage (siehe unten) eingebaut wird, kann es zu einem vorzeitigen Abbruch der Funktion kommen.</p>
+<p>Falls in einen Funktionsblock eine Wenn-Abfrage eingebaut wird, kann es zu einem vorzeitigen Abbruch der Funktion kommen.</p>
 <p>Der Funktionsblock steht nach seiner Definition als zusätzlicher Block in der Kategorie »Funktion« zur Verfügung. Auf diese Weise kann die Lesbarkeit komplexer Programme wesentlich vereinfacht werden.</p>
 <p>Einstellmöglichkeiten:
 </p>
@@ -939,7 +1059,7 @@
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-pen">Funktionsname, ohne Leer- und Sonderzeichen</li>
 <li class="typcn typcn-plus">Erzeuge eine lokale Variable, der über den Funktionsaufruf ein Wert zugewiesen wird.</li>
 <li class="typcn typcn-minus">Lösche eine lokale Variable.</li>
-<li class="typcn typcn-arrow-down">Datentyp für den Rückgabewert. »Zahl«, »logischer Wert«, »Zeichenkette«, »Farbe«, »Verbindung«, »Liste Zahl«, »Liste logischer Wert«, »Liste Zeichenkette«, »Liste Verbindung«.</li>
+<li class="typcn typcn-arrow-down">Datentyp für den Rückgabewert. »Zahl«, »logischer Wert«, »Zeichenkette«, »Farbe«, »Bild«, »Liste Zahl«, »Liste logischer Wert«, »Liste Zeichenkette«, »Liste Farbe«, »Liste Bild«.</li>
 <li class="typcn typcn-arrow-left">Wert, der dem eingestellten Datentyp des Rückgabewertes entspricht.</li>
 </ul><p>Rückgabewert:</p>
 <ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-right">Wert, der im Rückgabeblock berechnet wurde.</li>
@@ -976,30 +1096,31 @@
 <div class="innerCell">
 <div id="mbedColour_rgb" class="help beginner">
 <h3 id="Programmier-BlöckeCalliope-»Farbemitrot,grün,blau«[Experten-Block]">»Farbe mit rot, grün, blau«<span class="typcn typcn-star"></span></h3>
-<p>Mit dem Block <span style="color: rgb(0,0,0);">»Farbe mit rot, grün, blau«</span><span style="color: rgb(0,0,0);"> kannst du eigene Farben erstellen. Hierzu kannst du die Stärke von Rot, Grün und Blau in deiner Farbe in Prozent angeben.</span></p>
-<p>Eingabewert:
+<p>Mit dem Block <span style="color: rgb(0,0,0);">»Farbe mit rot, grün, blau«</span><span style="color: rgb(0,0,0);"> kannst du eigene Farben erstellen. Hierzu kannst du die Stärke von Rot, Grün und Blau in deiner Farbe angeben.</span></p>
+<p>Eingabewerte:
 </p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl; Rotanteil</li>
-<li class="typcn typcn-arrow-left">Zahl; Grünanteil</li>
-<li class="typcn typcn-arrow-left">Zahl; Blauanteil</li>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl; Rotanteil [0-255]</li>
+<li class="typcn typcn-arrow-left">Zahl; Grünanteil [0-255]</li>
+<li class="typcn typcn-arrow-left">Zahl; Blauanteil [0-255]</li>
+
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <h2 id="Programmier-BlöckeCalliope-Bilder">Bilder</h2>
-<p>Die Kategorie »Bilder« beinhaltet Blöcke, mit denen du eigene oder vorgegeben Bilder erstellen oder auswählen kannst.</p>
+<p>Die Kategorie »Bilder« beinhaltet Blöcke, mit denen du eigene oder vorgegeben Bilder erstellen, auswählen oder verändern kannst.</p>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedImage_image" class="help beginner">
 <h3 id="Programmier-BlöckeCalliope-»ErstelleBild«">»Erstelle Bild«
 </h3>
-<p>Mit dem Block <span style="color: rgb(0,0,0);">»Erstelle Bild« kannst du eigene Bilder für die Anzeige des Calliope erstellen. Jede einzelne Leuchte ist durch einen Punkt im Raster dargestellt.</span></p>
-<p><span style="color: rgb(0,0,0);">Du kannst für jede Leuchte eine Helligkeit zwischen 0 und 9 angeben, in der die jeweilige Lampe leuchten soll oder eine<span style="color: rgb(0,0,0);">»#« um die Lampe einfach einzuschalten</span>.</span></p>
-<p><span style="color: rgb(0,0,0);">Ist das Feld leer, wird die Lampe nicht eingeschaltet.</span></p>
+<p>Mit dem Block <span style="color: rgb(0,0,0);">»Erstelle Bild« kannst du eigene Bilder für die Anzeige des Calliope erstellen. Jede einzelne LED ist durch einen Punkt im Raster dargestellt.</span></p>
+<p><span style="color: rgb(0,0,0);">Du kannst für jede LED eine Helligkeit zwischen 0 und 9 angeben, in der die jeweilige LED leuchten soll oder eine<span style="color: rgb(0,0,0);">»#« um die LED einfach einzuschalten</span>.</span></p>
+<p><span style="color: rgb(0,0,0);">Ist das Feld leer, wird die LED nicht eingeschaltet.</span></p>
 <p>Eingabewerte:
 </p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl; Helligkeit der Lampe im Raster.</li>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl; Helligkeit der LED im Raster [0-9, #].</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
@@ -1016,31 +1137,69 @@
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
+<div id="mbedImage_invert" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»invertiere ...«[Experten-Block]">»invertiere«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block <span style="color: rgb(0,0,0);">»invertiere« kannst du die Helligkeit des Bildes invertieren</span><span style="color: rgb(0,0,0);"><span>.</span></span></p>
+<p>Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Bild, das verändert werden soll</li>
+</ul></div></div>
+</div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedImage_shift" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»verschiebe ...«[Experten-Block]">»verschiebe«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block <span style="color: rgb(0,0,0);">»verschiebe« kannst du ein Bild verschieben</span><span style="color: rgb(0,0,0);"><span>.</span></span></p>
+<p>Auswahlmöglichkeiten:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Richtung, in die das Bild verschoben wird</li>
+<li class="typcn typcn-arrow-down">Anzahl der Pixel, die das Bild verschoben wird</li>
+</ul>
+<p>Eingabewerte:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Bild, das verschoben wird</li>
+<li class="typcn typcn-arrow-down">Richtung, in die das Bild verschoben wird</li>
+<li class="typcn typcn-arrow-left">Anzahl der Pixel, die das Bild verschoben wird</li></ul></div></div></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
 <h2 id="Programmier-BlöckeCalliope-Nachrichten[Experten-Blöcke]">Nachrichten<span class="typcn typcn-star"></span></h2>
 <p>Calliopes können Nachrichten untereinander austauschen.</p>
-<p>Du kannst Nachrichten senden, die alle Calliopes in der Umgebung erhalten.</p>
+<p>Du kannst Nachrichten senden, die alle Calliopes in der Umgebung erhalten oder du kannst einen Kanal festlegen, so dass nur die Calliopes mit diesem eingestellten Kanal die Nachrichten erhalten.</p>
 <p>Und du kannst Nachrichten empfangen, wobei das Programm nicht pausiert. Es kann also sein, dass keine Nachricht empfangen wird.</p>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedCommunication_sendBlock" class="help expert">
-<h3 id="Programmier-BlöckeCalliope-»SendeNachrichtZeichenkette«[Experten-Block]">»Sende Nachricht Zeichenkette«<span class="typcn typcn-star"></span></h3>
-<p>Der Calliope sendet eine Nachricht. Alle Calliope in der nähren Umgebung können diese Nachricht empfangen.</p>
-<p>Eingabewert:
+<h3 id="Programmier-BlöckeCalliope-»SendeNachricht«[Experten-Block]">»Sende Nachricht mit Stärke«<span class="typcn typcn-star"></span></h3>
+<p>Der Calliope sendet eine Nachricht. Alle Calliope in der näheren Umgebung können diese Nachricht empfangen. Je größer die Stärke gewählt wird desto weiter ist das Signal zu empfangen.</p>
+<p>Eingabewerte:
 </p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Text; Nachricht, die gesendet werden soll</li>
+<ul style="margin-top: 0; margin-bottom: 10px">
+<li class="typcn typcn-arrow-left">»Zahl«, »logischer Wert« oder »Zeichenkette«; Nachricht, die gesendet werden soll</li>
+<li class="typcn typcn-arrow-left">Zahl; Stärke mit der gesendet wird (zwischen 0 und 7).</li>
 </ul></div>
 </div>
 </div><div class="cell normal" data-type="normal">
 <div class="innerCell">
 <div id="mbedCommunication_receiveBlock" class="help expert">
-<h3 id="Programmier-BlöckeCalliope-»EmpfangeNachrichtZeichenkette«[Experten-Block]">»Empfange Nachricht Zeichenkette«<span class="typcn typcn-star"></span></h3>
-<p>Mit dem Block <span style="color: rgb(0,0,0);">»Empfange Nachricht Zeichenkette« kannst du Nachrichten von anderen Calliopes empfangen und einem anderen Block</span><span style="color: rgb(0,0,0);"><span style="color: rgb(0,0,0);">»mitteilen«.</span></span></p>
+<h3 id="Programmier-BlöckeCalliope-»EmpfangeNachricht«[Experten-Block]">»Empfange Nachricht«<span class="typcn typcn-star"></span></h3>
+<p>Mit dem Block <span style="color: rgb(0,0,0);">»Empfange Nachricht« kannst du Nachrichten von anderen Calliopes empfangen und einem anderen Block</span><span style="color: rgb(0,0,0);"><span style="color: rgb(0,0,0);"> »mitteilen«.</span></span></p>
 <p>Einstellmöglichkeiten:
 </p>
-<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Nachrichtentyp, »Zeichenkette«.</li>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-down">Nachrichtentyp, »Zahl«, »logischer Wert« oder »Zeichenkette«.</li>
 </ul></div>
 </div>
-</div></div>
+</div><div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="mbedCommunication_setChannel" class="help expert">
+<h3 id="Programmier-BlöckeCalliope-»SetzeKanalAuf«[Experten-Block]">»setze Kanal auf«<span class="typcn typcn-star"></span></h3>
+<p>Bestimmt den Kanal für die Nachrichtenübertragung für ein- und ausgehende Nachrichten.</p>
+<p>Eingabewert:
+</p>
+<ul style="margin-top: 0; margin-bottom: 10px"><li class="typcn typcn-arrow-left">Zahl; Mögliche Kanäle sind 0 bis 255.</li>
+</ul></div>
+</div>
+</div>
 </body>
 </html>

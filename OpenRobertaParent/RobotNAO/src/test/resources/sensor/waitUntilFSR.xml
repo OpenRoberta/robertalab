@@ -1,19 +1,19 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly"
 	robottype="nao" xmlversion="" description="" tags="undefined">
-	<instance x="101" y="79">
-		<block type="robControls_start" id="zcwc5(}7/.XOki_p?Mr5"
+	<instance x="349" y="50">
+		<block type="robControls_start" id="F52uPG!/9Cv[M(E@)T9w"
 			intask="true" deletable="false">
 			<mutation declare="false" />
-			<field name="DEBUG">TRUE</field>
+			<field name="DEBUG" />
 		</block>
-		<block type="naoControls_wait_for" id="ZJ:xQyI-;DU;;fEN=:at"
+		<block type="robControls_wait_for" id="zHyF8vWX2r`5`I4_~D0."
 			intask="true">
 			<value name="WAIT0">
-				<block type="logic_compare" id="smCFv]*h|jaNS./GrhB!"
+				<block type="logic_compare" id="Cx}-*8,j%%A|x?sE;9Z("
 					intask="true">
 					<field name="OP">GT</field>
 					<value name="A">
-						<block type="robSensors_getSample" id="dehtT:*l6C@q]*NCmr3}"
+						<block type="robSensors_getSample" id=":AFgdq*qq;+s`|(cgu}T"
 							intask="true">
 							<mutation input="FSR_VALUE" />
 							<field name="SENSORTYPE">FSR_VALUE</field>
@@ -22,22 +22,22 @@
 						</block>
 					</value>
 					<value name="B">
-						<block type="math_number" id="EL_;8uW/m_HPK-O-~CTs"
+						<block type="math_number" id="L;bAf#(:Ub0m}`@dFXQ+"
 							intask="true">
-							<field name="NUM">90</field>
+							<field name="NUM">10</field>
 						</block>
 					</value>
 				</block>
 			</value>
 		</block>
-		<block type="naoControls_wait_for" id="3GtGRoV%r~![^jx+?@+k"
+		<block type="robControls_wait_for" id="x|e2)Z;.iOKm+b(ad`#g"
 			intask="true">
 			<value name="WAIT0">
-				<block type="logic_compare" id="h84+=%~r#H/%KAs9aq~r"
+				<block type="logic_compare" id="8(A*BaxVg4/dS+vT0HA`"
 					intask="true">
 					<field name="OP">GT</field>
 					<value name="A">
-						<block type="robSensors_getSample" id="5_=+BJM%Q=nvsNjftLNL"
+						<block type="robSensors_getSample" id="HE]NiCh8dVB,XOdYS_:w"
 							intask="true">
 							<mutation input="FSR_VALUE" />
 							<field name="SENSORTYPE">FSR_VALUE</field>
@@ -46,9 +46,9 @@
 						</block>
 					</value>
 					<value name="B">
-						<block type="math_number" id="i.o%R7hWd+4HQHEGu_@P"
+						<block type="math_number" id="MA8`QddRc-^[%[bcI@J%"
 							intask="true">
-							<field name="NUM">90</field>
+							<field name="NUM">10</field>
 						</block>
 					</value>
 				</block>
