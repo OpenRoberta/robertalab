@@ -9,10 +9,6 @@ import com.google.inject.Injector;
 import de.fhg.iais.roberta.persistence.util.DbExecutor;
 import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
 
-/**
- * TODO: Docs about ShutdownHook
- */
-
 public class ShutdownHook extends Thread {
     private static final Logger LOG = LoggerFactory.getLogger(ShutdownHook.class);
     private boolean embeddedDb;
