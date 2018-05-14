@@ -220,7 +220,7 @@ public class ServerStarter {
         Ev3SensorLoggingWS.setGuiceInjector(this.injector);
 
         checkRobotPluginsDB();
-        Runtime.getRuntime().addShutdownHook(new ShutdownHook("emb  edded".equals(robertaProperties.getStringProperty("database.mode")), this.injector));
+        Runtime.getRuntime().addShutdownHook(new ShutdownHook("embedded".equals(robertaProperties.getStringProperty("database.mode")), this.injector));
         LOG.info("Shutdown hook added. If the server is gracefully stopped in the future, a shutdown message is logged");
         logTheNumberOfStoredPrograms();
 
