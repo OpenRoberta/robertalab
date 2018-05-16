@@ -49,7 +49,6 @@ public class RobertaGuiceModule extends AbstractModule {
         bind(RobotDownloadProgram.class);
         bind(RobotCommand.class);
         bind(RobotSensorLogging.class);
-        bind(RestExample.class);
         bind(ClientPing.class);
 
         bind(RobertaProperties.class).toInstance(this.robertaProperties);

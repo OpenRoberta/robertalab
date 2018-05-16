@@ -79,7 +79,7 @@ public class UserProcessor extends AbstractProcessor {
         boolean account_check = acc_symbols.find();
         Matcher userName_symbols = p.matcher(userName);
         boolean userName_check = userName_symbols.find();
-        if ( account == null || account.equals("") || password == null || password.equals("") ) {
+        if (account.equals("") || password == null || password.equals("")) {
             setError(Key.USER_CREATE_ERROR_MISSING_REQ_FIELDS, account);
         } else if ( account_check || userName_check ) {
             setError(Key.USER_CREATE_ERROR_CONTAINS_SPECIAL_CHARACTERS, account, userName);

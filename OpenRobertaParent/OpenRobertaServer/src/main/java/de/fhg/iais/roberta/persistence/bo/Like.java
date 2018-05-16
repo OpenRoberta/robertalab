@@ -47,12 +47,12 @@ public class Like implements WithSurrogateId {
      * create a like
      *
      * @param userId of the user that forgot his password
-     * @throws Exception
+     * @param program of the user
      */
-    public Like(User user, Program program) throws Exception {
-        Assert.notNull(user);
+    public Like(User userId, Program program) {
+        Assert.notNull(userId);
         Assert.notNull(program);
-        this.user = user;
+        this.user = userId;
         this.program = program;
         this.created = Util1.getNow();
     }
@@ -72,17 +72,23 @@ public class Like implements WithSurrogateId {
     }
 
     /**
-     * @return the created
+     * @return the time Stamp
      */
     public Timestamp getCreated() {
         return this.created;
     }
 
+    /**
+     * @return id of the User
+     */
     @Override
     public int getId() {
         return this.id;
     }
 
+    /**
+     * @return a String containing ID, User, Program and Created data of the User.
+     */
     @Override
     public String toString() {
         return "Like [id=" + this.id + ", user=" + this.user + ", program=" + this.program + ", created=" + this.created + "]";

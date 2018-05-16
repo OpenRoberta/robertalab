@@ -62,7 +62,7 @@ public class ConfigurationProcessor extends AbstractProcessor {
      *
      * @param configurationName the name of the configuration
      * @param ownerId the owner of the configuration
-     * @param robotName
+     * @param robotName name of the Robot
      * @param configurationText the new configuration text
      * @param mayExist true, if an existing configuration may be changed; false if a configuration may be stored only, if it does not exist in the database
      */

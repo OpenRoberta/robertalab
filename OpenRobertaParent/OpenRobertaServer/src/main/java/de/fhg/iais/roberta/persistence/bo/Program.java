@@ -157,10 +157,17 @@ public class Program implements WithSurrogateId {
         return this.lastErrorFree;
     }
 
+    /**
+     * @param lastErrorFree Time at which robot was last free of errors.
+     */
     public void setLastErrorFree(Timestamp lastErrorFree) {
         this.lastErrorFree = lastErrorFree;
     }
 
+    /**
+     *
+     * @return Number of Views of Robots.
+     */
     public int getNumberOfViews() {
         return this.viewed;
     }

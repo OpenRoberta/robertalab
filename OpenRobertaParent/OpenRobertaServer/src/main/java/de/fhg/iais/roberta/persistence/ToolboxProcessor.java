@@ -23,7 +23,7 @@ public class ToolboxProcessor extends AbstractProcessor {
         } else {
             User owner = null;
             ToolboxDao toolboxDao = new ToolboxDao(this.dbSession);
-            Toolbox toolbox = null;
+            Toolbox toolbox;
             if ( userId != 0 ) {
                 UserDao userDao = new UserDao(this.dbSession);
                 owner = userDao.get(userId);

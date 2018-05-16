@@ -37,15 +37,19 @@ public class LostPassword implements WithSurrogateId {
      * create link to be sent to user email address
      *
      * @param userId of the user that forgot his password
-     * @throws Exception
      */
-    public LostPassword(int userId) throws Exception {
+    public LostPassword(int userId) {
         this.userID = userId;
         this.urlPostfix = RandomUrlPostfix.generate(12, 12, 3, 3, 3);
         this.created = Util1.getNow();
     }
 
-    public boolean isUrlCorrect(String urlToCheck) throws Exception {
+    /**
+     *
+     * @param urlToCheck Url to check.
+     * @return True if URL is Correct.
+     */
+    public boolean isUrlCorrect(String urlToCheck) {
         return this.urlPostfix.equals(urlToCheck);
     }
 
@@ -70,11 +74,19 @@ public class LostPassword implements WithSurrogateId {
         return this.created;
     }
 
+    /**
+     *
+     * @return id of the User.
+     */
     @Override
     public int getId() {
         return this.id;
     }
 
+    /**
+     *
+     * @return String Containing ID, UserId, urlPostFix and Created data of user.
+     */
     @Override
     public String toString() {
         return "LostPassword [id=" + this.id + ", userID=" + this.userID + ", urlPostfix=" + this.urlPostfix + ", created=" + this.created + "]";

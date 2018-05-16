@@ -27,8 +27,8 @@ public class AccessRightProcessor extends AbstractProcessor {
      * either "WRITE" or "READ".
      *
      * @param ownerId the owner (that is the actor on which behalf this request is executed)
-     * @param robotId
-     * @param programName
+     * @param robotName name of the Robot
+     * @param programName name of the Program
      * @param userToShareName the account name (a String!) of the user who should get access to a program
      * @param right "WRITE" or "READ"
      */
@@ -45,14 +45,14 @@ public class AccessRightProcessor extends AbstractProcessor {
      * either "WRITE" or "READ".
      *
      * @param ownerId the owner (that is the actor on which behalf this request is executed)
-     * @param robotId
-     * @param programName
+     * @param robotName name of the Robot that is being used.
+     * @param programName name of the program
      * @param userToShareName the account name (a String!) of the user who should get access to a program
      * @param right "WRITE" or "READ"
      */
-    public void shareDelete(String ownerName, String robotName, String programName, String authorName, int userToShareId) {
+    public void shareDelete(String ownerId, String robotName, String programName, String authorName, int userToShareId) {
         UserDao userDao = new UserDao(this.dbSession);
-        User owner = userDao.loadUser(ownerName);
+        User owner = userDao.loadUser(ownerId);
         User userToShare = userDao.get(userToShareId);
         User author = userDao.loadUser(authorName);
         executeShare(owner, robotName, programName, author, userToShare, "NONE");

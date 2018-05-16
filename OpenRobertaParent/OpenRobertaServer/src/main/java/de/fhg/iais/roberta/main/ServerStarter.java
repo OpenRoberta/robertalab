@@ -108,7 +108,7 @@ public class ServerStarter {
      *
      * @return the server
      */
-    public Server start() throws IOException {
+    public Server start() {
         String host = robertaProperties.getStringProperty("server.ip");
         int httpPort = robertaProperties.getIntProperty("server.port", 0);
         int httpsPort = robertaProperties.getIntProperty("server.portHttps", 0);
@@ -252,7 +252,7 @@ public class ServerStarter {
     /**
      * returns the guice injector configured in this class. This not dangerous, but you should ask yourself, why you need that ...</b>
      *
-     * @return the injector
+     * @return returns the injector
      */
     public Injector getInjectorForTests() {
         return this.injector;
@@ -275,7 +275,7 @@ public class ServerStarter {
     /**
      * configure robot plugins, that may be used with this server. Uses the white list and the declarations from the openroberta.properties file.
      *
-     * @param robotCommunicator
+     * @param robotCommunicator a Robot Communicator
      * @return the mapping from robot names to the factory, that supplies all robot-specific data
      */
     public static Map<String, IRobotFactory> configureRobotPlugins(RobotCommunicator robotCommunicator, RobertaProperties robertaProperties) {

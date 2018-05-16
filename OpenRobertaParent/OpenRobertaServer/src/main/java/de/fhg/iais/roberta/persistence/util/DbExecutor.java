@@ -56,7 +56,7 @@ public class DbExecutor {
     }
 
     public void sqlFile(InputStream sqlStmtFileStream) {
-        String line = "";
+        String line;
         int count = 0;
         try {
             Reader reader = new InputStreamReader(sqlStmtFileStream, "UTF-8");
@@ -70,9 +70,7 @@ public class DbExecutor {
                     line = line.substring(0, line.length() - 1);
                     sb.append(line);
                     String sqlStmt = sb.toString().trim();
-                    if ( sqlStmt.equals("") ) {
-                        // leeres stmt
-                    } else {
+                    if (!sqlStmt.equals("")) {
                         count++;
                         sqlStmt(sqlStmt);
                     }

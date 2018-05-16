@@ -90,18 +90,34 @@ public class User implements WithSurrogateId {
         this.userName = userName;
     }
 
+    /**
+     * @return Email of User.
+     */
     public String getEmail() {
         return this.email;
     }
 
+    /**
+     * Sets the New email
+     *
+     * @param email to be set
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * @return Role of the User (eg. Student, Teacher,etc.)
+     */
     public Role getRole() {
         return this.role;
     }
 
+    /**
+     * Set role of the User.
+     * 
+     * @param role to be set.
+     */
     public void setRole(Role role) {
         this.role = role;
     }
@@ -127,30 +143,53 @@ public class User implements WithSurrogateId {
         return this.created;
     }
 
+    /**
+     * @return the Last login time.
+     */
     public Timestamp getLastLogin() {
         return this.lastLogin;
     }
 
+    /**
+     * Sets the Last login time
+     */
     public void setLastLogin() {
         this.lastLogin = Util1.getNow();
     }
 
+    /**
+     * @return true if Account is Activated.
+     */
     public boolean isActivated() {
         return this.activated;
     }
 
+    /**
+     * @param activated True if Account is set to be Activated, else False.
+     */
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
 
+    /**
+     * @return true if Age is less than 14 years old.
+     */
     public boolean isYoungerThen14() {
         return this.youngerThen14;
     }
 
+    /**
+     * Sets age Younger then 14 if True.
+     * 
+     * @param youngerThen14 is age less than 14 years?
+     */
     public void setYoungerThen14(boolean youngerThen14) {
         this.youngerThen14 = youngerThen14;
     }
 
+    /**
+     * @return String containing Id, Account, and UserName.
+     */
     @Override
     public String toString() {
         return "User [id=" + this.id + ", account=" + this.account + ", userName=" + this.userName + "]";

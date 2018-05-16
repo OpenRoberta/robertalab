@@ -88,8 +88,7 @@ public class LikeProcessor extends AbstractProcessor {
 
     public List<Like> getLikesPerUser(User user) {
         LikeDao likeDao = new LikeDao(this.dbSession);
-        List<Like> likesList = likeDao.loadLikesByUser(user);
-        return likesList;
+        return likeDao.loadLikesByUser(user);
     }
 
     public void deleteLike(String programName, String robotName, String authorName) throws Exception {
@@ -116,7 +115,6 @@ public class LikeProcessor extends AbstractProcessor {
         if ( like != null ) {
             likeDao.deleteLike(like);
             setSuccess(Key.LIKE_DELETE_SUCCESS);
-            return;
         }
     }
 }

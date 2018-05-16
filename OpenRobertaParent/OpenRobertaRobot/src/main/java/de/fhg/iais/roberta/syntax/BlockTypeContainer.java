@@ -89,7 +89,7 @@ public class BlockTypeContainer {
      * Registers a property file to avoid loading property files more than once. Properties are not loaded by calling this method use the
      * {@link #add(String, Category, Class, String...)}
      *
-     * @param propertyFileName
+     * @param propertyFileName name of the file
      * @return true if the property file was already loaded or false otherwise
      */
     public static boolean register(String propertyFileName) {
@@ -145,7 +145,7 @@ public class BlockTypeContainer {
         /**
          * check whether this block type has the name as expected
          *
-         * @param nameToCheck
+         * @param namesToCheck
          * @return true, if the block type has the name expected; false otherwise
          */
         public boolean hasName(String... namesToCheck) {
