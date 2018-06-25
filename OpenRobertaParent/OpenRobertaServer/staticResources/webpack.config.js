@@ -19,6 +19,7 @@ module.exports = function(env) {
             path: distPath,
             publicPath: publicPath
         },
+        devtool: 'eval-source-map',
         module: {
             rules: [
                 {
