@@ -1,4 +1,4 @@
-define([ 'exports', 'comm' ], function(exports, COMM) {
+define([ 'exports', 'comm', 'jquery' ], function(exports, COMM, $) {
 
     /**
      * Initialize gui state object

@@ -1,4 +1,4 @@
-define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'progHelp.controller', 'socket.controller', 'jquery' ], function(exports, UTIL, LOG, MSG,
+define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'progHelp.controller', 'socket.controller', 'jquery', 'jquery-cookie' ], function(exports, UTIL, LOG, MSG,
         GUISTATE, HELP_C, SOCKET_C, $) {
 
     /**
