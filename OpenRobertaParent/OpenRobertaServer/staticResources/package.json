@@ -12,6 +12,9 @@
 		"email": "roberta-zentrale@iais.fraunhofer.de"
 	},
 	"dependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-preset-env": "^1.6.1",
 		"bootstrap": "^3.3.7",
 		"bootstrap-table": "^1.11.2",
 		"bootstrap-tagsinput": "^0.7.1",
@@ -25,13 +28,14 @@
 		"jquery-validation": "^1.17.0",
 		"jquery.scrollto": "^2.1.2",
 		"js-cookie": "^2.2.0",
-		"jsdom": "^11.6.1",
+		"jsdom": "^11.6.2",
 		"slick-carousel": "^1.8.1",
 		"socket.io-client": "^2.0.4",
 		"volume-meter": "^2.0.1",
-		"webpack": "latest"
+		"webpack": "^3.11.0"
 	},
 	"scripts": {
-		"build": "webpack"
+		"build": "webpack",
+		"devbuild": "webpack --display-modules"
 	}
 }

@@ -1,5 +1,8 @@
-define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller' ], function(
-        exports, LOG, $, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C) {
+define([ 'blockly', 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'progHelp.controller', 'progInfo.controller' ], function(
+        Blockly, exports, LOG, $, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, HELP_C, INFO_C) {
+    
+    var goog = Blockly.goog;
+    Blockly = Blockly.Blockly;
 
     /**
      * Initialize language switching
@@ -50,8 +53,7 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
             $('li>a.EN').css('display', 'block');
         }
         $('#language li a[lang=' + language + ']').parent().addClass('disabled');
-        var url = 'blockly/msg/js/' + language + '.js';
-        getCachedScript(url).done(function(data) {
+        import('msgfiles/' + language).then(function(){
             translate();
             ready.resolve(language);
         });

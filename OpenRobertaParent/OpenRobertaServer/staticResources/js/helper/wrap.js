@@ -34,13 +34,13 @@ define([ 'exports', 'comm', 'log', 'jquery' ], function(exports, COMM, LOG, $) {
     $.fn.onWrap = function(event, callbackOrFilter, callbackOrMessage, optMessage) {
         if (typeof callbackOrFilter === 'string') {
             if (typeof callbackOrMessage === 'function') {
-                return this.on(event, callbackOrFilter, WRAP.fn3(callbackOrMessage, optMessage));
+                return this.on(event, callbackOrFilter, fn3(callbackOrMessage, optMessage));
             } else {
                 LOG.error("illegal wrapping. Parameter: " + event + " ::: " + callbackOrFilter + " ::: " + callbackOrMessage + " ::: " + optMessage);
             }
         } else if (typeof callbackOrFilter === 'function') {
             if (typeof callbackOrMessage === 'string' || callbackOrMessage === undefined) {
-                return this.on(event, WRAP.fn3(callbackOrFilter, callbackOrMessage));
+                return this.on(event, fn3(callbackOrFilter, callbackOrMessage));
             } else {
                 LOG.error("illegal wrapping. Parameter: " + event + " ::: " + callbackOrFilter + " ::: " + callbackOrMessage + " ::: " + optMessage);
             }
