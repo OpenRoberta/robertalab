@@ -19,3 +19,4 @@ OpenRobertaParent/RobotNAO/resources/updateResources/roberta.zip
 **/*.log
 **/*.pyc
 **/*.py~
+**/js/*roberta.min.js
