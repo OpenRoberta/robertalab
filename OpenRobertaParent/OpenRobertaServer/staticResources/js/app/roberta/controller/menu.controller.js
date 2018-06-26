@@ -117,7 +117,7 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
 
         var addInfoLink = function(clone, robotName) {
             if (GUISTATE_C.getRobotInfo(robotName) != 'Info not found') {
-                clone.find('a').attr('onclick', 'window.open("' + GUISTATE_C.getRobotInfo(robotName) + '");return false;');
+                clone.find('a').attr('href', GUISTATE_C.getRobotInfo(robotName));
             } else {
                 clone.find('a').remove();
             }
@@ -519,6 +519,9 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             mousey = event.clientY;
         });
         $('.popup-robot').onWrap('click', function(event) {
+            if (event.target.className.indexOf("info") >= 0) {  // Info link has href attribute; do nothing.
+                return;
+            }
             if (Math.abs(event.clientX - mousex) >= 3 || Math.abs(event.clientY - mousey) >= 3) {
                 return;
             }
@@ -526,39 +529,35 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             $('#startPopupBack').trigger('click');
             var choosenRobotType = event.target.dataset.type || event.currentTarget.dataset.type;
             var choosenRobotGroup = event.target.dataset.group || event.currentTarget.dataset.group;
-            if (event.target.className.indexOf("info") >= 0) {
-                var win = window.open(GUISTATE_C.getRobots()[choosenRobotType].info, '_blank');
-            } else {
-                if (choosenRobotType) {
-                    if (choosenRobotGroup) {
-                        $('#popup-robot-main').addClass('hidden');
-                        $('.popup-robot.' + choosenRobotType).removeClass('hidden');
-                        $('.popup-robot.' + choosenRobotType).addClass('robotSpecial');
-                        $('#startPopupBack').removeClass('hidden');
-                        return;
-                    } else {
-                        ROBOT_C.switchRobot(choosenRobotType, true);
-                    }
-                }
-
-                var cookieName = "OpenRoberta_" + GUISTATE_C.getServerVersion();
-
-                if ($('#checkbox_id').is(':checked')) {
-
-                    var cookieSettings = {
-                        expires : 99,
-                        secure : GUISTATE_C.isPublicServerVersion(),
-                        domain : ''
-                    };
-
-                    CookieDisclaimer.saveCookie(cookieName, choosenRobotType, cookieSettings);
-
+            if (choosenRobotType) {
+                if (choosenRobotGroup) {
+                    $('#popup-robot-main').addClass('hidden');
+                    $('.popup-robot.' + choosenRobotType).removeClass('hidden');
+                    $('.popup-robot.' + choosenRobotType).addClass('robotSpecial');
+                    $('#startPopupBack').removeClass('hidden');
+                    return;
                 } else {
-                    $.removeCookie(cookieName);
+                    ROBOT_C.switchRobot(choosenRobotType, true);
                 }
-
-                $('#show-startup-message').modal('hide');
             }
+
+            var cookieName = "OpenRoberta_" + GUISTATE_C.getServerVersion();
+
+            if ($('#checkbox_id').is(':checked')) {
+
+                var cookieSettings = {
+                    expires : 99,
+                    secure : GUISTATE_C.isPublicServerVersion(),
+                    domain : ''
+                };
+
+                CookieDisclaimer.saveCookie(cookieName, choosenRobotType, cookieSettings);
+
+            } else {
+                $.removeCookie(cookieName);
+            }
+
+            $('#show-startup-message').modal('hide');
         }, 'robot choosen in start popup');
 
         $('#moreReleases').onWrap('click', function(event) {
