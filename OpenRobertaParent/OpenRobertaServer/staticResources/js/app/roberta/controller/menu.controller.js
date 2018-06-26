@@ -115,10 +115,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             }
         }
 
-        var giveValue = function(key) {
-            return groupsDict[key];
-        }
-
         var addInfoLink = function(clone, robotName) {
             if (GUISTATE_C.getRobotInfo(robotName) != 'Info not found') {
                 clone.find('a').attr('onclick', 'window.open("' + GUISTATE_C.getRobotInfo(robotName) + '");return false;');
