@@ -1,4 +1,4 @@
-define([ 'simulation.simulation', 'robertaLogic.constants', 'util' ], function(SIM, CONSTANTS, UTIL) {
+define([ 'simulation.simulation', 'robertaLogic.constants', 'util', 'jquery' ], function(SIM, CONSTANTS, UTIL, $) {
 
     /**
      * Creates a new mbed device for a simulation.

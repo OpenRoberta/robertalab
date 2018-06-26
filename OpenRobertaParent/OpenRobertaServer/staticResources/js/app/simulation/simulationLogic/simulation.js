@@ -85,8 +85,7 @@ define([ 'exports', 'simulation.scene', 'simulation.program.eval', 'simulation.m
             currentBackground = num;
         }
         var debug = robot.debug;
-        var moduleName = 'simulation.robot.' + simRobotType;
-        require([ moduleName ], function(ROBOT) {
+        import('app/simulation/simulationLogic/robot.' + simRobotType).then(function(ROBOT) {
             createRobot(ROBOT);
             robot.debug = debug;
             callback();
@@ -248,7 +247,7 @@ define([ 'exports', 'simulation.scene', 'simulation.program.eval', 'simulation.m
         var blocklyProgram = BUILDER.build(userProgram);
         programEval.initProgram(blocklyProgram);
         if (refresh) {
-            require([ 'simulation.robot.' + simRobotType ], function(reqRobot) {
+            import('app/simulation/simulationLogic/robot.' + simRobotType).then(function(reqRobot) {
                 createRobot(reqRobot);
                 robot.reset();
                 robot.resetPose();

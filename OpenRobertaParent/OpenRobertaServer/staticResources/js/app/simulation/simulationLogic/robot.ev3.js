@@ -1,4 +1,4 @@
-define([ 'simulation.simulation', 'robertaLogic.constants', 'simulation.robot' ], function(SIM, CONSTANTS, Robot) {
+define([ 'simulation.simulation', 'robertaLogic.constants', 'simulation.robot', 'jquery' ], function(SIM, CONSTANTS, Robot, $) {
 
     /**
      * Creates a new Ev3 for a simulation.

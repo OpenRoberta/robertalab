@@ -1,4 +1,4 @@
-define([ 'simulation.simulation', 'robertaLogic.constants', 'simulation.robot.mbed' ], function(SIM, CONSTANTS, Mbed) {
+define([ 'simulation.simulation', 'robertaLogic.constants', 'simulation.robot.mbed', 'jquery' ], function(SIM, CONSTANTS, Mbed, $) {
 
     /**
      * Creates a new Microbit device for a simulation.
