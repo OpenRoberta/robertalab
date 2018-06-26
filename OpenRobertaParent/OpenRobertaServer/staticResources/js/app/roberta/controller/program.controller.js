@@ -23,7 +23,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         blocklyWorkspace = Blockly.inject(document.getElementById('blocklyDiv'), {
             path : '/blockly/',
             toolbox : toolbox,
-            trashcan : true,
+            trashcan : false,
             scrollbars : true,
             media : '../blockly/media/',
             zoom : {
@@ -49,6 +49,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         GUISTATE_C.checkSim();
         var toolbox = $('#blockly .blocklyToolboxDiv');
         toolbox.prepend('<ul class="nav nav-tabs levelTabs"><li class="active"><a class="typcn typcn-media-stop-outline" href="#beginner" data-toggle="tab">1</a></li><li class=""><a href="#expert" class="typcn typcn-star-outline" data-toggle="tab">2</a></li></ul>');
+        toolbox.append('<div class="typcn typcn-trash" style="font-size: xx-large; position:absolute; bottom: 0px; left: 12px; width: 48px; height: 48px;"></div>')
     }
 
     function initEvents() {
