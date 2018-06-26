@@ -463,20 +463,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             $("#show-startup-message").modal("show");
         }, 'logo was clicked');
 
-        $('.menuGeneral').onWrap('click', function(event) {
-            window.open("https://jira.iais.fraunhofer.de/wiki/display/ORInfo");
-        }, 'head navigation menu item clicked');
-        $('.menuFaq').onWrap('click', function(event) {
-            window.open("https://jira.iais.fraunhofer.de/wiki/display/ORInfo/FAQ");
-        }, 'head navigation menu item clicked');
-        $('.menuAboutProject').onWrap('click', function(event) {
-            if (GUISTATE_C.getLanguage() == 'de') {
-                window.open("https://www.roberta-home.de/index.php?id=135");
-            } else {
-                window.open("https://www.roberta-home.de/index.php?id=135&L=1");
-            }
-        }, 'head navigation menu item clicked');
-
         $('.simScene').onWrap('click', function(event) {
             SIM.setBackground(-1, SIM.setBackground);
             var scene = $("#simButtonsCollapse").collapse('hide');
