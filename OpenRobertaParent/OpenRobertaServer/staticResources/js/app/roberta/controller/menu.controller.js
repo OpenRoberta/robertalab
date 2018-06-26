@@ -579,14 +579,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             TOUR_C.start('welcome');
         }, 'take a tour clicked');
 
-        $('#goToWiki').onWrap('click', function(event) {
-            event.preventDefault();
-            window.open('https://jira.iais.fraunhofer.de/wiki/display/ORInfo', '_blank');
-            event.stopPropagation();
-            $("#show-startup-message").modal("show");
-
-        }, 'take a tour clicked');
-
         // init popup events
 
         $('.cancelPopup').onWrap('click', function() {
