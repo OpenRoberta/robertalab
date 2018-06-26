@@ -80,6 +80,14 @@ define([ 'blockly', 'exports', 'log', 'jquery', 'guiState.controller', 'program.
         }
         
         var url = 'blockly/msg/js/' + language.toLowerCase() + '.js';
+        // The translations are fetched as scripts that expect these to be in 
+        // the global scope, but with the switch to webpack, that is no longer
+        // the case. Medium-term, I think we should instead serve translations
+        // as JSON, and have the callback here apply them directly instead of
+        // on some global object, but I don't want to boil the ocean right now
+        // and this is basically how it used to work.
+        window.goog = goog;
+        window.Blockly = Blockly;
         getCachedScript(url).done(function(data) {
             translate();
             GUISTATE_C.setLanguage(language);
