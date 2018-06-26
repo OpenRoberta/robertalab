@@ -180,7 +180,15 @@ public class ServerStarter {
         defaultHandler.addFilter(GuiceFilter.class, "/download/*", null);
         defaultHandler.addFilter(GuiceFilter.class, "/update/*", null);
 
-        // 3.2 static resources
+        // 3.2 The webpack bundle
+        ServletHolder bundleServlet = defaultHandler.addServlet(DefaultServlet.class, "/bundle/*");
+        bundleServlet.setInitParameter("dirAllowed", "false");
+        bundleServlet.setInitParameter("precompressed", "gzip=.gz");
+        String dirNameBundle = robertaProperties.getStringProperty("server.bundle.dir");
+        bundleServlet.setInitParameter("resourceBase", new File(dirNameBundle).toPath().toAbsolutePath().normalize().toUri().toASCIIString());
+        bundleServlet.setInitParameter("cacheControl", "private, must-revalidate");
+
+        // 3.3 static resources
         ServletHolder staticResourceServlet = defaultHandler.addServlet(DefaultServlet.class, "/*");
         staticResourceServlet.setInitParameter("dirAllowed", "false");
         staticResourceServlet.setInitParameter("precompressed", "gzip=.gz");

@@ -1,8 +1,8 @@
 const path = require('path'),
     webpack = require('webpack'),
     basePath = path.resolve(__dirname) + '/',
-    publicPath = '/js/',
-    distPath = path.resolve(basePath, '.' + publicPath) + '/',
+    publicPath = '/bundle/',
+    distPath = path.resolve(basePath, '../target/js' + publicPath) + '/',
     sourcePath = path.resolve(basePath, 'js') + '/';
 
 module.exports = function(env) {
