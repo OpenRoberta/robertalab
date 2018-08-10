@@ -29,7 +29,6 @@ public class Factory extends AbstractRobotFactory {
     private final CompilerWorkflow compilerWorkflow;
     private final Properties bob3Properties;
     private final String name;
-    private final int robotPropertyNumber;
     Map<String, SensorPort> sensorToPorts = IRobotFactory.getSensorPortsFromProperties(Util1.loadProperties("classpath:bob3ports.properties"));
     Map<String, ActorPort> actorToPorts = IRobotFactory.getActorPortsFromProperties(Util1.loadProperties("classpath:bob3ports.properties"));
 
@@ -41,12 +40,11 @@ public class Factory extends AbstractRobotFactory {
         }
         this.bob3Properties = Util1.loadProperties("classpath:bob3.properties");
         this.name = this.bob3Properties.getProperty("robot.name");
-        this.robotPropertyNumber = robertaProperties.getRobotNumberFromProperty(this.name);
         this.compilerWorkflow =
             new CompilerWorkflow(
                 robertaProperties.getTempDirForUserProjects(),
-                robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".compiler.resources.dir"),
-                robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".compiler." + os + ".dir"));
+                robertaProperties.getStringProperty("robot.plugin." + this.name + ".compiler.resources.dir"),
+                robertaProperties.getStringProperty("robot.plugin." + this.name + ".compiler." + os + ".dir"));
         addBlockTypesFromProperties("bob3.properties", this.bob3Properties);
     }
 
@@ -137,8 +135,8 @@ public class Factory extends AbstractRobotFactory {
 
     @Override
     public String getGroup() {
-        return this.robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".group") != null
-            ? this.robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".group")
+        return this.robertaProperties.getStringProperty("robot.plugin." + this.name + ".group") != null
+            ? this.robertaProperties.getStringProperty("robot.plugin." + this.name + ".group")
             : this.name;
     }
 

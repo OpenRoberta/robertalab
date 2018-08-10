@@ -30,7 +30,6 @@ public class Factory extends AbstractRobotFactory {
     private final SimCompilerWorkflow simCompilerWorkflow;
     private final Properties nxtProperties;
     private final String name;
-    private final int robotPropertyNumber;
     Map<String, SensorPort> sensorToPorts = IRobotFactory.getSensorPortsFromProperties(Util1.loadProperties("classpath:NXTports.properties"));
     Map<String, ActorPort> actorToPorts = IRobotFactory.getActorPortsFromProperties(Util1.loadProperties("classpath:NXTports.properties"));
 
@@ -38,11 +37,10 @@ public class Factory extends AbstractRobotFactory {
         super(robertaProperties);
         this.nxtProperties = Util1.loadProperties("classpath:NXT.properties");
         this.name = this.nxtProperties.getProperty("robot.name");
-        this.robotPropertyNumber = robertaProperties.getRobotNumberFromProperty(this.name);
         this.robotCompilerWorkflow =
             new CompilerWorkflow(
                 robertaProperties.getTempDirForUserProjects(),
-                robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".compiler.resources.dir"));
+                robertaProperties.getStringProperty("robot.plugin." + this.name + ".compiler.resources.dir"));
         this.simCompilerWorkflow = new SimCompilerWorkflow();
         addBlockTypesFromProperties("NXT.properties", this.nxtProperties);
     }
@@ -155,8 +153,8 @@ public class Factory extends AbstractRobotFactory {
 
     @Override
     public String getGroup() {
-        return this.robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".group") != null
-            ? this.robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".group")
+        return this.robertaProperties.getStringProperty("robot.plugin." + this.name + ".group") != null
+            ? this.robertaProperties.getStringProperty("robot.plugin." + this.name + ".group")
             : this.name;
     }
 

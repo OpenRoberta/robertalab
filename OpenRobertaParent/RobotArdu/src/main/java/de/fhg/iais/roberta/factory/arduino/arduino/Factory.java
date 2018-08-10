@@ -26,7 +26,6 @@ public class Factory extends AbstractRobotFactory {
     private final CompilerWorkflow compilerWorkflow;
     private final Properties arduinoProperties;
     private final String name;
-    private final int robotPropertyNumber;
 
     public Factory(RobertaProperties robertaProperties) {
         super(robertaProperties);
@@ -36,12 +35,11 @@ public class Factory extends AbstractRobotFactory {
         }
         this.arduinoProperties = Util1.loadProperties("classpath:arduino.properties");
         this.name = this.arduinoProperties.getProperty("robot.name");
-        this.robotPropertyNumber = robertaProperties.getRobotNumberFromProperty(this.name);
         this.compilerWorkflow =
             new CompilerWorkflow(
                 robertaProperties.getTempDirForUserProjects(),
-                robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".compiler.resources.dir"),
-                robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".compiler." + os + ".dir"));
+                robertaProperties.getStringProperty("robot.plugin." + this.name + ".compiler.resources.dir"),
+                robertaProperties.getStringProperty("robot.plugin." + this.name + ".compiler." + os + ".dir"));
         addBlockTypesFromProperties("arduino.properties", this.arduinoProperties);
     }
 
@@ -155,8 +153,8 @@ public class Factory extends AbstractRobotFactory {
 
     @Override
     public String getGroup() {
-        return this.robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".group") != null
-            ? this.robertaProperties.getStringProperty("robot.plugin." + this.robotPropertyNumber + ".group")
+        return this.robertaProperties.getStringProperty("robot.plugin." + this.name + ".group") != null
+            ? this.robertaProperties.getStringProperty("robot.plugin." + this.name + ".group")
             : this.name;
     }
 
