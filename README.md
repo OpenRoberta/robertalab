@@ -99,6 +99,24 @@ Start your browser at: http://localhost:1999
 
 That's it!
 
+### Desktop App
+To run the desktop app simply follow the commands below
+
+#### Step 1: Clone the repository and compile
+    git clone https://github.com/OpenRoberta/robertalab.git # get the repository
+    cd robertalab        # cd into repository
+    cd OpenRobertaParent # cd to parent project
+    mvn clean install    # generate the server
+    cd ..                # return to the repository
+
+#### Step 2: Make sure you have a database
+    ./rundesktopapp.sh --createEmptydb       #Recommended
+    ./rundesktopapp.sh --createEmptydb x.y.z #version number is optional
+
+#### Step 3: Start the Desktop app
+    ./rundesktopapp.sh               #Normal Desktop app
+    ./rundesktopapp.sh --single-user #Single user mode
+
 ### Development notes
 
 You can follow the test status on https://travis-ci.org/OpenRoberta/.

@@ -10,6 +10,7 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
     var $modalAnimateTime = 300;
     var $msgAnimateTime = 150;
     var $msgShowTime = 2000;
+    var singleuser = false;
 
     /**
      * Create new user
@@ -553,6 +554,7 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
             initLoginModal();
             initStatusTextModal();
             initUserPasswordChangeModal();
+            initSingleUser();
             LOG.info('init user forms');
             ready.resolve();
         });
@@ -560,6 +562,21 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
     }
     exports.init = init;
 
+    function initSingleUser() {
+        if (userController.singleuser) {
+            USER.login("admin", "admin", function(result) {
+                if (result.rc === "ok") {
+                    GUISTATE_C.setLogin(result);
+                    if (result.userId === 1) {
+                        $('#menuAddStatusTextWrap').removeClass('hidden');
+                    }
+                }
+                MSG.displayInformation(result, "MESSAGE_USER_LOGIN", result.message, GUISTATE_C.getUserName());
+            });
+            document.getElementById("head-navigation-gallery").remove();
+            document.getElementById("head-navigation-user").remove();
+        }
+    }
     function showUserDataForm() {
         getUserFromServer();
         $formRegister.unbind('submit');

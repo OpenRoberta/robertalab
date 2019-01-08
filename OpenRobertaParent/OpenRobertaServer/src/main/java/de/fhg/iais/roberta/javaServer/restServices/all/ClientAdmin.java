@@ -72,6 +72,7 @@ public class ClientAdmin {
             LOG.info("command is: " + cmd);
 
             response.put("cmd", cmd);
+            response.put("singleuser",robertaProperties.getBooleanProperty("singleuser"));
             if ( cmd.equals("init") ) {
                 List<String> userAgentList = httpHeaders.getRequestHeader("User-Agent");
                 String userAgentString = "";

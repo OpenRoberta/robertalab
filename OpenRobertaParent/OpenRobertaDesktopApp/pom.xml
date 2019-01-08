@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.fhg.iais</groupId>
+    <artifactId>OpenRobertaDesktopApp</artifactId>
+    <!-- this is usually 'pom', but then we won't get a jar -->
+    <packaging>jar</packaging>
+
+    <scm>
+        <connection>scm:git:https://github.com/Panda-Programming-Language/Pandomium.git</connection>
+        <developerConnection>scm:git:https://github.com/Panda-Programming-Language/Pandomium.git</developerConnection>
+        <url>https://github.com/Panda-Programming-Language/Pandomium</url>
+    </scm>
+    <parent>
+        <groupId>de.fhg.iais.openroberta</groupId>
+        <artifactId>OpenRobertaParent</artifactId>
+        <version>2.8.2-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <pandomium.version>1.0.7</pandomium.version>
+        <pandomium.nativeVersion>1.0.0</pandomium.nativeVersion>
+    </properties>
+
+    <dependencies>
+        <!-- OpenRobertaServer and its transitive dependencies -->
+        <dependency>
+            <groupId>de.fhg.iais.openroberta</groupId>
+            <artifactId>OpenRobertaServer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Pandomium -->
+        <dependency>
+            <groupId>org.panda-lang</groupId>
+            <artifactId>pandomium</artifactId>
+            <version>${pandomium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <repositories>
+        <repository>
+            <id>panda-repo</id>
+            <url>https://repo.panda-lang.org/</url>
+        </repository>
+
+        <repository>
+            <id>gdx-releases</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>fully.qualified.MainClass</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>de.fhg.iais.DesktopApp</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
