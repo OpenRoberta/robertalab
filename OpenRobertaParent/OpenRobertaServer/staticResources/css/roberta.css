@@ -1168,6 +1168,10 @@ table [data-toggle="collapse"].collapsed:after {
     position: relative;
     margin-top: 0;
 }
+.noLinkStyle, .noLinkStyle:hover {
+    text-decoration: none;
+    color: inherit;
+}
 .robot-label {
     display: block;
     white-space: nowrap;

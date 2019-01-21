@@ -135,13 +135,9 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             }
         }
 
-        var giveValue = function(key) {
-            return groupsDict[key];
-        }
-
         var addInfoLink = function(clone, robotName) {
             if (GUISTATE_C.getRobotInfo(robotName) != 'Info not found') {
-                clone.find('a').attr('onclick', 'window.open("' + GUISTATE_C.getRobotInfo(robotName) + '");return false;');
+                clone.find('a').attr('href', GUISTATE_C.getRobotInfo(robotName));
             } else {
                 clone.find('a').remove();
             }
@@ -507,20 +503,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             $("#show-startup-message").modal("show");
         }, 'logo was clicked');
 
-        $('.menuGeneral').onWrap('click', function(event) {
-            window.open("https://jira.iais.fraunhofer.de/wiki/display/ORInfo");
-        }, 'head navigation menu item clicked');
-        $('.menuFaq').onWrap('click', function(event) {
-            window.open("https://jira.iais.fraunhofer.de/wiki/display/ORInfo/FAQ");
-        }, 'head navigation menu item clicked');
-        $('.menuAboutProject').onWrap('click', function(event) {
-            if (GUISTATE_C.getLanguage() == 'de') {
-                window.open("https://www.roberta-home.de/index.php?id=135");
-            } else {
-                window.open("https://www.roberta-home.de/index.php?id=135&L=1");
-            }
-        }, 'head navigation menu item clicked');
-
         $('.simScene').onWrap('click', function(event) {
             SIM.setBackground(-1, SIM.setBackground);
             var scene = $("#simButtonsCollapse").collapse('hide');
@@ -563,6 +545,9 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             mousey = event.clientY;
         });
         $('.popup-robot').onWrap('click', function(event) {
+            if (event.target.className.indexOf("info") >= 0) {  // Info link has href attribute; do nothing.
+                return;
+            }
             if (Math.abs(event.clientX - mousex) >= 3 || Math.abs(event.clientY - mousey) >= 3) {
                 return;
             }
@@ -570,39 +555,35 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             $('#startPopupBack').trigger('click');
             var choosenRobotType = event.target.dataset.type || event.currentTarget.dataset.type;
             var choosenRobotGroup = event.target.dataset.group || event.currentTarget.dataset.group;
-            if (event.target.className.indexOf("info") >= 0) {
-                var win = window.open(GUISTATE_C.getRobots()[choosenRobotType].info, '_blank');
-            } else {
-                if (choosenRobotType) {
-                    if (choosenRobotGroup) {
-                        $('#popup-robot-main').addClass('hidden');
-                        $('.popup-robot.' + choosenRobotType).removeClass('hidden');
-                        $('.popup-robot.' + choosenRobotType).addClass('robotSpecial');
-                        $('#startPopupBack').removeClass('hidden');
-                        return;
-                    } else {
-                        ROBOT_C.switchRobot(choosenRobotType, true);
-                    }
-                }
-
-                var cookieName = "OpenRoberta_" + GUISTATE_C.getServerVersion();
-
-                if ($('#checkbox_id').is(':checked')) {
-
-                    var cookieSettings = {
-                        expires : 99,
-                        secure : GUISTATE_C.isPublicServerVersion(),
-                        domain : ''
-                    };
-
-                    CookieDisclaimer.saveCookie(cookieName, choosenRobotType, cookieSettings);
-
+            if (choosenRobotType) {
+                if (choosenRobotGroup) {
+                    $('#popup-robot-main').addClass('hidden');
+                    $('.popup-robot.' + choosenRobotType).removeClass('hidden');
+                    $('.popup-robot.' + choosenRobotType).addClass('robotSpecial');
+                    $('#startPopupBack').removeClass('hidden');
+                    return;
                 } else {
-                    $.removeCookie(cookieName);
+                    ROBOT_C.switchRobot(choosenRobotType, true);
                 }
-
-                $('#show-startup-message').modal('hide');
             }
+
+            var cookieName = "OpenRoberta_" + GUISTATE_C.getServerVersion();
+
+            if ($('#checkbox_id').is(':checked')) {
+
+                var cookieSettings = {
+                    expires : 99,
+                    secure : GUISTATE_C.isPublicServerVersion(),
+                    domain : ''
+                };
+
+                CookieDisclaimer.saveCookie(cookieName, choosenRobotType, cookieSettings);
+
+            } else {
+                $.removeCookie(cookieName);
+            }
+
+            $('#show-startup-message').modal('hide');
         }, 'robot choosen in start popup');
 
         $('#moreReleases').onWrap('click', function(event) {
@@ -622,14 +603,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             }
             PROGRAM_C.newProgram(true);
             TOUR_C.start('welcome');
-        }, 'take a tour clicked');
-
-        $('#goToWiki').onWrap('click', function(event) {
-            event.preventDefault();
-            window.open('https://jira.iais.fraunhofer.de/wiki/display/ORInfo', '_blank');
-            event.stopPropagation();
-            $("#show-startup-message").modal("show");
-
         }, 'take a tour clicked');
 
         // init popup events
